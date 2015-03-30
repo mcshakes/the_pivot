@@ -15,6 +15,7 @@ gem "bootstrap-sass", "~> 3.2.0"
 gem "autoprefixer-rails"
 gem "cancancan"
 gem "paperclip"
+gem "faker"
 
 group :production do
   gem 'pg'
@@ -32,7 +33,6 @@ group :development, :test do
   gem "awesome_print"
   gem "factory_girl_rails"
   gem "database_cleaner"
-  gem "faker"
   gem "simplecov", require: false
   gem "codeclimate-test-reporter", require: nil
 end
