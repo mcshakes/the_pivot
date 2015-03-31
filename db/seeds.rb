@@ -1,10 +1,10 @@
 
 class SeedItem
   def self.create_20_active_items
-    adjectives = ["delicious", "chewy", "crispy", "wholesome", "crunchy", "heavenly"]
-    cookies    = ["chocolate chip", "sugar", "whoopi pie", "almond", "snickerdoodle", "peanut butter"]
+    adjectives = ["avant garde", "groundbreaking", "chiaroscuro", "vibrant", "political", "journalistic", "impressionistic", "awe inspiring", "profound", "colorful"]
+    photos     = ["mountains", "children at play", "self portrait", "boats", "kittens", "still life", "industrial wasteland", "modernist building", "suburbia"]
     20.times do
-      Item.create(name: "#{adjectives.sample} #{cookies.sample} cookie",
+      Item.create(name: "#{adjectives.sample} #{photos.sample}",
                   description: "very #{adjectives.sample}",
                   price: Faker::Commerce.price)
     end
@@ -20,9 +20,9 @@ class SeedItem
 end
 
 class SeedCategory
-  def self.create_5_categories
-    categories = ["gluten free", "sugar free", "nutty", "chocolate"]
-    5.times do
+  def self.create_25_categories
+    categories = ["landscape", "portrait", "still life", "architecture", "black and white", "fashion", "documentary", "graffiti"]
+    25.times do
       Category.create(name: "#{categories.sample}")
     end
   end
@@ -106,7 +106,7 @@ end
 
 SeedItem.create_20_active_items
 SeedItem.retire_5_items
-SeedCategory.create_5_categories
+SeedCategory.create_25_categories
 SeedItemCategory.create_item_category_associations
 
 SeedUser.create_rachel
