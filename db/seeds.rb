@@ -3,6 +3,7 @@ class Seed
   def call
     generate_items
     generate_users
+    generate_vendors
     generate_orders
   end
 
@@ -23,13 +24,17 @@ class Seed
 
   end
 
-  # def generate_vendors
-  #   @vendor_count = 10
-  #
-  #   @vendor_count.times do
-  #     vendor = Vendor.create(name: Faker::Company.name, URL: Faker::Company.name.parameterize, description: Faker::Lorem.sentence)
-  #   end
-  # end
+  def generate_vendors
+    @vendor_count = 10
+
+    @vendor_count.times do
+      vendor = Vendor.create(name: Faker::Company.name,
+                             description: Faker::Lorem.sentence)
+      user = User.order("RANDOM()").first
+      user.vendors << vendor
+      puts "Vendors: #{vendor.name}"
+    end
+  end
 
   def generate_users
     @user_count = 10
