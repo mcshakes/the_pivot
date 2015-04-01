@@ -212,3 +212,18 @@ button.glyphicon {
   background-color: #9c5619;
   border-color:`` #9c5619;
 }*/
+
+/*vendor index*/
+
+.vendor-container {
+  border: 1px solid;
+  border-color: red;
+  /*padding-left: 80px;*/
+  /*padding-right: 50px;*/
+}
+
+.category {
+  border: 1px solid;
+  border-color: purple;
+
+}
