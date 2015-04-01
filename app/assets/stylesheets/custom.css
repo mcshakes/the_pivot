@@ -87,13 +87,11 @@ button.glyphicon {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% auto;
-  /*min-height: 534px;*/
 }
 
-#hero-btn {
-  line-height: 200px;
-  margin-top:150px;
-  margin-bottom:150px;
+#hero-content {
+  height: 500px;
+
 }
 
 .menu-image {
