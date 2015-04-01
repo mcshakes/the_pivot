@@ -32,6 +32,7 @@ class Seed
                              description: Faker::Lorem.sentence)
       user = User.order("RANDOM()").first
       user.vendors << vendor
+      vendor.items << Item.order("RANDOM()").limit(rand(6..10))
       puts "Vendors: #{vendor.name}"
     end
   end
