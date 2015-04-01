@@ -1,4 +1,4 @@
-<h1><%= @item.display_name %></h1>
 <p><%= image_tag @item.image.url(:large) %></p>
+<h1>Title: <%= @item.name %></h1>
 <p>Description: <%= @item.description %></p>
-<p>Price: <%= number_to_currency(@item.price) %></p>
+<p>Price:  <%= number_to_currency(@item.price) %></p>

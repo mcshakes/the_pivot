@@ -6,8 +6,7 @@ h1 {
 }
 
 body {
-  background-color: #9BA9B3 !important;
-  /*background: #ebbd5b !important;*/
+  background-color: #000000 !important;
   padding: 0px !important;
 }
 
@@ -87,13 +86,12 @@ button.glyphicon {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% auto;
-  /*min-height: 534px;*/
 }
 
-#hero-btn {
-  line-height: 200px;
-  margin-top:150px;
-  margin-bottom:150px;
+#hero-content {
+  width: 100%;
+  margin: 0 auto;
+  line-height: 30em;
 }
 
 .menu-image {

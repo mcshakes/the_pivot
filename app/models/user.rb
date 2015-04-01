@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   enum role: %w(default admin)
 
   has_many :orders
+  has_many :vendors
 
   def full_name
     "#{first_name} #{last_name}"
