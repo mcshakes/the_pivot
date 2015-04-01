@@ -1,12 +1,14 @@
+/*Add media queries for background image*/
+
 h1 {
   text-align: center;
   padding-bottom: 20px;
 }
 
 body {
-/*  background-color: #9BA9B3 !important;*/
-  background: #ebbd5b !important;
-
+  background-color: #9BA9B3 !important;
+  /*background: #ebbd5b !important;*/
+  padding: 0px !important;
 }
 
 .container {
@@ -19,17 +21,6 @@ body {
 
 .front-page-header span {
   font-size: .7em;
-}
-
-.jumbotron {
-  background-image: url(cookie-background.jpg);
-  background-repeat: no-repeat;
-  min-height: 534px;
-  width: 950px;
-}
-
-.jumbotron h1 {
-  font-size: 25;
 }
 
 .items {
@@ -87,9 +78,14 @@ button.glyphicon {
   margin: 20px;
 }
 
-#hero-unit {
-  background-image: url("cookie-background.jpg");
-  }
+#hero-image {
+  background-image: url(cookie-background.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  vertical-align: middle;
+  min-height: 534px;
+}
 
 .menu-image {
   height: 150px;
@@ -124,8 +120,7 @@ button.glyphicon {
   border: 1px solid black;
 }
 
-
 /*#navbar-color {
   background-color: #9c5619;
-  border-color: #9c5619;
+  border-color:`` #9c5619;
 }*/

@@ -21,7 +21,8 @@ end
 
 class SeedCategory
   def self.create_25_categories
-    categories = ["landscape", "portrait", "still life", "architecture", "black and white", "fashion", "documentary", "graffiti"]
+    categories = ["landscape", "portrait", "still life", "architecture",
+      "black and white", "fashion", "documentary", "graffiti"]
     25.times do
       Category.create(name: "#{categories.sample}")
     end
