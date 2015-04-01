@@ -10,4 +10,5 @@ Rails.application.configure do
   config.assets.digest = true
   config.assets.raise_runtime_errors = true
   config.consider_all_requests_local = false
+  config.serve_static_assets = true
 end
