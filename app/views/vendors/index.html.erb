@@ -1,10 +1,11 @@
 <h1>All Our Photographers</h1>
 
-<div class="vendor-container">
+<div class="container">
   <ul id="list">
     <% @vendors.each do |vendor| %>
-    <div class="category col-md-5 col-md-offset-1">
+    <div class="category col-md-5">
       <li> <%= link_to "#{vendor.name}", vendor %> </li>
+      <li> <%= vendor.description %> </li>
     </div>
     <% end %>
   </ul>
