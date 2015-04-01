@@ -134,7 +134,7 @@ button.glyphicon {
 
 /*vendor index*/
 
-.vendor-container {
+.container {
   border: 1px solid;
   border-color: red;
 
@@ -143,5 +143,5 @@ button.glyphicon {
 .category {
   border: 1px solid;
   border-color: purple;
-
+  margin-left: 50px;
 }
