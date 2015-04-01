@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'sessions#index'
 
-  resources :vendors, path: "", param: "slug"
+  resources :vendors, path: "store", param: "slug"
 
   namespace :vendors, as: :vendor, path: "/:slug" do
     resources :items
