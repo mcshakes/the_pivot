@@ -82,9 +82,14 @@ button.glyphicon {
   background-image: url(cookie-background.jpg);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: contain;
-  vertical-align: middle;
-  min-height: 534px;
+  background-size: 100% auto;
+  /*min-height: 534px;*/
+}
+
+#hero-btn {
+  line-height: 200px;
+  margin-top:150px;
+  margin-bottom:150px;
 }
 
 .menu-image {
