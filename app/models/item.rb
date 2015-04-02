@@ -11,7 +11,7 @@ class Item < ActiveRecord::Base
   validates :description, :price, presence: true
   validates :price, numericality: { greater_than: 0 }
 
-  before_validation :parameterize, :downcase_name
+  before_validation :parameterize #, :downcase_name
 
   has_attached_file :image, styles: { large: "500x340>", medium: "250x170>", thumb: "100x100>" }, default_url: "cookie-monster.jpg"
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
@@ -35,8 +35,8 @@ class Item < ActiveRecord::Base
     order(:id).reverse
   end
 
-  def downcase_name
-    return if name.nil?
-    name.downcase!
-  end
+  # def downcase_name
+  #   return if name.nil?
+  #   name.downcase!
+  # end
 end
