@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'sessions#index'
+  root to: 'home#index'
 
   resources :vendors, path: "store", param: "slug"
 
