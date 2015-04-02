@@ -226,3 +226,8 @@ button.glyphicon {
   border-color: purple;
   margin-left: 50px;
 }
+
+.category li {
+  list-style-type: none;
+  text-align: center;
+}
