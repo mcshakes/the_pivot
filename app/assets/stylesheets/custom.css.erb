@@ -47,7 +47,7 @@ body {
 }
 
 #hero-image {
-  background: url("sydney-opera-house.jpg");
+  background: url("<%= asset_path("sydney-opera-house.jpg")%>");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -149,7 +149,7 @@ button.glyphicon {
 }
 
 #checkout-total {
-  background-color: #d3d3d3;
+  background-color: grey;
   border-radius: 25px;
   padding: 20px;
   margin: 20px;
@@ -232,4 +232,9 @@ button.glyphicon {
 .page_title {
   padding-top: 50px;
   color: #dedede;
+}
+
+/*cart page*/
+#cart-page {
+  padding-top: 50px;
 }
