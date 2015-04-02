@@ -5,7 +5,7 @@
     <% @items.each do |item| %>
       <div class="col-sm-3 v-item">
         <p> <%= link_to image_tag(item.photo), vendor_item_path(slug: params[:slug], id:item.id),
-              data: { toggle: "modal", target: "#modal" } %>  </p> 
+              data: { toggle: "modal", target: "#modal-#{item.id}" } %>  </p> 
         <p>  <%= link_to item.name, vendor_item_path(slug: params[:slug], id:item.id) %> </p>
         <p>  Description: <%= item.description %> </p>
         <p>  Price: <%= number_to_currency(item.price) %></p>
