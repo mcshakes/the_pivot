@@ -4,12 +4,11 @@ class Seed
     generate_users
     generate_vendors
     generate_orders
-    binding.pry
   end
 
   def generate_items
     generate_categories
-    @item_count = 15
+    @item_count = 200
 
     adjectives = ["avant garde", "groundbreaking", "chiaroscuro", "vibrant", "political", "journalistic", "impressionistic", "awe inspiring", "profound", "colorful"]
     photos     = ["mountains", "children at play", "self portrait", "boats", "kittens", "still life", "industrial wasteland", "modernist building", "suburbia"]
@@ -36,6 +35,13 @@ class Seed
       user = User.find(rand(1..@user_count))
       user.vendors << vendor
       vendor.items << Item.find(vendor.id)
+      vendor.items << Item.find(vendor.id + 10)
+      vendor.items << Item.find(vendor.id + 20)
+      vendor.items << Item.find(vendor.id + 30)
+      vendor.items << Item.find(vendor.id + 40)
+      vendor.items << Item.find(vendor.id + 50)
+      vendor.items << Item.find(vendor.id + 60)
+      vendor.items << Item.find(vendor.id + 70)
       puts "Vendors: #{vendor.name}"
     end
   end
