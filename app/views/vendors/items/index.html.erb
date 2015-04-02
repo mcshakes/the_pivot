@@ -1,11 +1,13 @@
-<h1> Welcome to My Photo Store </h1>
+<h1> Welcome to <%= @vendor.name %>'s Photo Gallery </h1>
 
 <div class="col-sm-3">
   <% @items.each do |item| %>
-    <p> image_tag <%= item.photo %> </p>
-    <h3> Title: <%= item.name %> </h3> 
-    <p> Description:<%= item.description %>  </p>
-    <p> Price:<%= number_to_currency.item.price %> </p>
-    <p> item.status </p>
+    <ul>
+      <li> <%= image_tag item.photo %> </li>
+      <li> Title: <%= link_to item.name, vendor_item_path(slug: params[:slug], id:item.id) %> </li>
+      <li> Description: <%= item.description %> </li>
+      <li> Price: <%= number_to_currency(item.price) %> </li>
+      <li>  <%= item.status %></li>
   <% end %>
+    </ul>
 </div>

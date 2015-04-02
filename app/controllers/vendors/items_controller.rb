@@ -1,14 +1,14 @@
-class ItemsController < ApplicationController
+class Vendors::ItemsController < ApplicationController
   
   def index
-    @items = vendor.items
+    @vendor = Vendor.find_by(slug: params[:slug])
+    @items = @vendor.items
   end
 
   def show
-    @item = Item.find_by(params[:id])
+    @vendor = Vendor.find_by(slug: params[:slug])
+    @item = @vendor.items.find(params[:id])
   end
-
-
 
   # def new
   #   @item = Item.new
