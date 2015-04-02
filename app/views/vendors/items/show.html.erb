@@ -1,4 +1,12 @@
-<p><%= image_tag @item.image.url(:large) %></p>
-<h1>Title: <%= @item.name %></h1>
-<p>Description: <%= @item.description %></p>
-<p>Price:  <%= number_to_currency(@item.price) %></p>
+<div class="main">
+  <p><%= image_tag @item.photo %></p>
+  <h3><%= @item.name %></h3>
+  <p><strong> Description: </strong> <%= @item.description %></p>
+  <p><strong> Price:  </strong> <%= number_to_currency(@item.price) %></p>
+  <button type="button" class="btn btn-success">Add to Cart</button>
+</div>
+
+
+
+
+

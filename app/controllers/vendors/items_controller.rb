@@ -8,8 +8,9 @@ class Vendors::ItemsController < ApplicationController
   def show
     @vendor = Vendor.find_by(slug: params[:slug])
     @item = @vendor.items.find(params[:id])
+    render :layout => !request.xhr?
   end
-
+  
   # def new
   #   @item = Item.new
   #   authorize! :new, @item
