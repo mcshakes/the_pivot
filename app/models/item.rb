@@ -1,4 +1,6 @@
 class Item < ActiveRecord::Base
+  belongs_to :vendor
+
   has_many :item_categories
   has_many :categories, -> { uniq }, through: :item_categories
   has_many :item_orders

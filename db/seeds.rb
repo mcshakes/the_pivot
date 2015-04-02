@@ -1,10 +1,10 @@
 class Seed
-
   def call
     generate_items
     generate_users
     generate_vendors
     generate_orders
+    binding.pry
   end
 
   def generate_items
@@ -13,6 +13,9 @@ class Seed
 
     adjectives = ["avant garde", "groundbreaking", "chiaroscuro", "vibrant", "political", "journalistic", "impressionistic", "awe inspiring", "profound", "colorful"]
     photos     = ["mountains", "children at play", "self portrait", "boats", "kittens", "still life", "industrial wasteland", "modernist building", "suburbia"]
+
+    adjectives.map!(&:titleize)
+    photos.map!(&:titleize)
 
     @item_count.times do
       item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "very #{adjectives.sample}",
@@ -30,9 +33,9 @@ class Seed
     @vendor_count.times do
       vendor = Vendor.create(name: Faker::Company.name,
                              description: Faker::Lorem.sentence)
-      user = User.order("RANDOM()").first
+      user = User.find(rand(1..@user_count))
       user.vendors << vendor
-      vendor.items << Item.order("RANDOM()").limit(rand(6..10))
+      vendor.items << Item.find(vendor.id)
       puts "Vendors: #{vendor.name}"
     end
   end
@@ -71,7 +74,6 @@ class Seed
   def self.call
     new.call
   end
-
 end
 
 Seed.call
