@@ -11,5 +11,4 @@ RSpec.describe "user visits vendor index page", type: :feature do
       expect(page).to have_content("black and white")
     end
   end
-
 end
