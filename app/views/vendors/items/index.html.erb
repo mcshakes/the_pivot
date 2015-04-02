@@ -1,13 +1,17 @@
-<h1> Welcome to <%= @vendor.name %>'s Photo Gallery </h1>
+<div class="main">
+  <h1> Welcome to <%= @vendor.name %>'s Photo Gallery </h1>
 
-<div class="col-sm-3">
-  <% @items.each do |item| %>
-    <ul>
-      <li> <%= image_tag item.photo %> </li>
-      <li> Title: <%= link_to item.name, vendor_item_path(slug: params[:slug], id:item.id) %> </li>
-      <li> Description: <%= item.description %> </li>
-      <li> Price: <%= number_to_currency(item.price) %> </li>
-      <li>  <%= item.status %></li>
-  <% end %>
-    </ul>
+  <div class="row">
+    <% @items.each do |item| %>
+      <div class="col-sm-3 v-item">
+        <p> <%= link_to image_tag(item.photo), vendor_item_path(slug: params[:slug], id:item.id), data: { toggle: "modal", target: "#modal" } %>  </p> 
+        
+        <p>  <%= link_to item.name, vendor_item_path(slug: params[:slug], id:item.id) %> </p>
+        <p>  Description: <%= item.description %> </p>
+        <p>  Price: <%= number_to_currency(item.price) %></p> 
+        <p> <%= item.status %> </p> 
+      <% end %>
+      </div>
+  </div>
 </div>
+

@@ -6,6 +6,7 @@ h1 {
 body {
   background-color: #000000 !important;
   padding: 0px !important;
+  color: white;
 }
 
 .navbar {
@@ -183,6 +184,29 @@ button.glyphicon {
   padding: 10px;
   border: 1px solid black;
 }
+
+.modal {
+  color: black;
+}
+
+.modal-content {
+  padding: 35px;
+  text-align: center;
+}
+
+.main {
+  padding: 55px;
+}
+
+.v-item {
+ text-align: center;
+ border: 1px solid #333;
+}
+
+.v-item img {
+  width: 100%;
+}
+
 
 /*#navbar-color {
   background-color: #9c5619;
