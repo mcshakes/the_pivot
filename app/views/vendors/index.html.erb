@@ -1,14 +1,13 @@
 <div class="container">
   <h1 class="page_title">Our Photographers</h1>
-
-  <ul id="list" class='row'>
-    <% @vendors.each do |vendor| %>
-    <div class="category col-md-5">
-      <%= image_tag("glacier.jpeg", class: "pic") %>
-      <li><%= link_to "#{vendor.name}", vendor_items_path(slug: vendor.slug) %></li>
-      <li><%= vendor.description %> </li>
+    <div class='row'>
+      <% @vendors.each do |vendor| %>
+      <div class="col-sm-6">
+        <%= image_tag("glacier.jpeg") %>
+        <h3><%= link_to "#{vendor.name}", vendor_items_path(slug: vendor.slug) %></h3>
+        <p><%= vendor.description %> </p>
+        <br>
+      </div>
+      <% end %>
     </div>
-    <% end %>
-  </ul>
-  <div style="clear:both"> </div>
 </div>
