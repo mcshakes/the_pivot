@@ -144,6 +144,9 @@ button.glyphicon {
   border: 1px solid;
   border-color: purple;
   margin-left: 35px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: 100px;
 }
 
 .category li {
