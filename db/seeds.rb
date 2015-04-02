@@ -34,7 +34,7 @@ class Seed
                              description: Faker::Lorem.sentence)
       user = User.find(rand(1..@user_count))
       user.vendors << vendor
-      vendor.items << Item.order("RANDOM()").limit(rand(6..10)))
+      vendor.items << Item.order("RANDOM()").limit(rand(6..10))
       puts "Vendors: #{vendor.name}"
     end
   end
