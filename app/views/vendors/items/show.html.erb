@@ -1,12 +1,4 @@
-<h1><%= @item.display_name %></h1>
 <p><%= image_tag @item.image.url(:large) %></p>
+<h1>Title: <%= @item.name %></h1>
 <p>Description: <%= @item.description %></p>
-<p>Price: <%= number_to_currency(@item.price) %></p>
-<% if @item.status == "active" %>
-  <p><%= button_to "Add to Cart", cart_items_path(item: @item), class: "btn btn-default" %></p>
-<% end %>
-
-<% if current_user.try(:role) == "admin" %>
-  <p><%= link_to "Edit Item", edit_menu_item_path(@item), class: "btn btn-success" %>
-</p>
-<% end %>
+<p>Price:  <%= number_to_currency(@item.price) %></p>
