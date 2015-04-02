@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, :only => [:new]
 
   def new
     @user = User.new
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def authorize
     if current_user.nil?
-      redirect_to login_path, alert: "You must sign in"
+      redirect_to signup_path, alert: "You must sign in"
     end
   end
 
