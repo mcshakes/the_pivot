@@ -11,9 +11,8 @@ body {
 .navbar {
   margin-bottom: 0px !important;
 }
-.container {
-  border-radius: 25px;
-}
+
+/*home page styling*/
 
 .front-page {
   text-align: center;
@@ -22,6 +21,80 @@ body {
 .front-page-header span {
   font-size: .7em;
 }
+
+.pic {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.big-pic{
+  padding-top: 1em;
+  z-index: 1;
+}
+
+.little-pic {
+  padding-top: 0.5em;
+}
+
+.store-name {
+  color: grey;
+}
+
+.rand-vendor {
+
+}
+
+#hero-image {
+  background: url("<%= asset_path("sydney-opera-house.jpg")%>") no-repeat center center fixed;
+  background-size: cover;
+}
+
+#hero-msg {
+  margin-top: 125px;
+  margin-bottom: 125px;
+  font-weight: bold;
+  font-color: #ffffff !important;
+  font-size: 3.5em;
+}
+
+#hero-footer {
+  background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.4);
+  width: 100%;
+  min-height: 100px;
+  position: relative;
+  padding: 10px;
+  text-align: right;
+  margin: 10px auto;
+  }
+
+.hero-footer-square {
+  background-color: #d3d3d3;
+  padding: 10px;
+  opacity: 0.75;
+  height: 75px;
+  width: 130px;
+  border-radius: 3px;
+  border: 3px solid #dddddd;
+  text-align: center;
+  float: right;
+  margin-left: 10px;
+}
+
+.hero-footer-link {
+  text-transform: uppercase;
+}
+
+.hero-footer-link a{
+  color: #000 !important;
+}
+
+#home-page-pics {
+  margin-top: 20px;
+  text-align: center;
+}
+/*home page ends*/
+
 
 .items {
   padding: 10px;
@@ -76,22 +149,6 @@ button.glyphicon {
   border-radius: 25px;
   padding: 20px;
   margin: 20px;
-}
-
-#hero-image {
-  background: url("<%= asset_path("sydney-opera-house.jpg")%>") no-repeat center center fixed;
-  background-size: cover;
-}
-
-#hero-content {
-  width: 100%;
-  margin: 0 auto;
-  line-height: 30em;
-}
-
-#hero-btn {
-  margin-bottom: 20em;
-  z-index: 2;
 }
 
 .menu-image {
