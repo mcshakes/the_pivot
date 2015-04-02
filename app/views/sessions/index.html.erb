@@ -1,48 +1,60 @@
 <div id="hero-image">
-  <div>
-    <p id="hero-content">
-      hi
-    </p>
+  <div class="container">
+    <h1 id="hero-msg">THE GALLERY</h1>
+    <div id="hero-footer">
+      <div class="hero-footer-square">
+        <%= link_to "Buy Photographs", root_path, class: "hero-footer-link" %>
+      </div>
+      <div class="hero-footer-square">
+        <%= link_to "Sell Photographs", root_path, class: "hero-footer-link" %>
+      </div>
+      <div class="hero-footer-square">
+        <%= link_to "New Photographs", root_path, class: "hero-footer-link" %>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="col-sm-4">
-    <h1>Big Pic Here</h1>
+<div id="home-page-pics">
+  <div class="col-sm-4 rand-vendor">
+    <h4 class="store-name">Homes of the Norse Gods</h4>
+    <%= image_tag("alaska.jpg", class: "pic big-pic") %>
     <div class="col-xs-4">
-      Lil Pic Here
+      <%= image_tag("glacier.jpeg", class: "pic little-pic") %>
     </div>
     <div class="col-xs-4">
-      Lil Pic Here
+      <%= image_tag("Porch_of_Maidens.jpg", class: "pic little-pic") %>
     </div>
     <div class="col-xs-4">
-      Lil Pic Here
-    </div>
-  </div>
-
-  <div class="col-sm-4">
-    <h1>Big Pic Here</h1>
-    <div class="col-xs-4">
-      Lil Pic Here
-    </div>
-    <div class="col-xs-4">
-      Lil Pic Here
-    </div>
-    <div class="col-xs-4">
-      Lil Pic Here
+      <%= image_tag("ireland.jpeg", class: "pic little-pic") %>
     </div>
   </div>
 
   <div class="col-sm-4">
-    <h1>Big Pic Here</h1>
+    <h4 class="store-name">Emerald Isles</h4>
+    <%= image_tag("Dusk_landscape_high_resolution.jpg", class: "pic big-pic") %>
     <div class="col-xs-4">
-      Lil Pic Here
+      <%= image_tag("land3.jpeg", class: "pic little-pic") %>
     </div>
     <div class="col-xs-4">
-      Lil Pic Here
+      <%= image_tag("greens-beach-196826_640.jpg", class: "pic little-pic") %>
     </div>
     <div class="col-xs-4">
-      Lil Pic Here
+      <%= image_tag("mount_cooroora.jpg", class: "pic little-pic") %>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <h4 class="store-name">Nature Beckons</h4>
+    <%= image_tag("beach.jpg", class: "pic big-pic") %>
+    <div class="col-xs-4">
+      <%= image_tag("Road_to_mount_cook_new_zealand.jpg", class: "pic little-pic") %>
+    </div>
+    <div class="col-xs-4">
+      <%= image_tag("Loxodonta_africana_pair_in_Howletts_Wild_Animal_Park_(edited).jpg", class: "pic little-pic") %>
+    </div>
+    <div class="col-xs-4">
+      <%= image_tag("heron.jpeg", class: "pic little-pic") %>
     </div>
   </div>
 </div>
