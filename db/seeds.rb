@@ -14,6 +14,9 @@ class Seed
     adjectives = ["avant garde", "groundbreaking", "chiaroscuro", "vibrant", "political", "journalistic", "impressionistic", "awe inspiring", "profound", "colorful"]
     photos     = ["mountains", "children at play", "self portrait", "boats", "kittens", "still life", "industrial wasteland", "modernist building", "suburbia"]
 
+    adjectives.map!(&:titleize)
+    photos.map!(&:titleize)
+
     @item_count.times do
       item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "very #{adjectives.sample}",
                         price: Faker::Commerce.price, photo: Faker::Avatar.image)
