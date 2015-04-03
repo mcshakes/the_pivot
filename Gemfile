@@ -32,6 +32,7 @@ group :development, :test do
   gem "awesome_print"
   gem "factory_girl_rails"
   gem "database_cleaner"
+  gem 'better_errors'
   gem "simplecov", require: false
   gem "codeclimate-test-reporter", require: nil
 end
