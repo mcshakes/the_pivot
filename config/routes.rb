@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get  '/logout'    => 'sessions#destroy'
     get  '/dashboard' => 'dashboard#show'
 
-  resources :users
+  resources :users, except: [:new]
 
   resources :cart_items, only: [:create, :update, :destroy]
   get "/cart", to: "cart_items#index"
