@@ -27,6 +27,12 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
   end
 
+  it "is invalid without a unique email address" do
+    user = build(:user, email: nil)
+    duplicate_user = user.dup
+    expect(duplicate_user).not_to be_valid
+  end
+
   it "is invalid without a password" do
     user = build(:user, password: nil)
     expect(user).not_to be_valid
