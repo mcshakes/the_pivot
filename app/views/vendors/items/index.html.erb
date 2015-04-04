@@ -10,14 +10,17 @@
         <p>  <%= link_to item.name, vendor_item_path(slug: params[:slug], id:item.id),
               data: { target: "#modal" } %> </p>
 
-         <% if item.price < 20 %>
-          <p> <%= number_to_currency(item.price) %><span><em> --on sale now!</em></span> </p>
-        <% else %>
-          <p>  <%= number_to_currency(item.price) %></p>
-          <% end %>
         <% if item.status == "sold" %>
           <p> <%= item.status %> </p>
+        <% else %>
+          <% if item.price < 20 %>
+            <p> <%= number_to_currency(item.price) %><span><em> --on sale now!</em></span> </p>
+          <% else %>
+            <p>  <%= number_to_currency(item.price) %></p>
+          <% end %>
         <% end %>
+
+
       </div>
     <% end %>
   </div>
