@@ -2,7 +2,7 @@ require "rails_helper"
 require "support/factory_girl"
 
 RSpec.feature "Unauthenticated user", type: :feature do
-  xit "cannot view account page until logged in" do
+  it "cannot view account page until logged in" do
     visit account_path
     within ("div.alert-warning") do
       expect(page).to have_content("You must sign in")
