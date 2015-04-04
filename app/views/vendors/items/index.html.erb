@@ -1,16 +1,26 @@
-<div class="main">
-  <h1> Welcome to <%= @vendor.name %>'s Photo Gallery</h1>
+<div class="main-vendor-items">
+  <h2> Welcome to <%= @vendor.name %>'s Photo Gallery</h2>
 
   <div class="row">
     <% @items.each do |item| %>
-      <div class="col-sm-3 vendor-item">
+
+      <div class="col-sm-3 vendor-items">
         <p> <%= link_to image_tag(item.photo), vendor_item_path(slug: params[:slug], id:item.id),
-              data: { toggle: "modal", target: "#modal-#{item.id}" } %>  </p>
-        <p>  <%= link_to item.name, vendor_item_path(slug: params[:slug], id:item.id) %> </p>
-        <p>  Description: <%= item.description %> </p>
-        <p>  Price: <%= number_to_currency(item.price) %></p>
-        <p> <%= item.status %> </p>
+              data: { target: "#modal" } %>  </p> 
+        <p>  <%= link_to item.name, vendor_item_path(slug: params[:slug], id:item.id),
+              data: { target: "#modal" } %> </p>
+
+         <% if item.price < 20 %>
+          <p> <%= number_to_currency(item.price) %><span><em> --on sale now!</em></span> </p>
+        <% else %>
+          <p>  <%= number_to_currency(item.price) %></p>
+          <% end %>
+        <% if item.status == "sold" %>
+          <p> <%= item.status %> </p>
+        <% end %>
       </div>
     <% end %>
   </div>
 </div>
+
+

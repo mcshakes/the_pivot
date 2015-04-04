@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     post '/login'     => 'sessions#create'
     get  '/logout'    => 'sessions#destroy'
     get  '/dashboard' => 'dashboard#show'
+    get  "/account"   =>  "users#show"
 
   resources :users, except: [:new]
 
