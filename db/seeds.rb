@@ -4,6 +4,7 @@ class Seed
     generate_users
     generate_vendors
     generate_orders
+    create_sold_items
   end
 
   def generate_items
@@ -17,13 +18,20 @@ class Seed
     photos.map!(&:titleize)
 
     @item_count.times do
-      item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "very #{adjectives.sample}",
-                        price: Faker::Commerce.price, photo: Faker::Avatar.image)
+      item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
+                        price: Faker::Commerce.price.round, photo: Faker::Avatar.image)
         categories = Category.order("RANDOM()").limit(rand(1..5))
         item.categories << categories
       puts "Items: #{item.name}"
     end
+  end
 
+  def create_sold_items
+    40.times do
+      item = Item.all.sample
+      item.status = "sold"
+      item.save!
+    end
   end
 
   def generate_vendors
@@ -41,7 +49,7 @@ class Seed
       vendor.items << Item.find(vendor.id + 40)
       vendor.items << Item.find(vendor.id + 50)
       vendor.items << Item.find(vendor.id + 60)
-      vendor.items << Item.find(vendor.id + 70)
+      vendor.items << Item.find(vendor.id + 71)
       puts "Vendors: #{vendor.name}"
     end
   end
