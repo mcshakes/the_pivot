@@ -8,13 +8,15 @@ Rails.application.routes.draw do
     resource  :dashboard, only: :show
   end
 
-    get  "/login"     => "sessions#new"
-    post "/login"     => "sessions#create"
-    get  "/logout"    => "sessions#destroy"
-    get  "/dashboard" => "dashboard#show"
+    get  '/signup'    => "users#new"
+    get  '/login'     => 'sessions#new'
+    post '/login'     => 'sessions#create'
+    get  '/logout'    => 'sessions#destroy'
+    get  '/dashboard' => 'dashboard#show'
     get  "/account"   =>  "users#show"
 
-  resources :users
+  resources :users, except: [:new]
+
   resources :cart_items, only: [:create, :update, :destroy]
   get "/cart", to: "cart_items#index"
   post "/checkout", to: "orders#create"
