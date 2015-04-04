@@ -53,4 +53,29 @@ RSpec.describe User, type: :model do
     user = create(:user)
     expect(user.role).to eq("default")
   end
+
+  xit "has a reasonable email length" do
+    user_email = "a" * 200 + "@example.com"
+    user = create(:user, email: user_email)
+    expect(user).not_to be_valid
+  end
+
+  it "should accept valid addresses" do
+    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
+                         first.last@foo.jp alice+bob@baz.cn]
+    valid_addresses.each do |valid_address|
+      user = create(:user, email: valid_address)
+      expect(user).to be_valid
+    end
+  end
+
+  xit "should reject invalid email formats" do
+    invalid_addresses = %w[user_at_foo.org user.name@example.
+                           foo@bar_baz.com foo@bar+baz.com]
+
+    invalid_addresses.each do |invalid_address|
+      user = create(:user, email: invalid_address)
+      expect(user).not_to be_valid
+    end
+  end
 end
