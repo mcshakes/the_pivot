@@ -51,6 +51,6 @@ RSpec.describe User, type: :model do
 
   it "has an initial role of default" do
     user = create(:user)
-    expect(user.role).to eq("default")
+    expect(user.roles.first).to eq("default")
   end
 end

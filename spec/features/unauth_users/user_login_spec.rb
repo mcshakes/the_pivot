@@ -4,10 +4,10 @@ require "support/factory_girl"
 RSpec.feature "Unauthenticated user", type: :feature do
   it "cannot view account page until logged in" do
     visit account_path
-    within ("div.alert-warning") do
+    within ("div.danger") do
       expect(page).to have_content("You must sign in")
     end
-    expect(page).to have_content("Sign in")
+    expect(page).to have_content("Sign In")
     user_sign_in
     within ("div.alert-info") do
       expect(page).to have_content("Sign in successful")
@@ -42,6 +42,7 @@ RSpec.feature "Unauthenticated user", type: :feature do
   private
 
   def user_sign_in
+    visit login_path
     create(:user)
     fill_in "session[email]", with: "richard@example.com"
     fill_in "session[password]", with: "hello"

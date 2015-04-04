@@ -6,7 +6,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    if current_user && current_user.roles.include?("registered")
+      redirect_to user_path(current_user.id)
+    else
+      flash[:danger] = "You must sign in to see your account."
+      redirect_to root_path
+    end
     # @orders = Order.where(user_id: current_user.id)
   end
 
