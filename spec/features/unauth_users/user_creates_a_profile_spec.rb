@@ -39,7 +39,7 @@ RSpec.feature "Unauthenticated user", type: :feature do
     end
   end
 
-  it "gets error messages if filling in the form with invalid inputs" do
+  it "gets error messages if form is filled with invalid inputs" do
     get_registration_form
     incorrect_registration
     click_link_or_button("Create Account")
@@ -55,10 +55,22 @@ RSpec.feature "Unauthenticated user", type: :feature do
     get_registration_form
     correct_registration
     click_link_or_button("Create Account")
-    # save_and_open_page
-    # within(".user_view") do
-      expect(page).to have_content("Welcome Pip")
-    # end
+    expect(page).to have_content("Welcome Pip")
   end
+
+  it "must have a matching password confirmation" do
+    get_registration_form
+    fill_in("user[first_name]", with: "Pip" )
+    fill_in("user[last_name]", with: "Pippo" )
+    fill_in("user[email]", with: "pipmagnet@yahoo.com" )
+    fill_in("user[password]", with: "password" )
+    click_link_or_button("Create Account")
+
+    within("#error_explanation") do
+      expect(page).to have_content("The form contains 1 error")
+      expect(page).to have_content("Password confirmation doesn't match Password")
+    end
+  end
+
 
 end
