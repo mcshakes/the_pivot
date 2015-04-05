@@ -22,16 +22,9 @@ RSpec.feature "Unauthenticated user", type: :feature do
     expect(page).to have_content("Invalid email or password, try again")
     expect(page).to have_content("Sign In")
 
-    # expect(ActionMailer::Base.deliveries.length).to eq(1)
   end
 
-  it "confirms its email address" do
-    create(:email_confirmation, token: "unique-token")
-    visit email_confirmation_path("unique-token")
 
-    expect(page).to have_content("You confirmed your email! High five!")
-    expect_user_to_be_signed_in
-  end
 
   it "can logout if already logged in" do
     visit login_path
@@ -45,9 +38,9 @@ RSpec.feature "Unauthenticated user", type: :feature do
 
   def user_sign_in
     visit login_path
-    create(:user)
-    fill_in "session[email]", with: "richard@example.com"
-    fill_in "session[password]", with: "hello"
+    user = create(:user)
+    fill_in "session[email]", with: user.email
+    fill_in "session[password]", with: user.password
     within("form") { click_link_or_button "Sign in" }
   end
 end
