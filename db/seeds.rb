@@ -2,6 +2,7 @@ class Seed
   def call
     generate_items
     generate_users
+    generate_specific_users
     generate_vendors
     generate_orders
     create_sold_items
@@ -56,6 +57,14 @@ class Seed
       # credit_cards: Faker::Business.credit_card_number)
       puts "users: #{user.first_name} #{user.last_name}"
     end
+  end
+
+  def generate_specific_users
+    User.create(first_name: "Miriam",
+                last_name: "Moser",
+                display_name: "mirjoy"
+                email: "miriam@example.com",
+                password: "password")
   end
 
   def generate_orders

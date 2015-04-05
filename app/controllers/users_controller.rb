@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to user_path(@user.id)
+      sign_in
     else
       render :new
     end
@@ -24,14 +24,13 @@ class UsersController < ApplicationController
 
   private
 
-  # def authorize
-  #   if current_user.nil?
-  #     redirect_to signup_path, alert: "You must sign in"
-  #   end
-  # end
-
   def user_params
     params.require(:user).permit(:first_name, :last_name, :display_name, :email, :password, :password_confirmation)
+  end
+
+  def sign_in
+    session[:user_id] = @user.id
+    redirect_to @user, sucess: "Welcome to the Gallery, #{@user.first_name}!"
   end
 
 end

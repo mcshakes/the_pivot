@@ -28,11 +28,10 @@ RSpec.feature "Unauthenticated user", type: :feature do
 
   it "sees a user registration form" do
     get_registration_form
+
     expect(current_path).to eq(signup_path)
-    within(".register-page") do
-      expect(page).to have_content("First name")
-      expect(page).to have_content("Last name")
-    end
+    expect(page).to have_content("First name")
+    expect(page).to have_content("Last name")
   end
 
   it "gets error messages if form is filled with invalid inputs" do
@@ -40,14 +39,12 @@ RSpec.feature "Unauthenticated user", type: :feature do
     incorrect_registration
     click_link_or_button("Create Account")
 
-    within("#error_explanation") do
-      expect(page).to have_content("The form contains 2 errors")
-      expect(page).to have_content("Email is invalid")
-      expect(page).to have_content("Password can't be blank")
-    end
+    expect(page).to have_content("The form contains 2 errors")
+    expect(page).to have_content("Email is invalid")
+    expect(page).to have_content("Password can't be blank")
   end
 
-  xit "is taken to the user home page upon correct registration" do
+  it "is taken to the user home page upon correct registration" do
     get_registration_form
     correct_registration
     click_link_or_button("Create Account")
