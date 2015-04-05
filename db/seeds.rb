@@ -20,7 +20,7 @@ class Seed
     @item_count.times do
       item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
                         price: Faker::Commerce.price.round, photo: Faker::Avatar.image)
-        categories = Category.order("RANDOM()").limit(rand(1..5))
+        categories = Category.order("RANDOM()").limit(rand(1..3))
         item.categories << categories
       puts "Items: #{item.name}"
     end
