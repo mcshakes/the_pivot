@@ -2,6 +2,7 @@
 <h1>Sign Up</h1>
 
 <%= form_for(@user, role:"form") do |f| %>
+<%= render "partials/error_messages" %>
 <div id="register-form">
   <div>
     <%= f.label :first_name %>
