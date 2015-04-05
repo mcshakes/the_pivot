@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def signed_in?
+    current_user.present?
+  end
+  helper_method :signed_in?
+
   def format_time(time)
     time.strftime("%B %d, %Y, %l:%M %p")
   end
