@@ -18,6 +18,10 @@ class Item < ActiveRecord::Base
   has_attached_file :image, styles: { large: "500x340>", medium: "250x170>", thumb: "100x100>" }, default_url: "cookie-monster.jpg"
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
+  def category_list
+    categories.map(&:name).join(", ")
+  end
+
   def to_param
     "#{name.parameterize}"
   end
@@ -36,6 +40,8 @@ class Item < ActiveRecord::Base
   def self.order_by_id
     order(:id).reverse
   end
+
+
 
   # def downcase_name
   #   return if name.nil?

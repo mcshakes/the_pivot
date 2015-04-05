@@ -1,5 +1,11 @@
 class User < ActiveRecord::Base
-  validates :first_name, :last_name, :email, presence: true
+  validates :first_name, :last_name, :role, :email, presence: true
+  before_save { self.email = email.downcase }
+  VALID_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence:true, length: { maximum: 50 },
+                    uniqueness: { case_sensitive: false }
+  validates_format_of :email, with: VALID_REGEX, on: :create
+
   has_secure_password
 
   has_many :orders

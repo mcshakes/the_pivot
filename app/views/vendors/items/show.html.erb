@@ -1,11 +1,16 @@
 <div class="main">
   <p><%= image_tag @item.photo %></p>
-  <h3><%= @item.name %></h3>
+  <h4><%= @item.name %></h4>
   <p><strong> Description: </strong> <%= @item.description %></p>
-  <p><strong> Price:  </strong> <%= number_to_currency(@item.price) %></p>
-  <button type="button" class="btn btn-success">Add to Cart</button>
-</div>
+  <p><strong> <%= "Category".pluralize(@item.categories.count) %>:</strong> <%= @item.category_list %></p>
 
+  <% if @item.status == "sold" %>
+    <p> <%= @item.status %> </p>
+  <% else %>
+    <p><strong> Price:  </strong> <%= number_to_currency(@item.price) %></p>
+    <button type="button" class="btn btn-success btn-xs"> Add to Cart</button>
+  <% end %>
+</div>
 
 
 
