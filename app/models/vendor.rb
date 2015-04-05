@@ -1,6 +1,7 @@
 class Vendor < ActiveRecord::Base
   belongs_to :user
   has_many :items
+  has_many :administrators, through: :vendor_administrations
 
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
@@ -10,5 +11,9 @@ class Vendor < ActiveRecord::Base
 
   def generate_slug
     self.slug = name.parameterize
+  end
+
+  def administrated_by?(user)
+    user.superadmin? || administrators.include?(user)
   end
 end

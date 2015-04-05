@@ -13,8 +13,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <% if registered_user? %>
+        <% if signed_in? %>
           <li><%= link_to "Account", account_path %></a></li>
+          <li><%= link_to "Sign Out", logout_path %></a></li>
         <% else  %>
           <li><%= link_to "Sign Up", signup_path %></a></li>
           <li><%= link_to "Sign In", login_path %></a></li>
