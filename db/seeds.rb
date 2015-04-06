@@ -62,7 +62,7 @@ class Seed
   def generate_specific_users
     User.create(first_name: "Miriam",
                 last_name: "Moser",
-                display_name: "mirjoy"
+                display_name: "mirjoy",
                 email: "miriam@example.com",
                 password: "password")
   end
