@@ -40,7 +40,7 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     click_link_or_button(vendor.name)
     click_link_or_button(item.name)
     click_link_or_button "Buy"
-    
+
     visit_all_photographers_store_index
     click_link_or_button(vendor2.name)
     click_link_or_button(item2.name)
@@ -49,6 +49,39 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     expect(page).to have_content("Beautiful Image")
     expect(page).to have_content("Food Glorious Food")
     expect(page).to have_content("Total Items: 2")
+  end
+
+  it "allows users to remove things from their cart" do
+    vendor = create(:vendor, name: "Sports Pics")
+    item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
+
+    visit_all_photographers_store_index
+    click_link_or_button(vendor.name)
+
+    click_link_or_button(item.name)
+    click_link_or_button "Buy"
+    visit cart_path
+    find("#down_button").click
+
+    expect(page).to have_content("The item has been removed from your cart")
+    expect(page).to_not have_content("Super Sold Photograph")
+  end
+
+  it "allows users to increase the quantity of an item in their cart" do
+    vendor = create(:vendor, name: "Sports Pics")
+    item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
+
+    visit_all_photographers_store_index
+    click_link_or_button(vendor.name)
+
+    click_link_or_button(item.name)
+    click_link_or_button "Buy"
+    visit cart_path
+    # save_and_open_page
+    find("#up_button").click
+    # click_link("", href: "/cart_items?item=salted-caramel-peanut-butter-cup")
+    expect(page).to have_content("Quantity: 2")
+    expect(page).to have_content("12.00")
   end
   #
   # it "views their cart" do
