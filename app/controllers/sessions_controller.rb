@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       sign_in
     else
       flash[:error] = "Invalid email or password, try again"
-      render :new
+      render partial: 'layouts/modal_signin'
     end
   end
 

@@ -1,6 +1,6 @@
 <div class="signin-form">
   <h1>Sign Up</h1>
-    <%= form_for(@user, role:"form") do |f| %>
+    <%= form_for(:user, url: signup_path, role:"form") do |f| %>
     <%= render "partials/error_messages" %>
 
     <%= f.label :first_name %>
