@@ -1,6 +1,6 @@
 <div class="user-view">
   <h1>My Account</h1>
-  <h3>Welcome <%= current_user.display_name %>!</h3>
+  <h3>Welcome <%= current_user.first_name %>!</h3>
 
   <% if @orders.nil?  %>
     <p>You currently have no orders. We have a bunch of great stuff you can buy.
