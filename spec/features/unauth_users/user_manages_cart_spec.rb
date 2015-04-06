@@ -29,6 +29,27 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     click_link_or_button(item.name)
     expect(page).not_to have_button("Buy")
   end
+
+  it "can add for sale items to cart from multiple stores" do
+    vendor = create(:vendor, name: "Bob's Photo Shop")
+    item = create(:item, :for_sale, name: "Beautiful Image", vendor: vendor)
+    vendor2 = create(:vendor, name: "Another Photo Store")
+    item2 = create(:item, :for_sale, name: "Food Glorious Food", vendor: vendor2)
+    visit_all_photographers_store_index
+
+    click_link_or_button(vendor.name)
+    click_link_or_button(item.name)
+    click_link_or_button "Buy"
+    
+    visit_all_photographers_store_index
+    click_link_or_button(vendor2.name)
+    click_link_or_button(item2.name)
+    click_link_or_button "Buy"
+
+    expect(page).to have_content("Beautiful Image")
+    expect(page).to have_content("Food Glorious Food")
+    expect(page).to have_content("Total Items: 2")
+  end
   #
   # it "views their cart" do
   #   create_item_and_add_to_cart
