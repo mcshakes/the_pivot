@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in
     else
+      flash[:error] = "Invalid input, please try again"
       redirect_to :back
     end
   end
