@@ -8,7 +8,12 @@
     <p> <%= @item.status %> </p>
   <% else %>
     <p><strong> Price:  </strong> <%= number_to_currency(@item.price) %></p>
-    <button type="button" class="btn btn-success btn-xs"> Add to Cart</button>
+
+    <%= form_tag(cart_items_path) do %>
+      <%= hidden_field_tag :item_id, @item.id %>
+      <%= submit_tag "Buy", class: "btn btn-success btn-xs" %>
+    <% end %>
+
   <% end %>
 </div>
 
