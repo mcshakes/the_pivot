@@ -18,18 +18,23 @@ RSpec.feature "Unauthenticated user", type: :feature do
   end
 
   def get_registration_form
-    visit signup_path
+    visit root_path
+    within ('.navbar') do
+      click_link_or_button "Sign In"
+    end
+    within ('#sign-in-modal') do
+      click_link_or_button "Sign In"
+    end
   end
 
   it "sees the sign in button on the homepage" do
     visit root_path
-    expect(page).to have_content("Sign Up")
+    expect(page).to have_content("Sign In")
   end
 
   it "sees a user registration form" do
     get_registration_form
 
-    expect(current_path).to eq(signup_path)
     expect(page).to have_content("First name")
     expect(page).to have_content("Last name")
   end

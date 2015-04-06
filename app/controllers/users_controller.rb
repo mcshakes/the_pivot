@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in
     else
-      render :new
+      redirect_to :back
     end
   end
 
