@@ -12,11 +12,13 @@
 
     <div class="row flash">
       <%= flash_messages %>
+      <%= render "partials/error_messages" %>
     </div>
 
     <%= yield %>
 
     <%= render 'layouts/modal_windows' %>
+    <%= render 'layouts/modal_signin' %>
 
   </body>
 </html>

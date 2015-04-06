@@ -18,7 +18,8 @@ class UsersController < ApplicationController
     if @user.save
       sign_in
     else
-      render :new
+      flash[:error] = "Invalid input, please try again"
+      redirect_to :back
     end
   end
 
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
 
   def sign_in
     session[:user_id] = @user.id
-    redirect_to @user, sucess: "Welcome to the Gallery, #{@user.first_name}!"
+    redirect_to @user
   end
 
 end

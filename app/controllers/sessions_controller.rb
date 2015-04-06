@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       sign_in
     else
       flash[:error] = "Invalid email or password, try again"
-      render :new
+      redirect_to :back
     end
   end
 

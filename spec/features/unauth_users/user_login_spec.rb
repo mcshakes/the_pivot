@@ -16,11 +16,14 @@ RSpec.feature "Unauthenticated user", type: :feature do
 
   it "cannot user_sign_in with incorrect email or password" do
     user = create(:user)
-    visit login_path
+    visit root_path
+    within(".navbar-nav") {click_link_or_button "Sign In"}
 
-    fill_in "session[email]", with: user.email
-    fill_in "session[password]", with: "incorrect"
-    within("form") { click_link_or_button "Sign in" }
+    within("#signin") do
+      fill_in "session[email]", with: user.email
+      fill_in "session[password]", with: "incorrect"
+      within("form") { click_link_or_button "Sign in" }
+    end
 
     expect(page).to have_content("Invalid email or password, try again")
     expect(page).to have_content("Sign In")
@@ -28,7 +31,6 @@ RSpec.feature "Unauthenticated user", type: :feature do
   end
 
   it "can logout if already logged in" do
-    visit login_path
     user_sign_in
     click_link_or_button "Sign Out"
 
@@ -39,10 +41,14 @@ RSpec.feature "Unauthenticated user", type: :feature do
   private
 
   def user_sign_in
-    visit login_path
+    visit root_path
+    within(".navbar-nav") {click_link_or_button "Sign In"}
+
     user = create(:user)
-    fill_in "session[email]", with: user.email
-    fill_in "session[password]", with: user.password
-    within("form") { click_link_or_button "Sign in" }
+    within("#signin") do
+      fill_in "session[email]", with: user.email
+      fill_in "session[password]", with: user.password
+      within("form") { click_link_or_button "Sign in" }
+    end
   end
 end

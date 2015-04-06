@@ -17,8 +17,7 @@
           <li><%= link_to "Account", account_path %></a></li>
           <li><%= link_to "Sign Out", logout_path %></a></li>
         <% else  %>
-          <li><%= link_to "Sign Up", signup_path %></a></li>
-          <li><%= link_to "Sign In", login_path %></a></li>
+          <li><a href="#" data-target="#sign-in-modal" data-toggle="modal">Sign In</a>
         <% end %>
         <li><%= link_to "<span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'>".html_safe, cart_path %></li>
       </ul>
