@@ -1,10 +1,55 @@
 require "rails_helper"
 
-RSpec.describe "user managing cart", type: :feature do
-  # it "adds items to cart" do
-  #   create_item_and_add_to_cart
-  #   expect(page).to have_content("in your cart.")
-  # end
+RSpec.describe "unauthenticated user managing cart", type: :feature do
+
+  def visit_all_photographers_store_index
+    visit root_path
+    click_link_or_button("Buy Photographs")
+  end
+
+  it "can add a for sale item to cart from one store" do
+    vendor = create(:vendor, name: "Bob's Photo Shop")
+    item = create(:item, :for_sale, name: "Cute Photograph", vendor: vendor)
+    visit_all_photographers_store_index
+    click_link_or_button(vendor.name)
+    click_link_or_button(item.name)
+    click_link_or_button "Buy"
+    expect(page).to have_content("Your Cart")
+    expect(page).to have_content("#{item.name} in your cart.")
+
+    expect(page).to have_content("Cute Photograph")
+    expect(page).to have_content("Quantity: 1")
+  end
+
+  it "can not add a sold item to the cart" do
+    vendor = create(:vendor, name: "Sports Pics")
+    item = create(:item, :sold, name: "Super Sold Photograph", vendor: vendor)
+    visit_all_photographers_store_index
+    click_link_or_button(vendor.name)
+    click_link_or_button(item.name)
+    expect(page).not_to have_button("Buy")
+  end
+
+  it "can add for sale items to cart from multiple stores" do
+    vendor = create(:vendor, name: "Bob's Photo Shop")
+    item = create(:item, :for_sale, name: "Beautiful Image", vendor: vendor)
+    vendor2 = create(:vendor, name: "Another Photo Store")
+    item2 = create(:item, :for_sale, name: "Food Glorious Food", vendor: vendor2)
+    visit_all_photographers_store_index
+
+    click_link_or_button(vendor.name)
+    click_link_or_button(item.name)
+    click_link_or_button "Buy"
+    
+    visit_all_photographers_store_index
+    click_link_or_button(vendor2.name)
+    click_link_or_button(item2.name)
+    click_link_or_button "Buy"
+
+    expect(page).to have_content("Beautiful Image")
+    expect(page).to have_content("Food Glorious Food")
+    expect(page).to have_content("Total Items: 2")
+  end
   #
   # it "views their cart" do
   #   create_item_and_add_to_cart
@@ -53,17 +98,10 @@ RSpec.describe "user managing cart", type: :feature do
   #   expect(page).to have_content("Quantity: 1")
   # end
 
-  private
 
-  def create_item_and_add_to_cart
-    create(:item)
-    visit menu_path
-    click_link_or_button "Add to Cart"
-  end
-
-  def user_sign_in
-    fill_in "session[email]", with: "richard@example.com"
-    fill_in "session[password]", with: "password"
-    within("form") { click_link_or_button "Sign in" }
-  end
+  # def user_sign_in
+  #   fill_in "session[email]", with: "richard@example.com"
+  #   fill_in "session[password]", with: "password"
+  #   within("form") { click_link_or_button "Sign in" }
+  # end
 end

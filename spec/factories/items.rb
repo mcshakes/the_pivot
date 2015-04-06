@@ -7,5 +7,13 @@ FactoryGirl.define do
     trait :retired do
       status "retired"
     end
+
+    trait :for_sale do
+      status "active"
+    end
+
+    trait :sold do
+      status "sold"
+    end
   end
 end
