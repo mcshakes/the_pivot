@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       flash[:danger] = "You must sign in to see your account."
       redirect_to root_path
     end
-    # @orders = Order.where(user_id: current_user.id)
+    @orders = Order.where(user_id: current_user.id)
   end
 
   def create
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def sign_in
     session[:user_id] = @user.id
-    redirect_to @user
+    redirect_to :back
   end
 
 end

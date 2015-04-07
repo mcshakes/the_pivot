@@ -4,8 +4,7 @@ RSpec.feature "Unauthenticated user", type: :feature do
   it "cannot view account page until logged in" do
     visit account_path
     expect(page).to have_content("You must sign in")
-    expect(page).to have_content("Sign In")
-
+    
     user_sign_in
     expect(page).to have_content("Sign in successful")
 

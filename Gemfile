@@ -22,7 +22,7 @@ end
 
 group :development, :test do
   gem "web-console", "~> 2.0"
-  gem "spring"
+  gem "spring", "~> 1.3.4"
   gem "pry-byebug"
   gem "capybara"
   gem "capybara-webkit"
