@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
   def sign_in
     session[:user_id] = @user.id
-    redirect_to @user
+    redirect_to :back
   end
 
 end
