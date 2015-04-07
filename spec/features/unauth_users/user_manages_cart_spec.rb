@@ -80,6 +80,20 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     expect(page).to have_content("Quantity: 2")
     expect(page).to have_content("12.00")
   end
+
+  it "can click checkout button and be routed to the login page" do
+    vendor = create(:vendor, name: "Sports Pics")
+    item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
+
+    visit_all_photographers_store_index
+    click_link_or_button(vendor.name)
+
+    click_link_or_button(item.name)
+    click_link_or_button "Buy"
+    visit cart_path
+    click_link_or_button("Checkout")
+    expect(page).to have_content("You must sign in if you want to place an order.")
+  end
   #
   # it "views their cart" do
   #   create_item_and_add_to_cart
