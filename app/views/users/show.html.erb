@@ -13,7 +13,8 @@
       <% order.items.each do |item| %>
         <!-- Need to change this to link to the individual item eventually -->
         <p><%= quantity_of_item(item, order) %>
-        <%= link_to item.display_name, vendor_path(item.vendor) %>:
+        <%= link_to item.display_name, vendor_item_path(slug: item.vendor.slug, id: item.id) %>
+        from <%= link_to item.vendor.name, vendor_items_path(slug: item.vendor.slug) %>:
         <%= number_to_currency(line_item_price(item, order)) %></p>
       <% end %>
       <p><strong>Total</strong>: <%= number_to_currency(order.total_price) %><br/>
