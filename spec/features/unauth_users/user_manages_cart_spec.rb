@@ -1,28 +1,24 @@
 require "rails_helper"
 
-RSpec.describe "unauthenticated user managing cart", type: :feature do
-
-  def visit_all_photographers_store_index
-    visit root_path
-    click_link_or_button("Buy Photographs")
-  end
+RSpec.describe "unauthenticated user managing cart", type: :feature, js: true do
 
   it "can add a for sale item to cart from one store" do
-    vendor = create(:vendor, name: "Bob's Photo Shop")
-    item = create(:item, :for_sale, name: "Cute Photograph", vendor: vendor)
-    visit_all_photographers_store_index
+    vendor = create(:vendor)
+    item = create(:item, :for_sale, vendor: vendor)
+    visit vendors_path
+
     click_link_or_button(vendor.name)
     click_link_or_button(item.name)
-    click_link_or_button "Buy"
+    click_link_or_button("Buy")
 
     expect(page).to have_content("#{item.name} was added to your cart.")
-    expect(page).to have_content("Cute Photograph")
   end
 
-  it "can not add a sold item to the cart" do
+  it "cannot add a sold item to the cart" do
     vendor = create(:vendor, name: "Sports Pics")
     item = create(:item, :sold, name: "Super Sold Photograph", vendor: vendor)
-    visit_all_photographers_store_index
+    visit vendors_path
+
     click_link_or_button(vendor.name)
     click_link_or_button(item.name)
     expect(page).not_to have_button("Buy")
@@ -34,12 +30,12 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     vendor2 = create(:vendor, name: "Another Photo Store")
     item2 = create(:item, :for_sale, name: "Food Glorious Food", vendor: vendor2)
 
-    visit_all_photographers_store_index
+    visit vendors_path
     click_link_or_button(vendor.name)
     click_link_or_button(item.name)
     click_link_or_button "Buy"
 
-    visit_all_photographers_store_index
+    visit vendors_path
     click_link_or_button(vendor2.name)
     click_link_or_button(item2.name)
     click_link_or_button "Buy"
@@ -54,11 +50,11 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     vendor = create(:vendor, name: "Sports Pics")
     item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
 
-    visit_all_photographers_store_index
+    visit vendors_path
     click_link_or_button(vendor.name)
 
     click_link_or_button(item.name)
-    click_link_or_button "Buy"
+    click_link_or_button("Buy")
     visit cart_path
     find("#down_button").click
 
@@ -70,11 +66,11 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     vendor = create(:vendor, name: "Sports Pics")
     item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
 
-    visit_all_photographers_store_index
+    visit vendors_path
     click_link_or_button(vendor.name)
 
     click_link_or_button(item.name)
-    click_link_or_button "Buy"
+    click_link_or_button("Buy")
     visit cart_path
     find("#up_button").click
     expect(page).to have_content("Quantity: 2")
@@ -85,11 +81,11 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     vendor = create(:vendor, name: "Sports Pics")
     item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
 
-    visit_all_photographers_store_index
+    visit vendors_path
     click_link_or_button(vendor.name)
 
     click_link_or_button(item.name)
-    click_link_or_button "Buy"
+    click_link_or_button("Buy")
     visit cart_path
     click_link_or_button("Checkout")
     expect(page).to have_content("Sign In")

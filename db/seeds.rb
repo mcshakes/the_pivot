@@ -65,6 +65,11 @@ class Seed
                 display_name: "mirjoy",
                 email: "miriam@example.com",
                 password: "password")
+    User.create(first_name: "Jorge",
+                last_name: "Tellez",
+                display_name: "Jorge",
+                email: "jorge@example.com",
+                password: "password")
   end
 
   def generate_orders
