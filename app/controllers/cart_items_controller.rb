@@ -5,7 +5,7 @@ class CartItemsController < ApplicationController
     # item = Item.find(params[:id])
     cart_data
     @cart.add_item(item)
-    flash[:notice] = "You have #{pluralize(@cart.item_quantity(item), item.name)} in your cart."
+    flash[:notice] = "#{item.name} was added to your cart."
     redirect_to :back
   end
 
