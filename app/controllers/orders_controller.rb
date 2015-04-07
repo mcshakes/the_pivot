@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
       redirect_to account_path
     else
       flash[:error] = "You must sign in if you want to place an order."
+      # render :partial => "/layouts/modal_signin"
       redirect_to login_path
     end
   end

@@ -14,11 +14,9 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     click_link_or_button(vendor.name)
     click_link_or_button(item.name)
     click_link_or_button "Buy"
-    expect(page).to have_content("Your Cart")
-    expect(page).to have_content("#{item.name} in your cart.")
 
+    expect(page).to have_content("#{item.name} was added to your cart.")
     expect(page).to have_content("Cute Photograph")
-    expect(page).to have_content("Quantity: 1")
   end
 
   it "can not add a sold item to the cart" do
@@ -35,20 +33,67 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     item = create(:item, :for_sale, name: "Beautiful Image", vendor: vendor)
     vendor2 = create(:vendor, name: "Another Photo Store")
     item2 = create(:item, :for_sale, name: "Food Glorious Food", vendor: vendor2)
-    visit_all_photographers_store_index
 
+    visit_all_photographers_store_index
     click_link_or_button(vendor.name)
     click_link_or_button(item.name)
     click_link_or_button "Buy"
-    
+
     visit_all_photographers_store_index
     click_link_or_button(vendor2.name)
     click_link_or_button(item2.name)
     click_link_or_button "Buy"
 
+    visit cart_path
     expect(page).to have_content("Beautiful Image")
     expect(page).to have_content("Food Glorious Food")
     expect(page).to have_content("Total Items: 2")
+  end
+
+  it "allows users to remove things from their cart" do
+    vendor = create(:vendor, name: "Sports Pics")
+    item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
+
+    visit_all_photographers_store_index
+    click_link_or_button(vendor.name)
+
+    click_link_or_button(item.name)
+    click_link_or_button "Buy"
+    visit cart_path
+    find("#down_button").click
+
+    expect(page).to have_content("The item has been removed from your cart")
+    expect(page).to_not have_content("Super Sold Photograph")
+  end
+
+  it "allows users to increase the quantity of an item in their cart" do
+    vendor = create(:vendor, name: "Sports Pics")
+    item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
+
+    visit_all_photographers_store_index
+    click_link_or_button(vendor.name)
+
+    click_link_or_button(item.name)
+    click_link_or_button "Buy"
+    visit cart_path
+    find("#up_button").click
+    expect(page).to have_content("Quantity: 2")
+    expect(page).to have_content("12.00")
+  end
+
+  it "can click checkout button and be routed to the login page" do
+    vendor = create(:vendor, name: "Sports Pics")
+    item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
+
+    visit_all_photographers_store_index
+    click_link_or_button(vendor.name)
+
+    click_link_or_button(item.name)
+    click_link_or_button "Buy"
+    visit cart_path
+    click_link_or_button("Checkout")
+    save_and_open_page
+    expect(page).to have_content("Sign In")
   end
   #
   # it "views their cart" do

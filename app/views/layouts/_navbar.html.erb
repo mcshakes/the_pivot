@@ -28,8 +28,17 @@
         <% else  %>
           <li><a href="#" data-target="#sign-in-modal" data-toggle="modal">Sign In</a>
         <% end %>
-        <li><%= link_to "<span class='glyphicon glyphicon-shopping-cart' aria-hidden='true'>".html_safe, cart_path %></li>
+          <li>
+            <%= link_to cart_path do %>
+              <span class="glyphicon glyphicon-shopping-cart"></span> 
+              <% if @cart.count_total > 0 %>
+                <%= @cart.count_total %>
+              <% end %>
+            <% end %>
+          </li>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
