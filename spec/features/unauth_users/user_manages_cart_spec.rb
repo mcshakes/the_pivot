@@ -14,7 +14,7 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     click_link_or_button(vendor.name)
     click_link_or_button(item.name)
     click_link_or_button "Buy"
-
+    
     expect(page).to have_content("#{item.name} was added to your cart.")
     expect(page).to have_content("Cute Photograph")
   end
