@@ -25,6 +25,7 @@ group :development, :test do
   gem "spring"
   gem "pry-byebug"
   gem "capybara"
+  gem "capybara-webkit"
   gem "launchy"
   gem "rspec-rails"
   gem "awesome_print"

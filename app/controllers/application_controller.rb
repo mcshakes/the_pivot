@@ -52,4 +52,9 @@ class ApplicationController < ActionController::Base
     Category.all
   end
   helper_method :all_categories
+
+  def all_vendors
+    @vendors = Vendor.all
+  end
+  helper_method :all_vendors
 end

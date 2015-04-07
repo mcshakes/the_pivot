@@ -1,5 +1,4 @@
 require "rails_helper"
-require "support/factory_girl"
 
 RSpec.feature "Authenticated user", type: :feature do
   # it "should not be able to visit admin dashboard" do

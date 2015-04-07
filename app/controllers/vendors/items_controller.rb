@@ -1,5 +1,5 @@
 class Vendors::ItemsController < ApplicationController
-  
+
   def index
     @vendor = Vendor.find_by(slug: params[:slug])
     @items = @vendor.items
@@ -10,7 +10,7 @@ class Vendors::ItemsController < ApplicationController
     @item = @vendor.items.find(params[:id])
     render :layout => !request.xhr?
   end
-  
+
   # def new
   #   @item = Item.new
   #   authorize! :new, @item

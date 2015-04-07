@@ -34,6 +34,7 @@ body {
 .pic {
   width: 100%;
   height: auto;
+  display: block;
 }
 
 .big-pic{
@@ -78,16 +79,26 @@ body {
 
 .hero-footer-square {
   background-color: #d3d3d3;
-  padding: 10px;
   opacity: 0.75;
   height: 75px;
-  width: 130px;
+  width: 90px;
   border-radius: 3px;
   border: 3px solid #dddddd;
   text-align: center;
   float: right;
   margin-left: 10px;
+  overflow: hidden;
 }
+
+.hero-footer-square img{
+  width: auto;
+  height: 65px;
+  display: block;
+  line-height:75px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3px;
+  }
 
 .hero-footer-link {
   text-transform: uppercase;
