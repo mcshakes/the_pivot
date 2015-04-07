@@ -1,13 +1,11 @@
 class CartItemsController < ApplicationController
 
   def create
-    # binding.pry
     item = Item.find(params[:item_id])
     # item = Item.find(params[:id])
     cart_data
     @cart.add_item(item)
     flash[:notice] = "You have #{pluralize(@cart.item_quantity(item), item.name)} in your cart."
-    # redirect_to cart_path
     redirect_to :back
   end
 
