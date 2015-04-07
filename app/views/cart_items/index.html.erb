@@ -25,7 +25,13 @@
   <div class="col-xs-12" id="checkout-total">
     <p>Total Items: <%= @cart.count_total %></p>
     <p>Total Price: <%= number_to_currency(@cart.total_price) %></p>  </p>
-    <%= button_to "Checkout", checkout_path, method: :post, class: "btn btn-default" %>
+    <% if signed_in? %>
+      <%= button_to "Checkout", checkout_path, method: :post, class: "btn btn-default" %>
+    <% else %>
+      <button type='button', class="btn btn-default" data-target="#sign-in-modal" data-toggle="modal">
+         Checkout
+      </button>
+    <% end %>
   </div>
 
 </div>
