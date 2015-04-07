@@ -7,14 +7,14 @@
       <%= link_to "Check it out here!", vendors_path %></p>
   <% else %>
     <% @orders.reverse.each do |order| %>
-      <div class="user_orders"
-      <p><strong><span class="order_id_title">Order ID <%= order.id %></strong></span></br>
+      <div class="user-orders"
+      <p><strong><span class="order_id_title">Order ID: <%= order.id %></strong></span></br>
       <%= format_time(order.created_at) %></p>
       <% order.items.each do |item| %>
         <!-- Need to change this to link to the individual item eventually -->
-        <li><%= quantity_of_item(item, order) %>
-        <%= link_to item.display_name, menu_item_path(item) %>:
-        <%= number_to_currency(line_item_price(item, order)) %></li>
+        <%= quantity_of_item(item, order) %>
+        <%= link_to item.display_name, vendor_path(item.vendor) %>:
+        <%= number_to_currency(line_item_price(item, order)) %>
       <% end %>
       <br/><p><strong>Total</strong>: <%= number_to_currency(order.total_price) %><br/>
       <strong>Status:</strong> <em><%= order.status %></em> as of <%= format_time(order.updated_at) %>
