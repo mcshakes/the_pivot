@@ -7,7 +7,7 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     click_link_or_button("Buy Photographs")
   end
 
-  it "can add a for sale item to cart from one store" do
+  xit "can add a for sale item to cart from one store" do
     vendor = create(:vendor, name: "Bob's Photo Shop")
     item = create(:item, :for_sale, name: "Cute Photograph", vendor: vendor)
     visit_all_photographers_store_index
@@ -77,7 +77,6 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     click_link_or_button(item.name)
     click_link_or_button "Buy"
     visit cart_path
-    # save_and_open_page
     find("#up_button").click
     # click_link("", href: "/cart_items?item=salted-caramel-peanut-butter-cup")
     expect(page).to have_content("Quantity: 2")
