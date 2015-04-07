@@ -48,11 +48,11 @@ RSpec.feature "Unauthenticated user", type: :feature do
     expect(page).to have_content("Password can't be blank")
   end
 
-  it "is taken to the user home page upon correct registration" do
+  it "is taken back to whatever page they were on upon correct registration" do
     get_registration_form
     correct_registration
     click_link_or_button("Create Account")
-    expect(page).to have_content("Welcome Pip")
+    expect(current_path).to eq(root_path)
   end
 
   xit "must have a matching password confirmation" do
