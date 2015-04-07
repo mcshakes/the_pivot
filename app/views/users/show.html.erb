@@ -12,11 +12,11 @@
       <%= format_time(order.created_at) %></p>
       <% order.items.each do |item| %>
         <!-- Need to change this to link to the individual item eventually -->
-        <%= quantity_of_item(item, order) %>
+        <p><%= quantity_of_item(item, order) %>
         <%= link_to item.display_name, vendor_path(item.vendor) %>:
-        <%= number_to_currency(line_item_price(item, order)) %>
+        <%= number_to_currency(line_item_price(item, order)) %></p>
       <% end %>
-      <br/><p><strong>Total</strong>: <%= number_to_currency(order.total_price) %><br/>
+      <p><strong>Total</strong>: <%= number_to_currency(order.total_price) %><br/>
       <strong>Status:</strong> <em><%= order.status %></em> as of <%= format_time(order.updated_at) %>
       </div>
       <% if order_completed_or_cancelled?(order) %></p><br/><br/>
