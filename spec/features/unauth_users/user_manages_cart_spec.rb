@@ -1,29 +1,24 @@
 require "rails_helper"
 
-RSpec.describe "unauthenticated user managing cart", type: :feature do
+RSpec.describe "unauthenticated user managing cart", type: :feature, js: true do
 
   it "can add a for sale item to cart from one store" do
-    vendor = create(:vendor, name: "Bob's Photo Shop")
-    item = create(:item, :for_sale, name: "Cute Photograph", vendor: vendor)
+    vendor = create(:vendor)
+    item = create(:item, :for_sale, vendor: vendor)
     visit vendors_path
 
-    within (".container") do
-      click_link_or_button(vendor.name)
-    end
-    
-    within (".vendor-items") do
-      click_link_or_button(item.name)
-      click_link_or_button("Buy")
-    end
+    click_link_or_button(vendor.name)
+    click_link_or_button(item.name)
+    click_link_or_button("Buy")
 
     expect(page).to have_content("#{item.name} was added to your cart.")
-    expect(page).to have_content("Cute Photograph")
   end
 
   it "cannot add a sold item to the cart" do
     vendor = create(:vendor, name: "Sports Pics")
     item = create(:item, :sold, name: "Super Sold Photograph", vendor: vendor)
     visit vendors_path
+
     click_link_or_button(vendor.name)
     click_link_or_button(item.name)
     expect(page).not_to have_button("Buy")
@@ -93,7 +88,6 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     click_link_or_button("Buy")
     visit cart_path
     click_link_or_button("Checkout")
-    save_and_open_page
     expect(page).to have_content("Sign In")
   end
   #

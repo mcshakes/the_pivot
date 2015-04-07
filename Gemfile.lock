@@ -60,6 +60,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.5.0)
+      capybara (>= 2.3.0, < 2.5.0)
+      json
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -245,6 +248,7 @@ DEPENDENCIES
   better_errors
   bootstrap-sass (~> 3.2.0)
   capybara
+  capybara-webkit
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   database_cleaner
