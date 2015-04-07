@@ -92,7 +92,6 @@ RSpec.describe "unauthenticated user managing cart", type: :feature do
     click_link_or_button "Buy"
     visit cart_path
     click_link_or_button("Checkout")
-    save_and_open_page
     expect(page).to have_content("Sign In")
   end
   #
