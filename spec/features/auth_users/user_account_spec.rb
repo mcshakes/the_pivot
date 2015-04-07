@@ -1,4 +1,10 @@
-# require "rails_helper"
+require "rails_helper"
+
+RSpec.describe "authenticated user manages personal account", type: :feature do
+
+  it ""
+end
+
 #
 # RSpec.feature "user visits account", type: :feature do
 #   it "can see order details and click on order items" do
