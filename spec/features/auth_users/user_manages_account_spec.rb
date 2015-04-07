@@ -22,6 +22,13 @@ RSpec.describe "user manages personal account", type: :feature do
     expect(page).to have_content("Sign in successful")
     click_link_or_button("Account")
     expect(current_path).to eq(account_path)
-    save_and_open_page
     expect(page).to have_content("My Account")
   end
+
+end
+
+# Shipping addresses
+# Billing addresses
+# Credit cards associated with my account
+# Basic account info like name and password, as managed previously in Dinner Dash v1
+# Favourites
