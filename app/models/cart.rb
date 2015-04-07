@@ -10,6 +10,13 @@ class Cart
     data[item.id.to_s] += 1
   end
 
+  def remove_item(item)
+    data[item.id.to_s] -= 1
+    if data[item.id.to_s] == 0
+      data.delete(item.id.to_s)
+    end
+  end
+
   def item_quantity(item)
     data[item.id.to_s]
   end
@@ -26,12 +33,7 @@ class Cart
     data.map { |k, v| [Item.find(k.to_i), v] }
   end
 
-  def remove_item(item)
-    data[item.id.to_s] -= 1
-    if data[item.id.to_s] == 0
-      data.delete(item.id.to_s)
-    end
-  end
+
 
   def remove_all_of_item(item)
     data.delete(item.id.to_s)
