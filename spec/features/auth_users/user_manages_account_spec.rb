@@ -2,9 +2,6 @@ require "rails_helper"
 
 RSpec.describe "user manages personal account", type: :feature do
 
-  # let!(:user) { create(:user)}
-  # before(:each) { set_current_user(user)}
-
   def user_sign_in(user)
     visit root_path
     within(".navbar-nav") {click_link_or_button "Sign In"}
@@ -19,9 +16,8 @@ RSpec.describe "user manages personal account", type: :feature do
     user = create(:user, first_name: "Bob", last_name: "Bobbyson", email: "bobson@hotmail.com", password: "password")
     user_sign_in(user)
     expect(page).to have_content("Sign in successful")
-    click_link_or_button("Account")
+    click_link_or_button("See My Account")
     expect(current_path).to eq(account_path)
-    expect(page).to have_content("My Account")
   end
 
   it "sees a button to edit user info" do
@@ -31,7 +27,6 @@ RSpec.describe "user manages personal account", type: :feature do
     expect(page).to have_link("Edit Personal Info")
 
     click_link_or_button("Edit Personal Info")
-    # expect(current_path).to eq(edit_user_path)
     expect(page).to have_content("Update/Change your Info")
   end
 
