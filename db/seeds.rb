@@ -61,8 +61,6 @@ class Seed
         billing_address: "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state_abbr}, #{Faker::Address.zip}",
         credit_card: Faker::Business.credit_card_number
       )
-      # street_address: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state_abbr, zipcode: Faker::Address.zip,
-      # credit_cards: Faker::Business.credit_card_number)
       puts "users: #{user.first_name} #{user.last_name}"
     end
   end
