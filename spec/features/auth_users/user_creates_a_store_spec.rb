@@ -46,14 +46,15 @@ RSpec.feature "authenticated user tries to create a vendor", type: :feature do
   end
 
 
-  xit "cannot create two stores with the same name" do
+  it "cannot create two stores with the same name" do
     user = create(:user)
-    vendor = create(:vendor1)
+    vendor = create(:vendor, user_id: user.id)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit new_vendor_path
     fill_in("vendor[name]", with: "Ansel Adams")
     fill_in("vendor[description]", with: "Best BBQ Evah")
     fill_in("vendor[credit_card]", with: "4242 4242 4242 4242")
+    click_link_or_button("Create My Store")
     expect(page).to have_content("Please enter unique and accurate information.")
   end
 
@@ -65,6 +66,7 @@ RSpec.feature "authenticated user tries to create a vendor", type: :feature do
     fill_in("vendor[name]", with: "Ansel Adam-s")
     fill_in("vendor[description]", with: "Best BBQ Evah")
     fill_in("vendor[credit_card]", with: "4242 4242 4242 4242")
+    click_link_or_button("Create My Store")
     expect(page).to have_content("Please enter unique and accurate information.")
   end
 end
