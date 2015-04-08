@@ -12,7 +12,6 @@ RSpec.feature "user visits account", type: :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit account_path
-    save_and_open_page
     expect(page).to have_content("1 Salted Caramel Peanut Butter Cup")
     expect(page).to have_content("Ansel Adams")
     click_link_or_button("Salted Caramel Peanut Butter Cup")

@@ -28,27 +28,39 @@ RSpec.describe "user manages personal account", type: :feature do
     user = create(:user, first_name: "Bob", last_name: "Bobbyson", email: "bobson@hotmail.com", password: "password")
     user_sign_in(user)
     visit account_path
-    expect(page).to have_link("Edit Your Info")
+    expect(page).to have_link("Edit Personal Info")
 
-    click_link_or_button("Edit Your Info")
+    click_link_or_button("Edit Personal Info")
     # expect(current_path).to eq(edit_user_path)
     expect(page).to have_content("Update/Change your Info")
   end
 
-  it "changes info and that info is updated" do
-
-
+  it "successfully redirects to account page and sees flash notice" do
+    user = create(:user, first_name: "Bob", last_name: "Bobbyson", email: "bobson@hotmail.com", password: "password")
+    user_sign_in(user)
+    visit account_path
+    expect(page).to have_link("Edit Personal Info")
+    click_link_or_button("Edit Personal Info")
+    within("#update-form") do
+      fill_in("user[first_name]", with: "Shelly" )
+      click_link_or_button("Update Account")
+    end
+    expect(current_path).to eq(account_path)
+    expect(page).to have_content("Successfully Updated")
   end
 
-  xit "cannot input invalid info for the update data" do
-
-
+  it "successfully updates the data" do
+    user = create(:user, first_name: "Bob", last_name: "Bobbyson", email: "bobson@hotmail.com", password: "password")
+    user_sign_in(user)
+    visit account_path
+    expect(page).to have_link("Edit Personal Info")
+    click_link_or_button("Edit Personal Info")
+    within("#update-form") do
+      fill_in("user[first_name]", with: "Shelly" )
+      click_link_or_button("Update Account")
+    end
+    expect(current_path).to eq(account_path)
+    expect(page).to have_content("Welcome Shelly!")
   end
 
 end
-
-# Shipping addresses
-# Billing addresses
-# Credit cards associated with my account
-# Basic account info like name and password, as managed previously in Dinner Dash v1
-# Favourites
