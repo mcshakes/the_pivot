@@ -27,6 +27,12 @@ class UsersController < ApplicationController
 
   end
 
+  def update
+    binding.pry
+    
+
+  end
+
   private
 
   def user_params
