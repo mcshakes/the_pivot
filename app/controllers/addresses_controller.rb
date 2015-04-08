@@ -1,5 +1,9 @@
 class AddressesController < ApplicationController
 
+  def index
+    @addresses = Address.all
+  end
+
   def create
 
   end
@@ -9,7 +13,7 @@ class AddressesController < ApplicationController
   end
 
   def edit
-    addresses = Addresses.find_by(current_user.addresses)
+    addresses = Address.find_by(current_user.addresses)
   end
 
 end

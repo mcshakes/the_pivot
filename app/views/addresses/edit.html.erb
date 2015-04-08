@@ -1,7 +1,7 @@
 <h1>Update Your Address</h1>
 
 <div id="address-edit-form">
-<%= form_for(@addresses, role:"form") do |f| %>
+<%= form_for(current_user.addresses.new, role:"form") do |f| %>
   <div>
     <%= f.label :street %>
     <%= f.text_field :street, class: "form-control" %>
