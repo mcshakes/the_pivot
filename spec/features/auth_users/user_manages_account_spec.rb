@@ -17,12 +17,32 @@ RSpec.describe "user manages personal account", type: :feature do
 
   it "accesses account page from the nav bar" do
     user = create(:user, first_name: "Bob", last_name: "Bobbyson", email: "bobson@hotmail.com", password: "password")
-
     user_sign_in(user)
     expect(page).to have_content("Sign in successful")
     click_link_or_button("Account")
     expect(current_path).to eq(account_path)
     expect(page).to have_content("My Account")
+  end
+
+  it "sees a button to edit user info" do
+    user = create(:user, first_name: "Bob", last_name: "Bobbyson", email: "bobson@hotmail.com", password: "password")
+    user_sign_in(user)
+    visit account_path
+    expect(page).to have_link("Edit Your Info")
+
+    click_link_or_button("Edit Your Info")
+    # expect(current_path).to eq(edit_user_path)
+    expect(page).to have_content("Update/Change your Info")
+  end
+
+  it "changes info and that info is updated" do
+
+
+  end
+
+  xit "cannot input invalid info for the update data" do
+
+
   end
 
 end
