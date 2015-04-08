@@ -36,4 +36,3 @@ group :development, :test do
   gem "codeclimate-test-reporter", require: nil
   gem "brakeman", :require => false
 end
-end
