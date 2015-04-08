@@ -25,26 +25,11 @@
           </ul>
         </li>
         <% if signed_in? %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Account<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><%= link_to "See My Account", account_path %></li>
-              <li><%= link_to "See Favorites", account_path %></li>
-            </ul>
-          </li>
-          <li><%= link_to "Sign Out", logout_path %></a></li>
+          <%= render "layouts/auth_user_nav" %>
         <% else  %>
           <li><a href="#" data-target="#sign-in-modal" data-toggle="modal">Sign In</a>
         <% end %>
-          <li>
-            <%= link_to cart_path do %>
-              <span class="glyphicon glyphicon-shopping-cart"></span>
-              <% if @cart.count_total > 0 %>
-                <%= @cart.count_total %>
-              <% end %>
-            <% end %>
-          </li>
-
+        <%= render "layouts/cart" %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
