@@ -1,0 +1,34 @@
+<h1>"Update/Change your Info"</h1>
+
+<div id="update-form">
+<%= form_for(current_user, role:"form") do |f| %>
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
+  </div>
+  <div class="">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+  <div class="">
+    <%= f.label :display_name %>
+    <%= f.text_field :display_name, class: "form-control" %>
+  </div>
+  <div class="">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+  <div class="">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+  <div class="">
+    <%= f.label :password_confirmation, "Password Confirmation" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+    <%= f.submit "Update Account", id: "check-in", class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>
+
+<%=  %>

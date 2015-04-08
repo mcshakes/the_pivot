@@ -3,6 +3,7 @@ require "codeclimate-test-reporter"
 require "capybara-webkit"
 require 'factory_girl_rails'
 
+
 SimpleCov.start "rails"
 CodeClimate::TestReporter.start
 Capybara.javascript_driver = :webkit

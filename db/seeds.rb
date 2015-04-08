@@ -51,10 +51,16 @@ class Seed
   def generate_users
     @user_count = 10
     @user_count.times do
-      user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email,
-      password: Faker::Internet.password, role: 0)
-      # street_address: Faker::Address.street_address, city: Faker::Address.city, state: Faker::Address.state_abbr, zipcode: Faker::Address.zip,
-      # credit_cards: Faker::Business.credit_card_number)
+      user = User.create(
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        email: Faker::Internet.email,
+        password: Faker::Internet.password,
+        role: 0
+      )
+        # shipping_address: "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state_abbr}, #{Faker::Address.zip}",
+        # billing_address: "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state_abbr}, #{Faker::Address.zip}",
+        # credit_card: Faker::Business.credit_card_number
       puts "users: #{user.first_name} #{user.last_name}"
     end
   end
