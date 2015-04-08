@@ -5,8 +5,8 @@ class Vendor < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
-  validates :credit_card, presence: true, length: { minimum: 15} #, maximum: 16} 
-  # validates :slug, uniqueness: true
+  validates :credit_card, presence: true, length: { minimum: 15} #, maximum: 16}
+  validates :slug, uniqueness: true
 
   before_validation :generate_slug
   before_validation :clean_credit_card_number
