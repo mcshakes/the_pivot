@@ -28,15 +28,19 @@ class UsersController < ApplicationController
   end
 
   def update
-    binding.pry
-    
-
+    if current_user.update(user_params)
+      redirect_to account_path
+      flash[:notice] = "Successfully Updated"
+    else
+      flash[:notice] = "Profile not Updated"
+      render :edit
+    end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :display_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :display_name, :email, :password, :password_confirmation, :shipping_address, :billing_address, :credit_card)
   end
 
   def sign_in
