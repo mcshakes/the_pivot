@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20150408181438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "hstore"
 
   create_table "addresses", force: :cascade do |t|
     t.text     "type"
@@ -93,10 +92,10 @@ ActiveRecord::Schema.define(version: 20150408181438) do
     t.text     "last_name"
     t.text     "email"
     t.text     "password_digest"
-    t.string   "role",            default: "default"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.text     "display_name"
+    t.string   "role",            default: "default"
     t.boolean  "admin",           default: false
   end
 
