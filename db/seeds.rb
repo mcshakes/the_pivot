@@ -56,11 +56,11 @@ class Seed
         last_name: Faker::Name.last_name,
         email: Faker::Internet.email,
         password: Faker::Internet.password,
-        role: 0,
-        shipping_address: "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state_abbr}, #{Faker::Address.zip}",
-        billing_address: "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state_abbr}, #{Faker::Address.zip}",
-        credit_card: Faker::Business.credit_card_number
+        role: 0
       )
+        # shipping_address: "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state_abbr}, #{Faker::Address.zip}",
+        # billing_address: "#{Faker::Address.street_address}, #{Faker::Address.city}, #{Faker::Address.state_abbr}, #{Faker::Address.zip}",
+        # credit_card: Faker::Business.credit_card_number
       puts "users: #{user.first_name} #{user.last_name}"
     end
   end
