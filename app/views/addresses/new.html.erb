@@ -1,7 +1,7 @@
 <h1>Add a New Address</h1>
 
 <div id="address-new-form">
-<%= form_for(current_user.addresses.new, role:"form") do |f| %>
+<%= form_for( @address) do |f| %>
   <div>
     <%= f.label :street %>
     <%= f.text_field :street, class: "form-control" %>
@@ -23,7 +23,7 @@
     <%= f.text_field :type, class: "form-control" %>
   </div>
   </div>
-    <%= f.submit "Add Address", id: "check-in", class: "btn btn-primary" %>
+    <%= f.submit "Add Address", method: :post, class: "btn btn-primary" %>
   </div>
 <% end %>
 </div>

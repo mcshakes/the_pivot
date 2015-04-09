@@ -1,3 +1,11 @@
 <h1>Your Address Info</h1>
 
 <%= link_to "Add a New Address", new_address_path %>
+<br>
+<% @addresses.each do |address| %>
+  <%= address.street %>
+  <%= address.city %>
+  <%= address.state %>
+  <%= address.country %>
+<%= link_to "Edit an Existing Address", edit_address_path(address) %>
+<% end %>

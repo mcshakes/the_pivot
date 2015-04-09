@@ -1,11 +1,16 @@
 class AddressesController < ApplicationController
 
   def index
-    @addresses = Address.all
+    @addresses = current_user.addresses
+  end
+
+  def new
+    @address = Address.new
   end
 
   def create
-    # binding.pry
+    # @address = Address.new(strong_params)
+    # user_address = current_user.addresses << @address
     user_address = current_user.addresses.new(strong_params)
     if user_address.save
       flash[:notice] = "Address Successfully Added"
@@ -17,15 +22,15 @@ class AddressesController < ApplicationController
   end
 
   def show
-
+    # @addresses = @user.addresses
   end
 
   def update
-
+    # address = Address.find_by(params[:user_id])
+    @address = Address.find(params[:id])
   end
 
   def edit
-    addresses = Address.find_by(current_user.addresses)
   end
 
   private
