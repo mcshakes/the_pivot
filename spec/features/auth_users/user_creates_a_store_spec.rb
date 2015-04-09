@@ -10,7 +10,7 @@ RSpec.feature "authenticated user tries to create a vendor", type: :feature do
     fill_in("vendor[description]", with: "Best BBQ Evah")
     fill_in("vendor[credit_card]", with: "4242 4242 4242 4242")
     click_link_or_button("Create My Store")
-    expect(page).to have_content("Add An Item")
+    expect(page).to have_content("Sweet Lovin' BBQ")
   end
 
   it "cannot create a vendor without a name" do
@@ -68,6 +68,4 @@ RSpec.feature "authenticated user tries to create a vendor", type: :feature do
     click_link_or_button("Create My Store")
     expect(page).to have_content("Please enter unique and accurate information.")
   end
-
-  
 end
