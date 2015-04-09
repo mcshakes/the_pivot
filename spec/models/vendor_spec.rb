@@ -19,6 +19,11 @@ RSpec.describe Vendor, type: :model do
     expect(vendor2).not_to be_valid
   end
 
+  it "is associated with a user" do
+    vendor = build(:vendor)
+    expect(vendor).to respond_to(:user)
+  end
+
   it "is invalid without a name" do
     vendor = build(:vendor, name: nil)
     expect(vendor.id).to eq(nil)

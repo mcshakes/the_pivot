@@ -45,7 +45,6 @@ RSpec.feature "authenticated user tries to create a vendor", type: :feature do
     expect(page).to have_content("Please enter unique and accurate information.")
   end
 
-
   it "cannot create two stores with the same name" do
     user = create(:user)
     vendor = create(:vendor, user_id: user.id)
@@ -69,4 +68,6 @@ RSpec.feature "authenticated user tries to create a vendor", type: :feature do
     click_link_or_button("Create My Store")
     expect(page).to have_content("Please enter unique and accurate information.")
   end
+
+  
 end
