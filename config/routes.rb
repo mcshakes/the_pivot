@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get  "/account"   =>  "users#show"
 
   resources :users
+  resources :addresses
 
   resources :cart_items, only: [:create, :update, :destroy]
   get "/cart", to: "cart_items#index"
