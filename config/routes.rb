@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :favorite_items
+  resources :addresses
+
 
   resources :cart_items, only: [:create, :update, :destroy]
   get "/cart", to: "cart_items#index"

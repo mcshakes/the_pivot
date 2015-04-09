@@ -1,4 +1,5 @@
 <div class="main-vendor-items">
+  <%= render "vendors/items/admin_edits" %>
   <h2> Welcome to <%= @vendor.name %>'s Photo Gallery</h2>
 
   <% @items.each_slice(4) do |four_items| %>
