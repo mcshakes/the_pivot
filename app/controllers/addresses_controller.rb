@@ -36,6 +36,15 @@ class AddressesController < ApplicationController
     flash[:notice] = "The Address has been removed from your account."
   end
 
+  def destroy
+    if Address.destroy(params[:id])
+      flash[:notice] = "Address Deleted"
+      redirect_to addresses_path
+    else
+      flash[:notice] = "Something Happened..."
+    end
+  end
+
   private
 
   def strong_params
