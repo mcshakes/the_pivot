@@ -1,11 +1,14 @@
-<h1>Your Address Info</h1>
+<div class="col-sm-12">
+  <h1>Your Address Info</h1>
+</div>
 
-<%= link_to "Add a New Address", new_address_path %>
-<br>
+<h4><%= link_to "Add a New Address", new_address_path %></h4>
 <% @addresses.each do |address| %>
-  <%= address.street %>
-  <%= address.city %>
-  <%= address.state %>
-  <%= address.country %>
-<%= link_to "Edit an Existing Address", edit_address_path(address) %>
+  <div class="col-sm-4">
+    <%= address.street %>
+    <%= address.city %>
+    <%= address.state %>
+    <%= address.country %>
+  <p><%= link_to "Edit Existing Address", edit_address_path(address) %></p>
+  </div>
 <% end %>

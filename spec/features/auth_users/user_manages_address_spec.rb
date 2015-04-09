@@ -22,7 +22,6 @@ RSpec.describe "user manages personal account", type: :feature do
     user_visits_account
     expect(page).to have_link("Update Your Address")
     click_link_or_button("Update Your Address")
-    expect(current_path).to eq(addresses_path)
     expect(page).to have_content("Your Address Info")
   end
 
@@ -34,27 +33,19 @@ RSpec.describe "user manages personal account", type: :feature do
     expect(page).to have_content("Add a New Address")
   end
 
-  xit "creates a new address" do
+  it "creates a new address" do
     user_visits_account
     click_link_or_button("Update Your Address")
     click_link_or_button("Add a New Address")
     expect(current_path).to eq(new_address_path)
 
-    fill_in('Street', :with => "suckit")
-    # fill_in("address[street]", with: "123 doc drive")
-    # fill_in("address[city]", with: "durango")
-    # fill_in("address[state]", with: "Colorado")
-    # fill_in("address[country]", with: "Mexico")
-      # find(:street).set("123 doc drive")
-      # fill_in( "address_city", :with => "durango")
-      # fill_in( "address_state", :with => "CO")
-      # fill_in( "address_country", :with => "Mexico")
-      # save_and_open_page
+    fill_in("address[street]", with: "123 Doc Drive")
+    fill_in("address[city]", with: "Durango")
+    fill_in("address[state]", with: "Colorado")
+    fill_in("address[country]", with: "Mexico")
     click_link_or_button("Add Address")
-    # expect(page).to have_content("Add a New Address")
-    # expect(page).to have_content("Address Successfully Added")
-    # save_and_open_page
-    expect(current_path).to eq(addresses_path)
+    save_and_open_page
+    expect(page).to have_content("123 Doc Drive")
   end
 
   xit "edits an existing address" do
