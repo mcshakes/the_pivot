@@ -44,7 +44,6 @@ RSpec.describe "user manages personal account", type: :feature do
     fill_in("address[state]", with: "Colorado")
     fill_in("address[country]", with: "Mexico")
     click_link_or_button("Add Address")
-    save_and_open_page
     expect(page).to have_content("123 Doc Drive")
   end
 
@@ -52,7 +51,7 @@ RSpec.describe "user manages personal account", type: :feature do
     user_visits_account
     click_link_or_button("Update Your Address")
     # save_and_open_page
-    click_link_or_button("Edit an Existing Address")
+    click_link_or_button("Edit Existing Address")
     expect(current_path).to eq(edit_address_path)
 
   end
