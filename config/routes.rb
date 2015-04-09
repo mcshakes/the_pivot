@@ -32,22 +32,3 @@ Rails.application.routes.draw do
   #   end
   # end
 end
-
-
-  #platform admin
-  #gallery.com/dashboard
-
-  #business admin
-  #gallery.com/store_name/dashboard/
-
-  #users
-  #gallery.com
-  #gallery.com/login
-  #gallery.com/logout
-  #gallery.com/cart
-  #gallery.com/account
-  #gallery.com/all-stores
-
-  #gallery.com/:store_name
-  #gallery.com/:store_name/items
-  #gallery.com/:store_name/items/:id
