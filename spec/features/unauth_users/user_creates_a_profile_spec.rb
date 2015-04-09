@@ -68,16 +68,7 @@ RSpec.feature "Unauthenticated user", type: :feature do
     expect(page).to have_content("Password confirmation doesn't match Password")
   end
 
-
   it "receives an email confirmation upon sign up" do
     expect(ActionMailer::Base.deliveries.length).to eq(1)
-  end
-
-  xit "confirms its email address" do
-    create(:email_confirmation, token: "unique-token")
-    visit email_confirmation_path("unique-token")
-
-    expect(page).to have_content("You confirmed your email! High five!")
-    expect_user_to_be_signed_in
   end
 end
