@@ -11,6 +11,7 @@ class Vendor < ActiveRecord::Base
   before_validation :generate_slug
   before_validation :clean_credit_card_number
 
+  scope :with_items, -> {joins(:items).where.not(items: {vendor: nil})}
 
   def generate_slug
     self.slug = name.parameterize
