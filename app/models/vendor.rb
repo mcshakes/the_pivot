@@ -11,6 +11,7 @@ class Vendor < ActiveRecord::Base
   before_validation :generate_slug
   before_validation :clean_credit_card_number
 
+
   def generate_slug
     self.slug = name.parameterize
   end
