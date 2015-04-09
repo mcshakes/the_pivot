@@ -21,16 +21,15 @@ class AddressesController < ApplicationController
     end
   end
 
-  def show
-    # @addresses = @user.addresses
-  end
-
   def update
-    # address = Address.find_by(params[:user_id])
     @address = Address.find(params[:id])
-  end
-
-  def edit
+    if @address.update(strong_params)
+       flash[:success] = "Address has been successfully updated!"
+       redirect_to addresses_path
+     else
+      #  flash[:error] = "Attributes missing."
+      #  redirect_to :back
+     end
   end
 
   private
