@@ -10,5 +10,7 @@
     <%= address.state %>
     <%= address.country %>
   <p><%= link_to "Edit Existing Address", edit_address_path(address) %></p>
+  <p><%= link_to "Delete Existing Address", address_path(address), method: :delete %></p>
+
   </div>
 <% end %>
