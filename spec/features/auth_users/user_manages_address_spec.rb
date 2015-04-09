@@ -39,6 +39,15 @@ RSpec.describe "user manages personal account", type: :feature do
     expect(page).to have_content("123 Doc Drive")
   end
 
+  xit "deletes an address" do
+    user_visits_account
+    click_link_or_button("Update Your Address")
+    click_link_or_button("Add a New Address")
+    fill_in_address
+    click_link_or_button("Add Address")
+    expect(page).to have_content("123 Doc Drive")
+  end
+
   it "must have a street" do
     user_visits_account
     click_link_or_button("Update Your Address")
