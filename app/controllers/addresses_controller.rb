@@ -9,15 +9,13 @@ class AddressesController < ApplicationController
   end
 
   def create
-    # @address = Address.new(strong_params)
-    # user_address = current_user.addresses << @address
     user_address = current_user.addresses.new(strong_params)
     if user_address.save
       flash[:notice] = "Address Successfully Added"
       redirect_to addresses_path
     else
-      flash[:notice] = "Try Again"
-      render :new
+      flash[:error] = "Attributes missing."
+      redirect_to :back
     end
   end
 
@@ -27,9 +25,15 @@ class AddressesController < ApplicationController
        flash[:success] = "Address has been successfully updated!"
        redirect_to addresses_path
      else
-      #  flash[:error] = "Attributes missing."
-      #  redirect_to :back
+       flash[:error] = "Attributes missing."
+       redirect_to :back
      end
+  end
+
+  def destroy
+    @address = Address.find(params[:id])
+    @address.destroy
+    flash[:notice] = "The Address has been removed from your account."
   end
 
   private

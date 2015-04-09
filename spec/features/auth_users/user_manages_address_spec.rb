@@ -34,13 +34,68 @@ RSpec.describe "user manages personal account", type: :feature do
     user_visits_account
     click_link_or_button("Update Your Address")
     click_link_or_button("Add a New Address")
-
-    expect(current_path).to eq(new_address_path)
-
     fill_in_address
+
     click_link_or_button("Add Address")
     expect(page).to have_content("123 Doc Drive")
   end
+
+  it "must have a street" do
+    user_visits_account
+    click_link_or_button("Update Your Address")
+    click_link_or_button("Add a New Address")
+
+    fill_in("address[street]", with: "")
+    fill_in("address[city]", with: "Durango")
+    fill_in("address[state]", with: "Colorado")
+    fill_in("address[country]", with: "Mexico")
+    click_link_or_button("Add Address")
+
+    expect(page).to have_content("Attributes missing.")
+  end
+
+  it "must have a city" do
+    user_visits_account
+    click_link_or_button("Update Your Address")
+    click_link_or_button("Add a New Address")
+
+    fill_in("address[street]", with: "123 Doc Drive")
+    fill_in("address[city]", with: "")
+    fill_in("address[state]", with: "Colorado")
+    fill_in("address[country]", with: "Mexico")
+    click_link_or_button("Add Address")
+
+    expect(page).to have_content("Attributes missing.")
+  end
+
+  it "must have a state" do
+    user_visits_account
+    click_link_or_button("Update Your Address")
+    click_link_or_button("Add a New Address")
+
+    fill_in("address[street]", with: "123 Doc Drive")
+    fill_in("address[city]", with: "Durango")
+    fill_in("address[state]", with: "")
+    fill_in("address[country]", with: "Mexico")
+    click_link_or_button("Add Address")
+
+    expect(page).to have_content("Attributes missing.")
+  end
+
+  it "must have a country" do
+    user_visits_account
+    click_link_or_button("Update Your Address")
+    click_link_or_button("Add a New Address")
+
+    fill_in("address[street]", with: "123 Doc Drive")
+    fill_in("address[city]", with: "Durango")
+    fill_in("address[state]", with: "Colorado")
+    fill_in("address[country]", with: "")
+    click_link_or_button("Add Address")
+
+    expect(page).to have_content("Attributes missing.")
+  end
+
 
   xit "edits an existing address" do
     user = create(:user)
@@ -53,7 +108,6 @@ RSpec.describe "user manages personal account", type: :feature do
     click_link_or_button("Edit Existing Address")
     fill_in_address
     click_link_or_button("Update Address")
-    save_and_open_page
     expect(page).not_to have_content("237 Judson")
     expect(page).to have_content("123 Doc Drive")
   end
