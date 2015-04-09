@@ -2,6 +2,7 @@ class Vendors::ItemsController < ApplicationController
 
   def index
     @vendor = Vendor.find_by(slug: params[:slug])
+    @heading = "Welcome to #{@vendor.name}'s Photo Gallery"
     @items = @vendor.items
   end
 
