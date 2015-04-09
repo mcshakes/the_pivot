@@ -41,6 +41,13 @@ ActiveRecord::Schema.define(version: 20150408223218) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "favorite_items", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "item_categories", force: :cascade do |t|
     t.integer  "item_id"
     t.integer  "category_id"

@@ -9,9 +9,18 @@
   <% else %>
     <p><strong> Price:  </strong> <%= number_to_currency(@item.price) %></p>
 
-    <%= form_tag(cart_items_path) do %>
-      <%= hidden_field_tag :item_id, @item.id %>
-      <%= submit_tag "Buy", class: "btn btn-success btn-xs" %>
+    <div class="btn btn-default">
+      <%= form_tag(cart_items_path) do %>
+        <%= hidden_field_tag :item_id, @item.id %>
+        <%= submit_tag "Buy" %>
+      <% end %>
+    </div>
+    <% if current_user %>
+      <div class="btn btn-success glyphicon glyphicon-heart white">
+        <%= link_to 'Favorite', "#", id: 'favorite', favorite_path: favorite_items_path,
+        user_id: current_user.id, item_id: @item.id,
+        remote: true %>
+      </div>
     <% end %>
 
   <% end %>

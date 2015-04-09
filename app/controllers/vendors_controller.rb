@@ -1,7 +1,7 @@
 class VendorsController < ApplicationController
 
   def index
-    @vendors = Vendor.all
+    @vendors = Vendor.with_items
   end
 
   def create

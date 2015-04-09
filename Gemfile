@@ -34,4 +34,5 @@ group :development, :test do
   gem 'better_errors'
   gem "simplecov", require: false
   gem "codeclimate-test-reporter", require: nil
+  gem "brakeman", :require => false
 end

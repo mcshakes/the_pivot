@@ -3,8 +3,8 @@ $( document ).ready(function() {
     ev.preventDefault();
     var target = $(this).attr("href");
 
-    $("#modal .modal-body").load(target, function() { 
-      $("#modal").modal("show"); 
+    $("#modal .modal-body").load(target, function() {
+      $("#modal").modal("show");
     });
   });
 });

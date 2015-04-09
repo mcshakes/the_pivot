@@ -1,16 +1,18 @@
-<div class="col-sm-12">
-  <h1>Your Address Info</h1>
-</div>
-
-<h4><%= link_to "Add a New Address", new_address_path %></h4>
-<% @addresses.each do |address| %>
-  <div class="col-sm-4">
-    <%= address.street %>
-    <%= address.city %>
-    <%= address.state %>
-    <%= address.country %>
-  <p><%= link_to "Edit Existing Address", edit_address_path(address) %></p>
-  <p><%= link_to "Delete Existing Address", address_path(address), method: :delete %></p>
-
+<div class="container">
+  <div class="col-sm-12">
+    <h1>Your Address Info</h1>
   </div>
-<% end %>
+
+  <h4><%= link_to "Add a New Address", new_address_path %></h4>
+  <% @addresses.each do |address| %>
+    <div class="col-sm-4">
+      <%= address.street %>
+      <%= address.city %> 
+      <%= address.state %>
+      <%= address.country %>
+    <p><%= link_to "Edit Existing Address", edit_address_path(address) %></p>
+    <p><%= link_to "Delete Existing Address", address_path(address), method: :delete %></p>
+
+    </div>
+  <% end %>
+</div>
