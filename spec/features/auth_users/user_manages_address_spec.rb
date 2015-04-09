@@ -35,7 +35,6 @@ RSpec.describe "user manages personal account", type: :feature do
     click_link_or_button("Update Your Address")
     click_link_or_button("Add a New Address")
     fill_in_address
-
     click_link_or_button("Add Address")
     expect(page).to have_content("123 Doc Drive")
   end
