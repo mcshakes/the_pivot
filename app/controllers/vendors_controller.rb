@@ -1,7 +1,7 @@
 class VendorsController < ApplicationController
 
   def index
-    @vendors = Vendor.all
+    @vendors = Vendor.find(Item.pluck(:vendor_id).uniq.compact)
   end
 
   def create

@@ -4,14 +4,12 @@
   <% @vendors.each_slice(4) do |four_vendors| %>
     <div class='row'>
       <% four_vendors.each do |vendor| %>
-      <% if vendor.items.count > 0 %>
         <div class="col-sm-3">
           <%= link_to image_tag(vendor.items.first.photo, size: "100"), vendor_items_path(slug: vendor.slug) %>
           <h4><%= link_to "#{vendor.name}", vendor_items_path(slug: vendor.slug) %></h4>
           <p class="vendors-text"><%= vendor.description %> </p>
           <br>
         </div>
-        <% end %>
       <% end %>
     </div>
   <% end %>
