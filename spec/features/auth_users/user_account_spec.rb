@@ -17,4 +17,9 @@ RSpec.feature "user visits account", type: :feature do
     click_link_or_button("Salted Caramel Peanut Butter Cup")
     expect(page).to have_content("Salted caramel ice cream with chopped peanut butter cups")
   end
+
+  it "cannot see account if not signed in" do
+    visit account_path
+    expect(page).to have_content("You must sign in to see your account.")
+  end
 end

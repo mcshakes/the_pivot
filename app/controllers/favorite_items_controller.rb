@@ -10,7 +10,6 @@ class FavoriteItemsController < ApplicationController
     # favorites = current_user.favorite_items
     # @favorite_items = favorites.map do |favorite|
     #   Item.find(favorite.item_id)
-    end
   end
 
   def create
