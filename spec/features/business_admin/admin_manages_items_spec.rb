@@ -39,7 +39,7 @@ RSpec.describe "admin managing items", type: :feature do
     page.check('category_ids_')
     click_link_or_button "Submit"
     # save_and_open_page
-    
+
     expect(page).to have_content("snuggly cats")
     expect(page).to have_content("Your photograph has been added!")
   end
@@ -79,19 +79,6 @@ RSpec.describe "admin managing items", type: :feature do
     fill_in "item[price]", with: "600"
     click_link_or_button "Submit"
     expect(page).to have_content("Attributes missing.")
-  end
-
-  xit "cannot create item if no category is selected" do
-    create_admin_user_and_vendor
-    create(:item)
-    visit new_vendor_item_path(slug: @vendor.slug)
-    fill_in "item[name]", with: "fudge"
-    fill_in "item[description]", with: ""
-    fill_in "item[price]", with: "600"
-    click_link_or_button "Submit"
-    within("div.alert-danger") do
-      expect(page).to have_content("Attributes missing")
-    end
   end
 
   xit "can upload photo when creating new item" do
