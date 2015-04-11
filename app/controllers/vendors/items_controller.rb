@@ -1,32 +1,35 @@
 class Vendors::ItemsController < ApplicationController
 
   def index
-    @vendor = Vendor.find_by(slug: params[:slug])
-    @items = @vendor.items
+    @heading = "Welcome to #{current_vendor.name}'s Photo Gallery"
+    @items = current_vendor.items
   end
 
   def show
-    @vendor = Vendor.find_by(slug: params[:slug])
-    @item = @vendor.items.find(params[:id])
+    @item = current_vendor.items.find(params[:id])
     render :layout => !request.xhr?
   end
 
-  # def new
-  #   @item = Item.new
-  #   authorize! :new, @item
-  # end
+  def new
+    if current_user.store_admin?(current_vendor)
+      @item = Item.new
+    else
+      flash[:danger] = "You are not authorized to access this page"
+      redirect_to :back
+    end
+  end
 
-  # def create
-  #   @item = Item.new(item_params)
-  #   if @item.save
-  #     update_categories
-  #     flash[:success] = "New item has been created!"
-  #     redirect_to menu_item_path(@item)
-  #   else
-  #     flash[:error] = "Attributes missing"
-  #     redirect_to new_menu_item_path
-  #   end
-  # end
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      update_categories
+      flash[:success] = "New item has been created!"
+      redirect_to vendor_item_path(@item)
+    else
+      flash[:error] = "Attributes missing"
+      redirect_to new_vendor_item_path
+    end
+  end
 
   # def edit
   #   @item = Item.find_by(parameterized_name: params[:item_name])
@@ -45,17 +48,17 @@ class Vendors::ItemsController < ApplicationController
   #   end
   # end
 
-  # private
+  private
 
-  # def update_categories
-  #   ItemCategory.destroy_all(item_id: @item.id)
-  #   params[:category_ids].each do |category|
-  #     category_id = category.to_i
-  #     ItemCategory.create(item_id: @item.id, category_id: category_id)
-  #   end
-  # end
+  def update_categories
+    ItemCategory.destroy_all(item_id: @item.id)
+    params[:category_ids].each do |category|
+      category_id = category.to_i
+      ItemCategory.create(item_id: @item.id, category_id: category_id)
+    end
+  end
 
-  # def item_params
-  #   params.require(:item).permit(:name, :description, :price, :image, :category_ids, :status)
-  # end
+  def item_params
+    params.require(:item).permit(:name, :description, :price, :image, :category_ids, :status)
+  end
 end

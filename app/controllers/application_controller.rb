@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def current_vendor
+    @current_vendor = Vendor.find_by(slug: params[:slug])
+  end
+  helper_method :current_vendor
+
   def signed_in?
     current_user.present?
   end

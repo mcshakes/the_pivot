@@ -40,7 +40,8 @@ class Seed
 
     @vendor_count.times do
       vendor = Vendor.create(name: Faker::Company.name,
-                             description: Faker::Lorem.sentence)
+                             description: Faker::Lorem.sentence,
+                             credit_card: Faker::Business.credit_card_number)
       user = User.find(rand(1..@user_count))
       user.vendors << vendor
       vendor.items << Item.order("RANDOM()").limit(rand(6..10))

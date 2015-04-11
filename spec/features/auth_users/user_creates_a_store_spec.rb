@@ -59,7 +59,7 @@ RSpec.feature "authenticated user tries to create a vendor", type: :feature do
 
   it "cannot create two stores with the same slug" do
     user = create(:user)
-    vendor = Vendor.create(name: "Ansel Adam's", description: "black and white", credit_card: "4242 4242 4242 4242")
+    vendor = Vendor.create(name: "Ansel Adam's", description: "black and white", credit_card: "4242 4242 4242 4242", user_id: user.id)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit new_vendor_path
     fill_in("vendor[name]", with: "Ansel Adam-s")

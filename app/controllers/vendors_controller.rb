@@ -6,8 +6,9 @@ class VendorsController < ApplicationController
 
   def create
     @vendor = Vendor.new(vendor_params)
+    current_user.vendors << @vendor
+    
     if @vendor.save
-      current_user.vendors << @vendor
       redirect_to vendor_items_path(slug: @vendor.slug)
     else
       flash[:danger] = "Please enter unique and accurate information."
