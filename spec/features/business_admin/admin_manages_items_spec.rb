@@ -39,7 +39,7 @@ RSpec.describe "admin managing items", type: :feature do
     page.check('category_ids_')
     click_link_or_button "Submit"
     # save_and_open_page
-
+    
     expect(page).to have_content("snuggly cats")
     expect(page).to have_content("Your photograph has been added!")
   end
@@ -55,7 +55,7 @@ RSpec.describe "admin managing items", type: :feature do
     expect(page).to have_content("Attributes missing")
   end
 
-  xit "can access edit item from individual item page" do
+  it "can access edit item from individual item page" do
     create_admin_user_and_vendor
     item = create(:item)
     item.categories << create(:category)

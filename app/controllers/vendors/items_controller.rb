@@ -21,8 +21,8 @@ class Vendors::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    current_vendor.items << @item
     if @item.save
+      current_vendor.items << @item
       update_categories
       flash[:success] = "Your photograph has been added!"
       redirect_to vendor_item_path(slug: current_vendor.slug, id: @item.id)
@@ -52,10 +52,12 @@ class Vendors::ItemsController < ApplicationController
   private
 
   def update_categories
-    ItemCategory.destroy_all(item_id: @item.id)
-    params[:category_ids].each do |category|
-      category_id = category.to_i
-      ItemCategory.create(item_id: @item.id, category_id: category_id)
+    if @item.categories.count > 0
+      ItemCategory.destroy_all(item_id: @item.id)
+      params[:category_ids].each do |category|
+        category_id = category.to_i
+        ItemCategory.create(item_id: @item.id, category_id: category_id)
+      end
     end
   end
 
