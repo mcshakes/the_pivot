@@ -14,8 +14,9 @@ class Item < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :description, :price, presence: true
   validates :price, numericality: { greater_than: 0 }
+  validates :vendor_id, presence: true
 
-  before_validation :parameterize #, :downcase_name
+  before_validation :parameterize
 
   has_attached_file :image, styles: { large: "500x340>", medium: "250x170>", thumb: "100x100>" }, default_url: "cookie-monster.jpg"
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }

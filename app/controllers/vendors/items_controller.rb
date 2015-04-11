@@ -21,13 +21,14 @@ class Vendors::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    current_vendor.items << @item
     if @item.save
       update_categories
-      flash[:success] = "New item has been created!"
-      redirect_to vendor_item_path(@item)
+      flash[:success] = "Your photograph has been added!"
+      redirect_to vendor_item_path(slug: current_vendor.slug, id: @item.id)
     else
       flash[:error] = "Attributes missing"
-      redirect_to new_vendor_item_path
+      redirect_to :back
     end
   end
 
@@ -36,17 +37,17 @@ class Vendors::ItemsController < ApplicationController
   #   authorize! :edit, @item
   # end
 
-  # def update
-  #   @item = Item.find_by(parameterized_name: params[:item_name])
-  #   if @item.update(item_params)
-  #     update_categories
-  #     flash[:success] = "Item has been successfully updated!"
-  #     redirect_to menu_item_path(@item)
-  #   else
-  #     flash[:error] = "Attributes missing."
-  #     redirect_to :back
-  #   end
-  # end
+  def edit
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      update_categories
+      flash[:success] = "Item has been successfully updated!"
+      redirect_to menu_item_path(@item)
+    else
+      flash[:error] = "Attributes missing."
+      redirect_to :back
+    end
+  end
 
   private
 

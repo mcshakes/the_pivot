@@ -2,7 +2,6 @@ class CartItemsController < ApplicationController
 
   def create
     item = Item.find(params[:item_id])
-    # item = Item.find(params[:id])
     cart_data
     @cart.add_item(item)
     flash[:notice] = "#{item.name} was added to your cart."

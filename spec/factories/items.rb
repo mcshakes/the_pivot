@@ -3,6 +3,7 @@ FactoryGirl.define do
     name "Salted Caramel Peanut Butter Cup"
     description "Salted caramel ice cream with chopped peanut butter cups"
     price 6.00
+    vendor_id 1
 
     trait :retired do
       status "retired"
