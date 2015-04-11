@@ -4,10 +4,13 @@ class VendorsController < ApplicationController
     @vendors = Vendor.with_items
   end
 
+  def new
+  end
+
   def create
     @vendor = Vendor.new(vendor_params)
     current_user.vendors << @vendor
-    
+
     if @vendor.save
       redirect_to vendor_items_path(slug: @vendor.slug)
     else

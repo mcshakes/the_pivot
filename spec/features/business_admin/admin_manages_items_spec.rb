@@ -10,40 +10,43 @@ RSpec.describe "admin managing items", type: :feature do
   end
 
   it "user cannot access create item page" do
-    create(:user)
-    vendor = create(:vendor)
-    visit new_vendor_item_path(slug: vendor.slug)
+    create_admin_user_and_vendor
+    user = create(:user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    visit new_vendor_item_path(slug: @vendor.slug)
     expect(page).to have_content("You are not authorized to access this page")
   end
 
   it "won't allow the admin of another store to edit items" do
-    admin = create(:admin)
-    vendor = create(:vendor)
-    admin.vendors << vendor
+    admin1 = create(:admin)
+    vendor1 = create(:vendor)
+    admin1.vendors << vendor1
     other_admin = User.create(first_name: "Hey", last_name: "There", email: "admin2@example.com",
                               password: "admin", role: "store_admin")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(other_admin)
-    visit new_vendor_item_path(slug: vendor.slug)
+    visit new_vendor_item_path(slug: vendor1.slug)
 
     expect(page).to have_content("You are not authorized to access this page")
   end
 
-  xit "can create new item" do
-    create_admin_user
+  it "can create new item" do
+    create_admin_user_and_vendor
     category = create(:category)
-    visit new_vendor_item_path
-    fill_in "item[name]", with: "fudge"
-    fill_in "item[description]", with: "double chocolate"
+    visit new_vendor_item_path(slug: @vendor.slug)
+    fill_in "item[name]", with: "snuggly cats"
+    fill_in "item[description]", with: "such cute"
     fill_in "item[price]", with: "600"
-    find(:css, "#category_ids_[value='#{category.id}']").set(true)
+    page.check('category_ids_')
     click_link_or_button "Submit"
-    assert page.current_path eq("/menu/items/fudge")
-    expect(page).to have_content("New item has been created!")
+    # save_and_open_page
+
+    expect(page).to have_content("snuggly cats")
+    expect(page).to have_content("Your photograph has been added!")
   end
 
   xit "cannot create item without valid name" do
-    create_admin_user
-    visit new_vendor_item_path
+    create_admin_user_and_vendor
+    visit new_vendor_item_path(slug: @vendor.slug)
     fill_in "item[description]", with: "double chocolate"
     fill_in "item[price]", with: "600"
     click_link_or_button "Submit"
@@ -52,7 +55,7 @@ RSpec.describe "admin managing items", type: :feature do
   end
 
   xit "can access edit item from individual item page" do
-    create_admin_user
+    create_admin_user_and_vendor
     item = create(:item)
     item.categories << create(:category)
     visit "/menu/items/salted-caramel-peanut-butter-cup"
@@ -66,7 +69,7 @@ RSpec.describe "admin managing items", type: :feature do
   end
 
   xit "cannot modify item if attribute is missing" do
-    create_admin_user
+    create_admin_user_and_vendor
     item = create(:item)
     visit edit_menu_item_path(item)
     fill_in "item[name]", with: "fudge"
@@ -77,9 +80,9 @@ RSpec.describe "admin managing items", type: :feature do
   end
 
   xit "cannot create item if no category is selected" do
-    create_admin_user
+    create_admin_user_and_vendor
     create(:item)
-    visit new_vendor_item_path
+    visit new_vendor_item_path(slug: @vendor.slug)
     fill_in "item[name]", with: "fudge"
     fill_in "item[description]", with: ""
     fill_in "item[price]", with: "600"
@@ -90,7 +93,7 @@ RSpec.describe "admin managing items", type: :feature do
   end
 
   xit "can upload photo when creating new item" do
-    create_admin_user
+    create_admin_user_and_vendor
     visit new_vendor_item_path
     fill_in "item[name]", with: "fudge"
     fill_in "item[description]", with: "double chocolate"
@@ -102,7 +105,7 @@ RSpec.describe "admin managing items", type: :feature do
   end
 
   xit "can retire an item" do
-    create_admin_user
+    create_admin_user_and_vendor
     item = create(:item)
     item.categories << create(:category)
     visit edit_menu_item_path(item)

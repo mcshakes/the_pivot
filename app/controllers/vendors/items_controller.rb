@@ -21,13 +21,14 @@ class Vendors::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    current_vendor.items << @item
     if @item.save
       update_categories
-      flash[:success] = "New item has been created!"
-      redirect_to vendor_item_path(@item)
+      flash[:success] = "Your photograph has been added!"
+      redirect_to vendor_item_path(slug: current_vendor.slug, id: @item.id)
     else
       flash[:error] = "Attributes missing"
-      redirect_to new_vendor_item_path
+      redirect_to :back
     end
   end
 
