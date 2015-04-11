@@ -20,7 +20,7 @@ class Seed
 
     @item_count.times do
       item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
-                        price: Faker::Commerce.price.round, photo: Faker::Avatar.image)
+                        price: Faker::Commerce.price.round, photo: Faker::Avatar.image, vendor_id: (1..@vendor_count).to_a.sample)
         categories = Category.order("RANDOM()").limit(rand(1..3))
         item.categories << categories
       puts "Items: #{item.name}"
@@ -44,8 +44,7 @@ class Seed
                              credit_card: Faker::Business.credit_card_number)
       user = User.find(rand(1..@user_count))
       user.vendors << vendor
-      vendor.items << Item.order("RANDOM()").limit(rand(6..10))
-      puts "Vendors: #{vendor.name}"
+      # puts "Vendors: #{vendor.name}"
     end
   end
 

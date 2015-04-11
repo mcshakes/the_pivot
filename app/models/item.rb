@@ -11,9 +11,10 @@ class Item < ActiveRecord::Base
   scope :active_items, -> { where(status: "active").order_by_id }
   scope :retired_items, -> { where(status: "retired").order_by_id }
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :description, :price, presence: true
   validates :price, numericality: { greater_than: 0 }
+  validates :vendor_id, presence: true
 
   before_validation :parameterize
 
