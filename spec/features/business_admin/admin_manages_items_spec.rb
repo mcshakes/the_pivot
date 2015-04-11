@@ -44,26 +44,28 @@ RSpec.describe "admin managing items", type: :feature do
     expect(page).to have_content("Your photograph has been added!")
   end
 
-  xit "cannot create item without valid name" do
+  it "cannot create item without valid name" do
     create_admin_user_and_vendor
     visit new_vendor_item_path(slug: @vendor.slug)
     fill_in "item[description]", with: "double chocolate"
     fill_in "item[price]", with: "600"
     click_link_or_button "Submit"
-    assert page.current_path == "/menu/items/new"
+
+    expect(current_path).to eq(new_vendor_item_path(slug: @vendor.slug))
     expect(page).to have_content("Attributes missing")
   end
 
-  xit "can access edit item from individual item page" do
+  it "can access edit item from individual item page" do
     create_admin_user_and_vendor
     item = create(:item)
     item.categories << create(:category)
-    visit "/menu/items/salted-caramel-peanut-butter-cup"
+    visit vendor_item_path(slug: @vendor.slug, id: item.id)
     click_link_or_button "Edit Item"
     fill_in "item[name]", with: "fudge"
     fill_in "item[description]", with: "double chocolate"
     fill_in "item[price]", with: "600"
     click_link_or_button "Submit"
+
     assert page.current_path == "/menu/items/fudge"
     expect(page).to have_content("Item has been successfully updated!")
   end

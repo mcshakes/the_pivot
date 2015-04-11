@@ -1,6 +1,10 @@
 <div class="main-vendor-items">
-  <%= render "vendors/items/admin_edits" %>
+  <% if current_user && current_user.store_admin?(current_vendor) %>
+    <%= render "vendors/items/admin_edits" %>
+  <% end %>
+
   <h2><%= @heading %></h2>
+
   <% @items.each_slice(4) do |four_items| %>
     <div class="row">
       <% four_items.each do |item| %>

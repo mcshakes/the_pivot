@@ -37,17 +37,17 @@ class Vendors::ItemsController < ApplicationController
   #   authorize! :edit, @item
   # end
 
-  # def update
-  #   @item = Item.find_by(parameterized_name: params[:item_name])
-  #   if @item.update(item_params)
-  #     update_categories
-  #     flash[:success] = "Item has been successfully updated!"
-  #     redirect_to menu_item_path(@item)
-  #   else
-  #     flash[:error] = "Attributes missing."
-  #     redirect_to :back
-  #   end
-  # end
+  def edit
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      update_categories
+      flash[:success] = "Item has been successfully updated!"
+      redirect_to menu_item_path(@item)
+    else
+      flash[:error] = "Attributes missing."
+      redirect_to :back
+    end
+  end
 
   private
 

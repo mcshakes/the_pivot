@@ -23,5 +23,10 @@
       </div>
     <% end %>
 
+    <% if current_user && current_user.store_admin?(current_vendor) %>
+      <%= button_to "Edit Item", edit_vendor_item_path(slug: current_vendor.slug, id: @item.id), 
+                                                      method: :get, class: "btn btn-success" %>
+    <% end %>
+
   <% end %>
 </div>
