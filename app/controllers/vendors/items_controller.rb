@@ -13,7 +13,12 @@ class Vendors::ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    if current_user.role == "store_admin"
+      @item = Item.new
+    else
+      flash[:danger] = "You are not authorized to access this page"
+      redirect_to :back
+    end
   end
 
   def create

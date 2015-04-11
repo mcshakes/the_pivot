@@ -14,6 +14,6 @@ FactoryGirl.define do
     last_name "Mejia"
     email "admin@example.com"
     password "admin"
-    role "admin"
+    role "store_admin"
   end
 end

@@ -3,16 +3,28 @@ require "rails_helper"
 RSpec.describe "admin managing items", type: :feature do
 
   it "must be admin to access create item page" do
-    create_admin_user
-    vendor = create(:vendor)
-    visit new_vendor_item_path(slug: vendor.slug)
+    create_admin_user_and_vendor
+    visit new_vendor_item_path(slug: @vendor.slug)
+
     expect(page).to have_content("Add a New Photograph")
   end
 
-  xit "user cannot access create item page" do
+  it "user cannot access create item page" do
     create(:user)
     vendor = create(:vendor)
     visit new_vendor_item_path(slug: vendor.slug)
+    expect(page).to have_content("You are not authorized to access this page")
+  end
+
+  xit "won't allow the admin of another store to edit items" do
+    admin = create(:admin)
+    vendor = create(:vendor)
+    admin.vendors << vendor
+    other_admin = User.create(first_name: "Hey", last_name: "There", email: "admin2@example.com",
+                              password: "admin", role: "store_admin")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(other_admin)
+    visit new_vendor_item_path(slug: vendor.slug)
+
     expect(page).to have_content("You are not authorized to access this page")
   end
 
@@ -102,8 +114,10 @@ RSpec.describe "admin managing items", type: :feature do
 
   private
 
-  def create_admin_user
-    admin = create(:admin)
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+  def create_admin_user_and_vendor
+    @admin = create(:admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+    @vendor = create(:vendor)
+    @admin.vendors << @vendor
   end
 end

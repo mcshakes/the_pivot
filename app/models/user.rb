@@ -21,11 +21,8 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  # def self.role
-  #   role
-  # end
-
-  def registered_user?
-    roles.exists?(name: "registered")
+  def store_admin?
+    role.exists?("store_admin")
   end
+
 end
