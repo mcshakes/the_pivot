@@ -1,14 +1,12 @@
 class Vendors::ItemsController < ApplicationController
 
   def index
-    @vendor = Vendor.find_by(slug: params[:slug])
-    @heading = "Welcome to #{@vendor.name}'s Photo Gallery"
-    @items = @vendor.items
+    @heading = "Welcome to #{current_vendor.name}'s Photo Gallery"
+    @items = current_vendor.items
   end
 
   def show
-    @vendor = Vendor.find_by(slug: params[:slug])
-    @item = @vendor.items.find(params[:id])
+    @item = current_vendor.items.find(params[:id])
     render :layout => !request.xhr?
   end
 
