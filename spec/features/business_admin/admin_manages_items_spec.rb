@@ -16,7 +16,7 @@ RSpec.describe "admin managing items", type: :feature do
     expect(page).to have_content("You are not authorized to access this page")
   end
 
-  xit "won't allow the admin of another store to edit items" do
+  it "won't allow the admin of another store to edit items" do
     admin = create(:admin)
     vendor = create(:vendor)
     admin.vendors << vendor

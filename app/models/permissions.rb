@@ -4,14 +4,14 @@ class Permissions
   end
 
   def allow?(controller, action)
-    if user.store_owner
-      store_owner_permissions
+    if user.store_admin?
+      store_admin_permissions
     end
   end
 
   private
 
-  def store_owner_permissions
+  def store_admin_permissions
     return true if controller == "items"
   end
 end

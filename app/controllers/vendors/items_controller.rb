@@ -11,7 +11,7 @@ class Vendors::ItemsController < ApplicationController
   end
 
   def new
-    if current_user.role == "store_admin"
+    if current_user.store_admin?(current_vendor)
       @item = Item.new
     else
       flash[:danger] = "You are not authorized to access this page"

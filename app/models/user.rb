@@ -21,8 +21,7 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def store_admin?
-    role.exists?("store_admin")
+  def store_admin?(current_vendor)
+    self.vendors.exists?(current_vendor.id)
   end
-
 end
