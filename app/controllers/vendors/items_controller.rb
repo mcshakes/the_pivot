@@ -20,6 +20,7 @@ class Vendors::ItemsController < ApplicationController
   end
 
   def create
+    current_vendor = Vendor.find(params[:item][:vendor_id])
     @item = Item.new(item_params)
     if @item.save
       current_vendor.items << @item

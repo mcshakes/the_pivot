@@ -27,6 +27,7 @@
     <%= f.label :select_image %><br />
     <%= f.file_field :image %>
     <%= f.hidden_field :item_id, value: @item.id %>
+    <%= f.hidden_field :vendor_id, value: current_vendor.id %>
     </p>
     <%= f.submit "Submit", class: 'btn btn-default'%>
   <% end %>

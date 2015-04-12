@@ -66,16 +66,15 @@ RSpec.describe "admin managing items", type: :feature do
     fill_in "item[description]", with: "double chocolate"
     fill_in "item[price]", with: "600"
     click_link_or_button "Submit"
-    save_and_open_page
 
     expect(page).to have_content("Item has been successfully updated!")
     expect(page).to have_content("sweet food")
   end
 
-  xit "cannot modify item if attribute is missing" do
+  it "cannot modify item if attribute is missing" do
     create_admin_user_and_vendor
     item = create(:item)
-    visit edit_menu_item_path(item)
+    visit edit_vendor_item_path(slug: @vendor.slug, id: item.id)
     fill_in "item[name]", with: "fudge"
     fill_in "item[description]", with: ""
     fill_in "item[price]", with: "600"
@@ -95,11 +94,11 @@ RSpec.describe "admin managing items", type: :feature do
     # expect(page).to have_css("img[alt='Cookie monster']")
   end
 
-  xit "can retire an item" do
+  it "can retire an item" do
     create_admin_user_and_vendor
     item = create(:item)
     item.categories << create(:category)
-    visit edit_menu_item_path(item)
+    visit edit_vendor_item_path(slug: @vendor.slug, id: item.id)
     select 'retired', from: 'item_status'
     click_link_or_button "Submit"
     expect(page).to have_content("Item has been successfully updated!")
