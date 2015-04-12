@@ -12,7 +12,6 @@ class Item < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :description, :price, presence: true
   validates :price, numericality: { greater_than: 0 }
-  validates :vendor_id, presence: true
 
   before_validation :parameterize
 

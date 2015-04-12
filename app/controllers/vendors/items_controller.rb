@@ -20,9 +20,10 @@ class Vendors::ItemsController < ApplicationController
   end
 
   def create
+    current_vendor = Vendor.find(params[:item][:vendor_id])
     @item = Item.new(item_params)
-    current_vendor.items << @item
     if @item.save
+      current_vendor.items << @item
       update_categories
       flash[:success] = "Your photograph has been added!"
       redirect_to vendor_item_path(slug: current_vendor.slug, id: @item.id)
@@ -32,30 +33,38 @@ class Vendors::ItemsController < ApplicationController
     end
   end
 
-  # def edit
-  #   @item = Item.find_by(parameterized_name: params[:item_name])
-  #   authorize! :edit, @item
-  # end
-
   def edit
     @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:item][:item_id])
+    @current_vendor = @item.vendor
     if @item.update(item_params)
       update_categories
       flash[:success] = "Item has been successfully updated!"
-      redirect_to menu_item_path(@item)
+      redirect_to vendor_items_path(slug: @current_vendor.slug)
     else
       flash[:error] = "Attributes missing."
       redirect_to :back
     end
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    Item.destroy(@item)
+    redirect_to :back
+  end
+
   private
 
   def update_categories
-    ItemCategory.destroy_all(item_id: @item.id)
-    params[:category_ids].each do |category|
-      category_id = category.to_i
-      ItemCategory.create(item_id: @item.id, category_id: category_id)
+    if @item.categories.count > 0
+      ItemCategory.destroy_all(item_id: @item.id)
+      params[:category_ids].each do |category|
+        category_id = category.to_i
+        ItemCategory.create(item_id: @item.id, category_id: category_id)
+      end
     end
   end
 
