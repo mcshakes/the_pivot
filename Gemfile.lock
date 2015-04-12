@@ -42,6 +42,11 @@ GEM
       execjs
       json
     awesome_print (1.6.1)
+    aws-sdk (1.63.0)
+      aws-sdk-v1 (= 1.63.0)
+    aws-sdk-v1 (1.63.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -265,6 +270,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   awesome_print
+  aws-sdk (~> 1.0)
   bcrypt
   better_errors
   bootstrap-sass (~> 3.2.0)

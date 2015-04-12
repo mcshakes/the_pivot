@@ -12,3 +12,7 @@
 !/log/.keep
 /tmp
 coverage
+
+$ heroku config:set S3_BUCKET_NAME=picturemeatturing
+$ heroku config:set AWS_ACCESS_KEY_ID=AKIAJAX5BFILNKX7NA3A
+$ heroku config:set AWS_SECRET_ACCESS_KEY=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

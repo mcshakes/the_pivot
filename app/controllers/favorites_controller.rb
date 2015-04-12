@@ -1,9 +1,7 @@
 class FavoritesController < ApplicationController
 
   def index
-    # puts "Index - Favorite Items"
-
-    @heading = "My Favorites"
+    @heading = current_user.first_name + "'s Favorites"
     @items = current_user.favorite_items
 
     render "vendors/items/index"
