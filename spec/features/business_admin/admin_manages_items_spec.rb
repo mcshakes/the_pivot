@@ -58,16 +58,18 @@ RSpec.describe "admin managing items", type: :feature do
   it "can access edit item from individual item page" do
     create_admin_user_and_vendor
     item = create(:item)
-    item.categories << create(:category)
+    @vendor.items << item
     visit vendor_item_path(slug: @vendor.slug, id: item.id)
     click_link_or_button "Edit Item"
-    fill_in "item[name]", with: "fudge"
+
+    fill_in "item[name]", with: "sweet food"
     fill_in "item[description]", with: "double chocolate"
     fill_in "item[price]", with: "600"
     click_link_or_button "Submit"
+    save_and_open_page
 
-    assert page.current_path == "/menu/items/fudge"
     expect(page).to have_content("Item has been successfully updated!")
+    expect(page).to have_content("sweet food")
   end
 
   xit "cannot modify item if attribute is missing" do
