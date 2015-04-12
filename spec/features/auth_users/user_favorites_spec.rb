@@ -33,7 +33,6 @@ RSpec.feature "authenticated user adds favorites", type: :feature do
   it "can add favorites to the user favorites page" do
     create_vendor_item_user
     visit_vendor_click_item
-    save_and_open_page
     click_link("Favorite")
     visit vendor_items_path(slug: vendor.slug)
     click_on('My Account')
