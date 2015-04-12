@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get  "/account"   =>  "users#show"
 
   resources :users
-  resources :favorite_items
+  resources :favorites
   resources :addresses
 
 
