@@ -3,7 +3,10 @@
     <%= render "vendors/items/admin_edits" %>
   <% end %>
 
-  <h2><%= @heading %></h2>
+  <h2><%= @heading %></h2><br>
+  <h2><%= @description %></h2>
+
+
 
   <% @items.each_slice(4) do |four_items| %>
     <div class="row">
