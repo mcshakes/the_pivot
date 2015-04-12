@@ -13,14 +13,9 @@ class FavoriteItemsController < ApplicationController
   end
 
   def create
-    puts "Create - Favorite Items"
-    if signed_in?
-    require 'pry';binding.pry
-      favorite_item = FavoriteItems.create(user_id: current_user.id, item_id: item.id)
-      flash[:success] = "Favorite!"
-    else
-      flash[:danger] = "You must be logged in the save a favorite!"
-    end
+    item = Item.find(params[:item_id])
+    current_user.favorite_items << item
+    render nothing: true
   end
 
 end

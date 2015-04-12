@@ -5,7 +5,6 @@ class Item < ActiveRecord::Base
   has_many :categories, -> { uniq }, through: :item_categories
   has_many :item_orders
   has_many :orders, through: :item_orders
-  has_many :favorite_items
   has_many :users, through: :favorite_items
 
   scope :active_items, -> { where(status: "active").order_by_id }
