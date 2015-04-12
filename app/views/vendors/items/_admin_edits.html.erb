@@ -1,1 +1,3 @@
 <%= button_to "Add an Item", new_vendor_item_path(slug: current_vendor.slug), method: :get, class: "btn btn-success" %>
+
+<%= link_to "Edit Business Info", edit_vendor_path(slug: params[:slug]), class: "btn btn-danger" %>

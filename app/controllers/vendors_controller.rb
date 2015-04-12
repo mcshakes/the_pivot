@@ -19,6 +19,13 @@ class VendorsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+
+  end
+
   private
 
   def vendor_params

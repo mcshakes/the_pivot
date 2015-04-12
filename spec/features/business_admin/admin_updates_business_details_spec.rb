@@ -25,7 +25,8 @@ RSpec.describe "admin updates business details", type: :feature do
     create_admin_user_and_vendor
     visit vendor_items_path(slug: @vendor.slug)
     click_link_or_button("Edit Business Info")
-
+    expect(current_path).to eq(edit_vendor_path(slug: @vendor.slug))
+    
   end
 
 

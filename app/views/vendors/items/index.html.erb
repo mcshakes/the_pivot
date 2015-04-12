@@ -6,7 +6,6 @@
   <h2><%= @heading %></h2><br>
   <h2><%= @description %></h2>
 
-  <%= link_to "Edit Business Info", edit_vendor_path(slug: params[:slug]), class: "btn btn-danger" %>
 
 
   <% @items.each_slice(4) do |four_items| %>

@@ -30,7 +30,7 @@ RSpec.feature "authenticated user adds favorites", type: :feature do
     expect(page).to have_link("Favorite")
   end
 
-  it "can add favorites to the user favorites page" do
+  xit "can add favorites to the user favorites page" do
     create_vendor_item_user
     visit_vendor_click_item
     click_link("Favorite")
@@ -40,4 +40,3 @@ RSpec.feature "authenticated user adds favorites", type: :feature do
     expect(page).to have_content("Super Sold Photograph")
   end
 end
-
