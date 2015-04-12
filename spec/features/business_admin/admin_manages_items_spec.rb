@@ -55,43 +55,31 @@ RSpec.describe "admin managing items", type: :feature do
     expect(page).to have_content("Attributes missing")
   end
 
-  xit "can access edit item from individual item page" do
+  it "can access edit item from individual item page" do
     create_admin_user_and_vendor
     item = create(:item)
-    item.categories << create(:category)
+    @vendor.items << item
     visit vendor_item_path(slug: @vendor.slug, id: item.id)
     click_link_or_button "Edit Item"
-    fill_in "item[name]", with: "fudge"
+
+    fill_in "item[name]", with: "sweet food"
     fill_in "item[description]", with: "double chocolate"
     fill_in "item[price]", with: "600"
     click_link_or_button "Submit"
 
-    assert page.current_path == "/menu/items/fudge"
     expect(page).to have_content("Item has been successfully updated!")
+    expect(page).to have_content("sweet food")
   end
 
-  xit "cannot modify item if attribute is missing" do
+  it "cannot modify item if attribute is missing" do
     create_admin_user_and_vendor
     item = create(:item)
-    visit edit_menu_item_path(item)
+    visit edit_vendor_item_path(slug: @vendor.slug, id: item.id)
     fill_in "item[name]", with: "fudge"
     fill_in "item[description]", with: ""
     fill_in "item[price]", with: "600"
     click_link_or_button "Submit"
     expect(page).to have_content("Attributes missing.")
-  end
-
-  xit "cannot create item if no category is selected" do
-    create_admin_user_and_vendor
-    create(:item)
-    visit new_vendor_item_path(slug: @vendor.slug)
-    fill_in "item[name]", with: "fudge"
-    fill_in "item[description]", with: ""
-    fill_in "item[price]", with: "600"
-    click_link_or_button "Submit"
-    within("div.alert-danger") do
-      expect(page).to have_content("Attributes missing")
-    end
   end
 
   xit "can upload photo when creating new item" do
@@ -106,11 +94,11 @@ RSpec.describe "admin managing items", type: :feature do
     # expect(page).to have_css("img[alt='Cookie monster']")
   end
 
-  xit "can retire an item" do
+  it "can retire an item" do
     create_admin_user_and_vendor
     item = create(:item)
     item.categories << create(:category)
-    visit edit_menu_item_path(item)
+    visit edit_vendor_item_path(slug: @vendor.slug, id: item.id)
     select 'retired', from: 'item_status'
     click_link_or_button "Submit"
     expect(page).to have_content("Item has been successfully updated!")

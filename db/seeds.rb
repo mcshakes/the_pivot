@@ -44,7 +44,7 @@ class Seed
                              credit_card: Faker::Business.credit_card_number)
       user = User.find(rand(1..@user_count))
       user.vendors << vendor
-      # puts "Vendors: #{vendor.name}"
+      puts "Vendors: #{vendor.name}"
     end
   end
 
