@@ -15,7 +15,6 @@ class FavoriteItemsController < ApplicationController
   def create
     item = Item.find(params[:item_id])
     current_user.favorite_items << item
-    render nothing: true
   end
 
 end
