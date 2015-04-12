@@ -17,13 +17,13 @@
     </div>
     <% if current_user %>
       <div class="btn btn-success glyphicon glyphicon-heart white">
-        <%= link_to 'Favorite', "#", id: 'favorite', favorite_path: favorite_items_path,
-        user_id: current_user.id, item_id: @item.id,
-        remote: true %>
+        <%= link_to 'Favorite', favorites_path(item_id: @item.id), id: 'favorite',
+        remote: true, method: :post %>
       </div>
     <% end %>
 
     <% if current_user && current_user.store_admin?(current_vendor) %>
+
     <p>
       <%= button_to "Edit Item", edit_vendor_item_path(slug: current_vendor.slug, id: @item.id),
                                                  method: :get, class: "btn btn-success" %></p>
