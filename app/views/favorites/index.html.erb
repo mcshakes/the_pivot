@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="page_title"><%= current_user.first_name %>'s Favorites</h1>
+
+  <% @favorite_items.each_slice(4) do |four_items| %>
+     <div class='row'>
+      <% four_items.each do |item| %>
+        <div class="col-sm-3">
+          <p> <%= link_to image_tag(item.photo, size: "100") %></p>
+          <p> <%= item.name %> </p>
+          <p> <%= item.vendor.name %> </p>
+          <%=link_to "Dislike", favorite_path(item), method: :delete %>
+    
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

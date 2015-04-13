@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
   has_many :vendors
   has_many :user_roles
   has_many :roles, through: :user_roles
-  has_many :favorite_items
-  has_many :items, through: :favorite_items
+  has_many :favorites
+  has_many :favorite_items, through: :favorites, source: :item
   has_many :credit_cards
   has_many :addresses
 
@@ -24,4 +24,10 @@ class User < ActiveRecord::Base
   def store_admin?(current_vendor)
     self.vendors.exists?(current_vendor.id)
   end
+
+  def has_this_favorite?(item)
+    favorite_items.include?(item)
+  end     
 end
+
+

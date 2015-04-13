@@ -1,5 +1,5 @@
 <div class="main-vendor-items">
-  <% if current_user && current_user.store_admin?(current_vendor) %>
+  <% if current_user && current_vendor && current_user.store_admin?(current_vendor) %>
     <%= render "vendors/items/admin_edits" %>
   <% end %>
 
@@ -17,7 +17,7 @@
         <div class="col-sm-3 vendor-items <%= item.categories.map(&:parameterized_name).join(" ") %>">
           <p> <%= link_to image_tag(item.photo), vendor_item_path(slug: params[:slug], id:item.id),
                 data: { target: "#modal" } %>  </p>
-          <p><strong>  <%= link_to item.name, vendor_item_path(slug: params[:slug], id:item.id),
+          <p><strong>  <%= link_to item.name, vendor_item_path(slug: item.vendor.slug, id:item.id),
                 data: { target: "#modal" } %> </strong></p>
           <% if item.status == "sold" %>
             <p> <%= item.status %> </p>

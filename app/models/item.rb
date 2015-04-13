@@ -5,8 +5,6 @@ class Item < ActiveRecord::Base
   has_many :categories, -> { uniq }, through: :item_categories
   has_many :item_orders
   has_many :orders, through: :item_orders
-  has_many :favorite_items
-  has_many :users, through: :favorite_items
 
   scope :active_items, -> { where(status: "active").order_by_id }
   scope :retired_items, -> { where(status: "retired").order_by_id }
@@ -19,6 +17,8 @@ class Item < ActiveRecord::Base
 
   has_attached_file :image, styles: { large: "500x340>", medium: "250x170>", thumb: "100x100>" }, default_url: "cookie-monster.jpg"
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def category_list
     categories.map(&:name).join(", ")
