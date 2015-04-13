@@ -1,4 +1,6 @@
 class Address < ActiveRecord::Base
+  include CacheInvalidator
+
   validates :street, presence: true
   validates :city, presence: true
   validates :state, presence: true
