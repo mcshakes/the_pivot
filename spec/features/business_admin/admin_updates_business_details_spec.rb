@@ -21,16 +21,26 @@ RSpec.describe "admin updates business details", type: :feature do
     expect(page).to have_content("You are not authorized to access this page")
   end
 
-  it "can update the business name" do
+  it "can update the business details" do
     create_admin_user_and_vendor
     visit vendor_items_path(slug: @vendor.slug)
     click_link_or_button("Edit Business Info")
     expect(current_path).to eq(edit_vendor_path(slug: @vendor.slug))
-    save_and_open_page
     fill_in("vendor[name]", with: "New Store")
+    fill_in("vendor[description]", with: "New Detailed Descriptions. Mindblowing Sales")
+    click_link_or_button("Update My Store")
+    expect(page).to have_content("New Store")
+    expect(page).to have_content("New Detailed Descriptions. Mindblowing Sales")
+  end
+
+  it "gets a flash message when updated" do
+    create_admin_user_and_vendor
+    visit vendor_items_path(slug: @vendor.slug)
+    click_link_or_button("Edit Business Info")
+    expect(current_path).to eq(edit_vendor_path(slug: @vendor.slug))
+    fill_in("vendor[name]", with: "Newer Store")
     click_link_or_button("Update My Store")
     expect(page).to have_content("Account Updated")
-    # expect(current_path).to eq(vendor_items_path(slug: @vendor.slug))
   end
 
 
