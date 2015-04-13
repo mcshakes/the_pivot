@@ -16,7 +16,6 @@ gem "paperclip"
 gem "faker"
 gem 'aws-sdk', '~> 1.0'
 
-
 group :production do
   gem 'pg'
   gem 'rails_12factor'
@@ -37,4 +36,5 @@ group :development, :test do
   gem "simplecov", require: false
   gem "codeclimate-test-reporter", require: nil
   gem "brakeman", :require => false
+  gem 'dotenv-rails'
 end
