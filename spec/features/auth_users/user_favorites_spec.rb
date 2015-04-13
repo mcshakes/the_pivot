@@ -62,13 +62,5 @@ RSpec.feature "authenticated user adds favorites", type: :feature do
     end
   end
 
-  xit "can see favorite button is yellow if item is favorited" do
-    visit favorites_path
-    click_link_or_button(item.name)
-
-    expect
-
-  end
-
 end
 
