@@ -3,7 +3,7 @@
     <h1 class="page_title">Our Photographers</h1>
 
     <% @vendors.each_slice(4) do |four_vendors| %>
-      <% cache(vendor) do %>
+      <% cache(four_vendors) do %>
         <div class='row'>
           <% four_vendors.each do |vendor| %>
             <div class="col-sm-3">
