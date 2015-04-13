@@ -3,7 +3,6 @@ require "codeclimate-test-reporter"
 require "capybara-webkit"
 require 'factory_girl_rails'
 
-
 SimpleCov.start "rails"
 CodeClimate::TestReporter.start
 Capybara.javascript_driver = :webkit
@@ -30,4 +29,5 @@ RSpec.configure do |config|
   end
 
   config.include FactoryGirl::Syntax::Methods
+  config.backtrace_exclusion_patterns << /gems\//
 end

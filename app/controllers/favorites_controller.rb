@@ -10,11 +10,11 @@ class FavoritesController < ApplicationController
   def create
     item = Item.find(params[:item_id])
 
-    if !current_user.favorite_items.include?(item)
+    if current_user && !current_user.favorite_items.include?(item)
       current_user.favorite_items << item
-    flash[:notice] = "#{item.name} is now a favorite!"
+      flash[:notice] = "#{item.name} is now a favorite!"
 
-    redirect_to vendor_items_path(slug: item.vendor.slug)
+      redirect_to vendor_items_path(slug: item.vendor.slug)
     end
 
     # head :ok
