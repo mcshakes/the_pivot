@@ -43,6 +43,11 @@ RSpec.describe "admin updates business details", type: :feature do
     expect(page).to have_content("Account Updated")
   end
 
+  xit "gets error message when given invalid info" do
+    # Gets "First argument in form cannot contain nil or be empty" if empty field
+
+  end
+
 
   private
 
