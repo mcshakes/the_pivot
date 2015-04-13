@@ -24,4 +24,10 @@ class User < ActiveRecord::Base
   def store_admin?(current_vendor)
     self.vendors.exists?(current_vendor.id)
   end
+
+  def has_this_favorite?(item)
+    favorite_items.include?(item)
+  end     
 end
+
+

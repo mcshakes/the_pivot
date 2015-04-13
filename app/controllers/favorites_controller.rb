@@ -1,9 +1,7 @@
 class FavoritesController < ApplicationController
 
   def index
-    # puts "Index - Favorite Items"
-
-    @heading = "My Favorites"
+    @heading = current_user.first_name + "'s Favorites"
     @items = current_user.favorite_items
 
     render "vendors/items/index"
@@ -12,11 +10,14 @@ class FavoritesController < ApplicationController
   def create
     item = Item.find(params[:item_id])
 
-    if !current_user.favorite_items.include?(item)
+    if current_user && !current_user.favorite_items.include?(item)
       current_user.favorite_items << item
+      flash[:notice] = "#{item.name} is now a favorite!"
+
+      redirect_to vendor_items_path(slug: item.vendor.slug)
     end
 
-    head :ok
+    # head :ok
   end
 
 end
