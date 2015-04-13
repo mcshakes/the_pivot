@@ -12,9 +12,12 @@ class FavoritesController < ApplicationController
 
     if !current_user.favorite_items.include?(item)
       current_user.favorite_items << item
+    flash[:notice] = "#{item.name} is now a favorite!"
+
+    redirect_to vendor_items_path(slug: item.vendor.slug)
     end
 
-    head :ok
+    # head :ok
   end
 
 end
