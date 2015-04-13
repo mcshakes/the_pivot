@@ -1,4 +1,6 @@
 class Vendor < ActiveRecord::Base
+  include CacheInvalidator
+
   belongs_to :user
   has_many :items
   # has_many :administrators, through: :vendor_administrations

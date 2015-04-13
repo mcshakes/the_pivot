@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
+  include CacheInvalidator
+
   validates :user_id, :status, presence: true
   has_many :item_orders
   has_many :items, through: :item_orders
