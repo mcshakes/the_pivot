@@ -23,7 +23,16 @@ class VendorsController < ApplicationController
   end
 
   def update
-
+    vendor = Vendor.find_by(id: params[:slug])
+      # binding.pry  ## Over here params[slug] 12. Which is the ID of vendor
+    if vendor.update(vendor_params)
+      # binding.pry  ## Over here the slug is the proper name
+      redirect_to vendor_items_path(slug: vendor.slug)
+      flash[:notice] = "good"
+    else
+      flash[:notice] = "bad"
+      render :edit
+    end
   end
 
   private

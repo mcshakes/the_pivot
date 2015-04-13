@@ -2,7 +2,7 @@
   <% if current_user && current_vendor && current_user.store_admin?(current_vendor) %>
     <%= render "vendors/items/admin_edits" %>
   <% end %>
-
+  
   <h2><%= @heading %></h2><br>
   <h2><%= @description %></h2>
 
