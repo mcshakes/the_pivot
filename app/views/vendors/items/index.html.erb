@@ -3,12 +3,20 @@
     <%= render "vendors/items/admin_edits" %>
   <% end %>
 
-  <h2><%= @heading %></h2>
+  <div class="col-sm-12">
+    <h2><%= @heading %></h2>
+    <% @categories.each do |category| %>
+      <div class="category-btn col-sm-2 btn btn-success" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
+    <% end %>
+      <div class="category-btn col-sm-4 offset-sm-4 btn btn-default" id="show-all">All Categories</div>
+
+  </div>
+
 
   <% @items.each_slice(4) do |four_items| %>
     <div class="row">
       <% four_items.each do |item| %>
-        <div class="col-sm-3 vendor-items">
+        <div class="col-sm-3 vendor-items <%= item.categories.map(&:parameterized_name).join(" ") %>">
           <p> <%= link_to image_tag(item.photo), vendor_item_path(slug: params[:slug], id:item.id),
                 data: { target: "#modal" } %>  </p>
           <p><strong>  <%= link_to item.name, vendor_item_path(slug: params[:slug], id:item.id),

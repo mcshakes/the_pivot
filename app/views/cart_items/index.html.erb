@@ -4,11 +4,12 @@
 
   <% @cart.display_items.each do |item,quantity| %>
     <div class="col-sm-4" id="checkout-item">
+
       <%= image_tag item.photo, class: "menu-image image-background"%><br/>
-     
+
       <%= link_to item.display_name, vendor_item_path(slug: item.vendor.slug, id:item.id),
                 data: { target: "#modal" } %><br>
-      
+
       Store: <%= link_to item.vendor.name, vendor_items_path(slug: item.vendor.slug) %><br>
       Quantity: <%= quantity %><br>
       Price Per Unit: <%= number_to_currency(item.price) %><br>
