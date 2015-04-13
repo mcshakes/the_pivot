@@ -21,6 +21,10 @@ class Category < ActiveRecord::Base
     name.capitalize
   end
 
+  def parameterized_name
+    name.parameterize
+  end
+
   private
 
   def downcase_name
