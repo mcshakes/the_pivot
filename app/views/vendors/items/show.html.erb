@@ -9,12 +9,18 @@
   <% else %>
     <p><strong> Price:  </strong> <%= number_to_currency(@item.price) %></p>
 
-    <div class="btn btn-default">
+
+<!--<div class="btn btn-default">
       <%= form_tag(cart_items_path) do %>
         <%= hidden_field_tag :item_id, @item.id %>
         <%= submit_tag "Buy" %>
       <% end %>
-    </div>
+    </div>-->
+
+     <div class="btn btn-default">
+        <%= link_to 'Buy', cart_items_path(item_id: @item.id), id: 'buy', method: :post %>
+      </div>
+
     <% if current_user %>
       <div class="btn btn-success glyphicon glyphicon-heart white">
         <%= link_to 'Favorite', favorites_path(item_id: @item.id), id: 'favorite',
@@ -26,10 +32,10 @@
 
     <p>
       <%= button_to "Edit Item", edit_vendor_item_path(slug: current_vendor.slug, id: @item.id),
-                                                 method: :get, class: "btn btn-success" %></p>
+       method: :get, class: "btn btn-success" %></p>
     <p>
       <%= button_to "Delete Item",  vendor_item_path(slug: current_vendor.slug, id: @item.id),
-                                              method: :delete, class: "btn btn-success" %></p>
+       method: :delete, class: "btn btn-success" %></p>
     <% end %>
 
   <% end %>
