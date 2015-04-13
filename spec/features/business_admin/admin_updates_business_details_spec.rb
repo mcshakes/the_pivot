@@ -26,6 +26,10 @@ RSpec.describe "admin updates business details", type: :feature do
     visit vendor_items_path(slug: @vendor.slug)
     click_link_or_button("Edit Business Info")
     expect(current_path).to eq(edit_vendor_path(slug: @vendor.slug))
+    fill_in("vendor[name]", with: "New Store")
+    click_link_or_button("Update My Store")
+    expect(page).to have_content("Account Updated")
+    # expect(current_path).to eq(vendor_items_path(slug: @vendor.slug))
   end
 
 
