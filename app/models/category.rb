@@ -1,4 +1,6 @@
 class Category < ActiveRecord::Base
+  include CacheInvalidator
+
   has_many :item_categories
   has_many :items, through: :item_categories
   validates :name, presence: { message: "must be filled in." },

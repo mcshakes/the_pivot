@@ -1,4 +1,6 @@
 class Item < ActiveRecord::Base
+  include CacheInvalidator
+
   belongs_to :vendor
 
   has_many :item_categories

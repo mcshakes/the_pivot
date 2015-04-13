@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412003350) do
+ActiveRecord::Schema.define(version: 20150413202456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,11 +107,13 @@ ActiveRecord::Schema.define(version: 20150412003350) do
   end
 
   create_table "vendors", force: :cascade do |t|
-    t.text    "name"
-    t.integer "user_id"
-    t.text    "description"
-    t.text    "slug"
-    t.text    "credit_card"
+    t.text     "name"
+    t.integer  "user_id"
+    t.text     "description"
+    t.text     "slug"
+    t.text     "credit_card"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_foreign_key "item_categories", "categories"
