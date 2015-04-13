@@ -7,14 +7,15 @@ class FavoritesController < ApplicationController
     @items = current_user.favorite_items
 
     render "vendors/items/index"
-    # favorites = current_user.favorite_items
-    # @favorite_items = favorites.map do |favorite|
-    #   Item.find(favorite.item_id)
   end
 
   def create
     item = Item.find(params[:item_id])
-    current_user.favorite_items << item
+
+    if !current_user.favorite_items.include?(item)
+      current_user.favorite_items << item
+    end
+
     head :ok
   end
 

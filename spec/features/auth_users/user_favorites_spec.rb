@@ -39,5 +39,16 @@ RSpec.feature "authenticated user adds favorites", type: :feature do
     click_on('See Favorites')
     expect(page).to have_content("Super Sold Photograph")
   end
+
+  it "can add favorite image only once" do
+    create_vendor_item_user
+    visit_vendor_click_item
+    click_link("Favorite")
+    visit_vendor_click_item
+    click_link("Favorite")
+    visit favorites_path
+
+    expect(page).to have_content("Super Sold Photograph", count: 1)
+  end
 end
 
