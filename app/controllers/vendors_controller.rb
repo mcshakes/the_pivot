@@ -22,6 +22,7 @@ class VendorsController < ApplicationController
   def edit
   end
 
+
   def update
     vendor = Vendor.find_by(id: params[:slug])
       # binding.pry  ## Over here params[slug] 12. Which is the ID of vendor
