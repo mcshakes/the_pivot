@@ -1,4 +1,6 @@
 class Item < ActiveRecord::Base
+  include CacheInvalidator
+
   belongs_to :vendor
 
   has_many :item_categories
@@ -17,6 +19,8 @@ class Item < ActiveRecord::Base
 
   has_attached_file :image, styles: { large: "500x340>", medium: "250x170>", thumb: "100x100>" }, default_url: "cookie-monster.jpg"
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def category_list
     categories.map(&:name).join(", ")

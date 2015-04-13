@@ -4,6 +4,7 @@ class Vendors::ItemsController < ApplicationController
     @heading = "Welcome to #{current_vendor.name}'s Photo Gallery"
     @description = "\n#{current_vendor.description}"
     @items = current_vendor.items
+    @categories = Category.all
   end
 
   def show
