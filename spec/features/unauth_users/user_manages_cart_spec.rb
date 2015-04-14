@@ -14,8 +14,8 @@ RSpec.describe "unauthenticated user managing cart", type: :feature, js: true do
   end
 
   it "cannot add a sold item to the cart" do
-    vendor = create(:vendor, name: "Sports Pics")
-    item = create(:item, :sold, name: "Super Sold Photograph", vendor: vendor)
+    vendor = create(:vendor)
+    item = create(:item, :sold, vendor: vendor)
     visit vendors_path
 
     click_link_or_button(vendor.name)
