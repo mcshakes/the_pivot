@@ -4,7 +4,8 @@ class Vendor < ActiveRecord::Base
   belongs_to :user
   has_many :items
   # has_many :administrators, through: :vendor_administrations
-
+  # before_save :generate_slug
+  
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
   validates :credit_card, presence: true, length: { minimum: 15, maximum: 16}

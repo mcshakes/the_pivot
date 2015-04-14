@@ -19,6 +19,22 @@ class VendorsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+
+  def update
+    vendor = Vendor.find_by(id: params[:slug])
+    if vendor.update(vendor_params)
+      redirect_to vendor_items_path(slug: vendor.slug)
+      flash[:notice] = "Account Updated"
+    else
+      flash.now[:notice] = vendor.errors.full_messages.join("<br/>").html_safe
+      vendor = Vendor.find_by(id: params[:slug])
+      render :edit, :locals => {current_vendor: vendor}
+    end
+  end
+
   private
 
   def vendor_params

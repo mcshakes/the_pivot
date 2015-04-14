@@ -39,6 +39,8 @@ class Item < ActiveRecord::Base
     name.titleize
   end
 
+  
+
   private
 
   def self.order_by_id

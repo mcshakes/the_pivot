@@ -1,10 +1,8 @@
-<% cache(cache_key_for(Item)) do %>
   <div class="container" id="cart-page">
 
     <h1>Your Cart</h1>
 
   <% @cart.display_items.each do |item,quantity| %>
-    <% cache(item) do %>
       <div class="col-sm-4" id="checkout-item">
         <%= image_tag item.image, class: "menu-image image-background"%><br/>
 
@@ -16,10 +14,12 @@
         Price Per Unit: <%= number_to_currency(item.price) %><br>
         Total For This Item: <%= number_to_currency(item.price * quantity) %></p>
         <div class="btn-group">
-          <%= link_to cart_items_path(item_id: item.id), method: :post, class: "btn btn-default", id: "up_button" do %>
+          <%= link_to cart_items_path(item_id: item.id), method: :post, class: "btn btn-default",
+                                                         id: "up_button" do %>
           <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
           <% end %>
-          <%= link_to cart_item_path(id: item.id), method: :patch, class: "btn btn-default", id: "down_button" do %>
+          <%= link_to cart_item_path(id: item.id), method: :patch, class: "btn btn-default",
+                                                   id: "down_button" do %>
           <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
           <% end %>
         </div>
@@ -40,5 +40,3 @@
     </div>
 
   </div>
-<% end %>
-<% end %>
