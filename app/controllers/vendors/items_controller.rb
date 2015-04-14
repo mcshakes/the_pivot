@@ -3,8 +3,9 @@ class Vendors::ItemsController < ApplicationController
   def index
     @heading = "Welcome to #{current_vendor.name}'s Photo Gallery"
     @description = "\nAbout Us: #{current_vendor.description}"
-    @items = current_vendor.items
+    @items = current_vendor.items.where(status: "active")
     @categories = @items.flat_map(&:categories).uniq
+    @retired_items = current_vendor.items.where(status: "retired")
   end
 
   def show
