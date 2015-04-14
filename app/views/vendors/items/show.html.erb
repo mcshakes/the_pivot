@@ -26,7 +26,6 @@
         <p><%= button_to "Edit Item", edit_vendor_item_path(slug: current_vendor.slug, id: @item.id),
             method: :get, class: "btn btn-success" %></p>
 
-        <p><%= button_to "Delete Item",  vendor_item_path(slug: current_vendor.slug, id: @item.id),
-            method: :delete, class: "btn btn-success" %></p>
+ 
     <% end %>
 </div>
