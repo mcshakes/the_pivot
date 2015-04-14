@@ -1,8 +1,8 @@
 <div class="main solo-item">
-  <p><%= image_tag @item.photo %></p>
+  <p><%= image_tag(@item.image, size:"500") %></p>
   <h4><%= @item.name %></h4>
   <p><strong> Description: </strong> <%= @item.description %></p>
-  <p><strong> <%= "Category".pluralize(@item.categories.count) %>:</strong> <%= @item.category_list %></p>
+  <p><strong> <%= "Category".pluralize(@item.categories.count) %>: </strong> <%= @item.category_list %></p>
 
     <% if @item.status == "sold" %>
       <p> <%= @item.status %> </p>
@@ -13,7 +13,7 @@
         <%= link_to 'Buy', cart_items_path(item_id: @item.id), id: 'buy', method: :post %>
       </div>
 
-      <% if current_user && !current_user.has_this_favorite?(@item) %>     
+      <% if current_user && !current_user.has_this_favorite?(@item) %>
 
       <div class="btn btn-default">
         <%= link_to 'Favorite', favorites_path(item_id: @item.id), id: 'favorite',method: :post %>
@@ -22,10 +22,10 @@
     <% end %>
 
     <% if current_user && current_user.store_admin?(current_vendor) %>
-
+    
         <p><%= button_to "Edit Item", edit_vendor_item_path(slug: current_vendor.slug, id: @item.id),
             method: :get, class: "btn btn-success" %></p>
-      
+
         <p><%= button_to "Delete Item",  vendor_item_path(slug: current_vendor.slug, id: @item.id),
             method: :delete, class: "btn btn-success" %></p>
     <% end %>
