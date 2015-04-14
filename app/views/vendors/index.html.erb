@@ -1,20 +1,16 @@
-<% cache(cache_key_for(Vendor)) do %>
-  <div class="container">
-    <h1 class="page_title">Our Photographers</h1>
+<div class="container">
+  <h1 class="page_title">Our Photographers</h1>
 
-    <% @vendors.each_slice(4) do |four_vendors| %>
-      <% cache(four_vendors) do %>
-        <div class='row'>
-          <% four_vendors.each do |vendor| %>
+  <% @vendors.each_slice(4) do |four_vendors| %>
+      <div class='row'>
+        <% four_vendors.each do |vendor| %>
             <div class="col-sm-3">
               <%= link_to image_tag(vendor.items.first.photo, size: "100"), vendor_items_path(slug: vendor.slug) %>
               <h4><%= link_to "#{vendor.name}", vendor_items_path(slug: vendor.slug) %></h4>
               <p class="vendors-text"><%= vendor.description %> </p>
               <br>
             </div>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-<% end %>
+        <% end %>
+      </div>
+  <% end %>
+</div>
