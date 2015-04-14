@@ -16,6 +16,7 @@ gem "paperclip"
 gem "faker"
 gem 'aws-sdk', '~> 1.0'
 gem 'sidekiq'
+gem 'figaro'
 
 group :production do
   gem 'pg'
