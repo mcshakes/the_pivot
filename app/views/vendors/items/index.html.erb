@@ -20,7 +20,7 @@
   <% end %>
 
   <% @items.each_slice(4) do |four_items| %>
-    <div class="row">
+    <div class="row" id="items-list">
       <% four_items.each do |item| %>
           <div class="col-sm-3 vendor-items <%= item.categories.map(&:parameterized_name).join(" ") %>">
             <p> <%= link_to image_tag(item.image), vendor_item_path(slug: item.vendor.slug, id:item.id),
