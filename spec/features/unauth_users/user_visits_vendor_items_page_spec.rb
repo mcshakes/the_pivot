@@ -22,7 +22,7 @@ RSpec.describe "user visits vendor items", type: :feature do
     item2 = FactoryGirl.create(:item, name: "Short Journey", vendor_id: vendor2.id)
     visit vendor_items_path(slug: vendor2.slug)
     within('.main-vendor-items') do
-      expect(page).to have_content("Long Journey")
+      expect(page).to have_content("Short Journey")
     end
   end
 
