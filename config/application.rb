@@ -14,5 +14,19 @@ module DinnerDash
     config.exceptions_app = self.routes
     config.active_record.raise_in_transactional_callbacks = true
     config.serve_static_files = true
+
+    config.active_job.queue_adapter = :sidekiq
+
+    config.action_mailer.delivery_method = :smtp
+
+    config.action_mailer.smtp_settings = {
+             address: "smtp.mandrillapp.com",
+                port: "587",
+              domain: "example.com",
+           user_name: "mirjoy.moser@gmail.com",
+            password: "yU3nkotqFA34HGpIy60oQA",
+      authentication: "plain",
+ enablestarttls_auto: true
+    }
   end
 end
