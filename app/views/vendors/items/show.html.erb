@@ -1,5 +1,5 @@
 <div class="main solo-item">
-  <p><%= image_tag @item.photo %></p>
+  <p><%= image_tag @item.image %></p>
   <h4><%= @item.name %></h4>
   <p><strong> Description: </strong> <%= @item.description %></p>
   <p><strong> <%= "Category".pluralize(@item.categories.count) %>:</strong> <%= @item.category_list %></p>
