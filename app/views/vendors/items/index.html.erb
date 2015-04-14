@@ -1,4 +1,4 @@
-<%= cache(cache_key_for(Item)) do %>
+<%#= cache(cache_key_for(Item)) do %>
 <div class="main-vendor-items">
   <% if current_user && current_vendor && current_user.store_admin?(current_vendor) %>
     <%= render "vendors/items/admin_edits" %>
@@ -20,7 +20,7 @@
       <% four_items.each do |item| %>
         <% cache(item) do %>
           <div class="col-sm-3 vendor-items <%= item.categories.map(&:parameterized_name).join(" ") %>">
-            <p> <%= link_to image_tag(item.image), vendor_item_path(slug: item.vendor.slug, id:item.id),
+            <p> <%= link_to image_tag(item.image.url), vendor_item_path(slug: item.vendor.slug, id:item.id),
                   data: { target: "#modal" } %>  </p>
             <p><strong>  <%= link_to item.name, vendor_item_path(slug: item.vendor.slug, id:item.id),
                   data: { target: "#modal" } %> </strong></p>
@@ -39,4 +39,4 @@
     </div>
   <% end %>
 </div>
-<% end %>
+<%# end %>
