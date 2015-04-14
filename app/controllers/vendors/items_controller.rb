@@ -2,6 +2,7 @@ class Vendors::ItemsController < ApplicationController
 
   def index
     @heading = "Welcome to #{current_vendor.name}'s Photo Gallery"
+    @description = "\n#{current_vendor.description}"
     @items = current_vendor.items
 
     # items = Vendor.first.items.includes(:categories).all
