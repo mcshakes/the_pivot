@@ -43,11 +43,16 @@ RSpec.describe "admin updates business details", type: :feature do
     expect(page).to have_content("Account Updated")
   end
 
-  xit "gets error message when given invalid info" do
-    # Gets "First argument in form cannot contain nil or be empty" if empty field
-
+  it "gets error message when given invalid info" do
+    create_admin_user_and_vendor
+    visit vendor_items_path(slug: @vendor.slug)
+    click_link_or_button("Edit Business Info")
+    fill_in("vendor[name]", with: "")
+    fill_in("vendor[description]", with: "")
+    click_link_or_button("Update My Store")
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Description can't be blank")
   end
-
 
   private
 
