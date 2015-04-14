@@ -81,7 +81,7 @@ class Seed
     
     200.times do
       item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
-                        price: Faker::Commerce.price.round, image_file_name: "aspen.jpg", vendor_id: (1..10).to_a.sample)
+                        price: Faker::Commerce.price.round, image_file_name: "heron.jpeg", vendor_id: (1..10).to_a.sample)
       categories = Category.order("RANDOM()").limit(rand(1..3))
         item.categories << categories
       puts "Items: #{item.name}"
