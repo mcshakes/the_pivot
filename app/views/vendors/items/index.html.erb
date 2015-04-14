@@ -7,6 +7,7 @@
   <% if @categories  %>
     <div class="col-sm-12">
       <h2><%= @heading %></h2>
+
       <% @categories.each do |category| %>
         <div class="category-btn col-sm-2 btn btn-success" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
       <% end %>

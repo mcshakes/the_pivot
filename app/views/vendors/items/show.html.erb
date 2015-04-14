@@ -1,5 +1,5 @@
 <div class="main solo-item">
-  <p><%= image_tag @item.image %></p>
+  <p><%= image_tag(@item.image, size:"500") %></p>
   <h4><%= @item.name %></h4>
   <p><strong> Description: </strong> <%= @item.description %></p>
   <p><strong> <%= "Category".pluralize(@item.categories.count) %>:</strong> <%= @item.category_list %></p>
@@ -22,7 +22,7 @@
     <% end %>
 
     <% if current_user && current_user.store_admin?(current_vendor) %>
-
+    
         <p><%= button_to "Edit Item", edit_vendor_item_path(slug: current_vendor.slug, id: @item.id),
             method: :get, class: "btn btn-success" %></p>
       
