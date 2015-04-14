@@ -4,9 +4,8 @@ class Vendors::ItemsController < ApplicationController
     @heading = "Welcome to #{current_vendor.name}'s Photo Gallery"
     @description = "\nAbout Us: #{current_vendor.description}"
     @items = current_vendor.items
-    @categories = Category.all
-    # items = Vendor.first.items.includes(:categories).all
-    # categories = items.flat_map(&:categories).uniq
+    # @categories = Category.all
+    @categories = @items.flat_map(&:categories).uniq
 
     # iterate through items
     # find all categories with item id
