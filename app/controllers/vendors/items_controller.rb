@@ -5,7 +5,6 @@ class Vendors::ItemsController < ApplicationController
     @description = "\n#{current_vendor.description}"
     @items = current_vendor.items
     @categories = @items.flat_map(&:categories).uniq
-
   end
 
   def show
