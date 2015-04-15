@@ -11,7 +11,7 @@ RSpec.describe "admin updates business details", type: :feature do
 
   xit "won't allow admin of other stores to see the page" do
     admin1 = create(:admin)
-    vendor1 = create(:vendor) 
+    vendor1 = create(:vendor)
     admin1.vendors << vendor1
     other_admin = User.create(first_name: "Hey", last_name: "There", email: "admin2@example.com",
                               password: "admin", role: "store_admin")
@@ -52,6 +52,15 @@ RSpec.describe "admin updates business details", type: :feature do
     click_link_or_button("Update My Store")
     expect(page).to have_content("Name can't be blank")
     expect(page).to have_content("Description can't be blank")
+  end
+
+  it "enforces proper length with credit card input" do
+    create_admin_user_and_vendor
+    visit vendor_items_path(slug: @vendor.slug)
+    click_link_or_button("Edit Business Info")
+    fill_in("vendor[credit_card]", with: "1234")
+    click_link_or_button("Update My Store")
+    expect(page).to have_content("Credit card is too short (minimum is 15 characters)")
   end
 
   private
