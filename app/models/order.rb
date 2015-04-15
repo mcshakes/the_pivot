@@ -7,7 +7,6 @@ class Order < ActiveRecord::Base
   belongs_to :user
 
   scope :ordered, -> { where(status: "ordered") }
-  scope :paid, -> { where(status: "paid") }
   scope :cancelled, -> { where(status: "cancelled") }
   scope :completed, -> { where(status: "completed") }
 
