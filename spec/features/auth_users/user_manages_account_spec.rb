@@ -28,7 +28,6 @@ RSpec.describe "user manages personal account", type: :feature do
 
   it "sees a button to edit user info" do
     user_visits_account
-    expect(page).to have_link("Edit Personal Info")
     click_link_or_button("Edit Personal Info")
     expect(page).to have_content("Update/Change your Info")
   end
@@ -46,7 +45,6 @@ RSpec.describe "user manages personal account", type: :feature do
 
   it "successfully updates the data" do
     user_visits_account
-    expect(page).to have_link("Edit Personal Info")
     click_link_or_button("Edit Personal Info")
     within("#update-form") do
       fill_in("user[first_name]", with: "Shelly" )
