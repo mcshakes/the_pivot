@@ -1,8 +1,4 @@
-<div class="col-sm-2">
-  <%= button_to "Add an Item", new_vendor_item_path(slug: current_vendor.slug), method: :get, class: "btn btn-info" %>
-</div>
-
-
-<div class="col-sm-2">
+<div class="btn-group pull-right">
+  <%= link_to "Add an Item", new_vendor_item_path(slug: current_vendor.slug), method: :get, class: "btn btn-info" %>
   <%= link_to "Edit Business Info", edit_vendor_path(slug: current_vendor.slug), class: "btn btn-danger" %>
 </div>

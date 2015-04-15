@@ -14,51 +14,52 @@ RSpec.feature "authenticated user adds favorites", type: :feature do
   end
 
   def create_vendor_item_user
-    @vendor = create(:vendor, name: "Sports Pics")
-    @item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
+    @vendor = create(:vendor)
+    @item = create(:item, :for_sale, vendor: vendor)
   end
 
   def visit_vendor_click_item_favorite_link
-    visit vendor_items_path(slug: vendor.slug)
-    click_link_or_button(item.name)
+    visit vendor_items_path(slug: @vendor.slug)
+    click_link_or_button(@item.name)
     click_link("Favorite")
   end
 
   it "can see a favorites link on the item modal" do
     create_vendor_item_user
     visit_vendor_click_item_favorite_link
-    visit vendor_items_path(slug: item.vendor.slug)
+    visit vendor_items_path(slug: @item.vendor.slug)
     click_link_or_button(item.name)
 
     expect(page).to have_link("Favorite")
   end
 
-  xit "can add favorites to the user favorites page" do
+  it "can add favorites to the user favorites page" do
     create_vendor_item_user
     visit_vendor_click_item_favorite_link
-    visit vendor_items_path(slug: vendor.slug)
+    visit vendor_items_path(slug: @vendor.slug)
     click_on('My Account')
     click_on('See Favorites')
 
-    expect(page).to have_content("Super Sold Photograph")
+    expect(page).to have_content(@item.name)
   end
 
 
   it "can add favorite image only once" do
     create_vendor_item_user
     visit_vendor_click_item_favorite_link
-    click_link_or_button(item.name)
+    click_link_or_button(@item.name)
     click_link("Favorite")
     visit favorites_path
 
-    expect(page).to have_content("Super Sold Photograph", count: 1)
+    expect(page).to have_content(@item.name, count: 1)
   end
 
   it "can not see the favorite button when item favorited" do
     create_vendor_item_user
     visit_vendor_click_item_favorite_link
-    visit favorites_path
-    click_link_or_button(item.name)
+    click_link_or_button("See Favorites")
+
+    click_link_or_button(@item.name)
     within('#modal') do
       expect(page).not_to have_content("Favorite")
     end

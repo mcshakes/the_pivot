@@ -23,7 +23,7 @@ class Item < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def category_list
-    categories.map(&:name).join(", ")
+    categories.map(&:display_name).join(", ")
   end
 
   def to_param
@@ -38,8 +38,6 @@ class Item < ActiveRecord::Base
   def display_name
     name.titleize
   end
-
-  
 
   private
 

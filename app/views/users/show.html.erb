@@ -1,13 +1,16 @@
 <div class="user-view container">
-  <h1>My Account</h1>
-  <h3>Welcome <%= current_user.first_name %>!</h3>
+  <h1><%= current_user.first_name %>'s Account</h1>
+
+    <div class="btn-group col-sm-12">
+      <%= link_to "Edit Personal Info", edit_user_path(current_user), method: :get, class: "btn btn-success pull-right" %>
+      <%= link_to "Update Your Address", addresses_path, method: :get, class: "btn btn-default pull-right" %><br><br>
+    </div>
 
   <% if @orders.nil?  %>
     <p>You currently have no orders. We have a bunch of great stuff you can buy.
       <%= link_to "Check it out here!", vendors_path %></p>
   <% else %>
   <div class="col-sm-12">
-
     <% @orders.reverse.each do |order| %>
       <div class="user-orders"
       <p><strong><span class="order_id_title">Order ID: <%= order.id %></strong></span></br>
@@ -27,11 +30,5 @@
   <% end %>
   </div>
 
-  <div class="col-sm-2">
-    <%= button_to "Edit Personal Info", edit_user_path(current_user), method: :get, class: "btn btn-success" %>
-  </div>
-  <div class="col-sm-2">
-    <%= button_to "Update Your Address", addresses_path, method: :get, class: "btn btn-default" %>
-  </div>
 
 </div>
