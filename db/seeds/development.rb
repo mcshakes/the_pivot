@@ -79,16 +79,42 @@ class Seed
     adjectives.map!(&:titleize)
     photos.map!(&:titleize)
     
-    200.times do
-      item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
-                        price: Faker::Commerce.price.round,
-                        image: File.new("#{Rails.root}/app/assets/images/aspen.jpg"),
-                        vendor_id: (1..10).to_a.sample)
+    pictures = %w(alaska arch-building aspen beach japan)
+
+    20.times do |i|
+      picture = pictures[i % 5]
+      item = Item.new(
+        name:      "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
+        price:     Faker::Commerce.price.round,
+        vendor_id: (1..10).to_a.sample
+        )
+      item.image = File.open("#{Rails.root}/app/assets/images/#{picture}.jpg")
+      item.save!
+
       categories = Category.order("RANDOM()").limit(rand(1..3))
         item.categories << categories
       puts "Items: #{item.name}"
     end
   end
+
+    #   20.times do
+  #     item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
+  #                       price: Faker::Commerce.price.round, image: item.image.url "alaska.jpg", vendor_id: (1..10).to_a.sample)
+  #     categories = Category.order("RANDOM()").limit(rand(1..3))
+  #       item.categories << categories
+  #     puts "Items: #{item.name}"
+  #   end
+  # end
+
+    # 20.times do |i|
+    #   picture = pictures[i % 5]
+
+    #   item = Item.create(
+    #     name:      "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
+    #     price:     Faker::Commerce.price.round,
+    #     image:     File.new("#{Rails.root}/app/assets/images/#{picture}.jpg"),
+    #     vendor_id: (1..10).to_a.sample
+    #     )
 
   def create_sold_items
     40.times do
