@@ -1,6 +1,24 @@
 <h1>Create A New Store</h1>
 
-<div class="user-view col-sm-4 col-sm-offset-3">
+<div class="form" id="vendor-create">
+  <%= form_for :vendor, url: vendors_path, method: :post do |f| %>
+    <p>
+      <%= f.label :name %>:
+      <%= f.text_field :name, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :description %>:
+      <%= f.text_field :description, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :credit_card %>:
+      <%= f.text_field :credit_card, class: "form-control" %>
+    </p>
+    <%= f.submit "Create My Store", class: 'btn btn-default'%>
+  <% end %>
+</div>
+
+<!-- <div class="user-view col-sm-4 col-sm-offset-3">
   <%= form_for :vendor, url: vendors_path, method: :post do |f| %>
     <p>
       <%= f.label :name %>:
@@ -16,4 +34,4 @@
     </p>
     <%= f.submit "Create My Store", class: 'btn btn-default'%>
   <% end %>
-</div>
+</div> -->
