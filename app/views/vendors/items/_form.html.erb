@@ -21,7 +21,7 @@
     </p>
     <p>
     <%= f.label "Status: ", class: "status-label" %>
-    <%= f.select(:status, options_for_select([["active", "active"], ["retired", "retired"]]), selected: @item.status) %>
+    <%= f.select(:status, options_for_select([["active", "active"], ["retired", "retired"]]), selected: @item.status ) %>
     </p>
     <p>
     <%= f.label :select_image %><br />
