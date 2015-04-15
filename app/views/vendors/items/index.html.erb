@@ -1,17 +1,20 @@
 
 <div class="main-vendor-items">
+  <div class="col-sm-12">
+    <% if current_user && current_vendor && current_user.store_admin?(current_vendor) %>
+      <%= render "vendors/items/admin_edits" %>
+    <% end %>
+  </div>
+
   <h2><%= @heading %></h2><br>
   <h4><%= @description %></h4>
-  <% if current_user && current_vendor && current_user.store_admin?(current_vendor) %>
-    <%= render "vendors/items/admin_edits" %>
-  <% end %>
 
-  <% if @categories %>
-    <div class="col-sm-12">
+  <% if @categories.count > 0 %>
+    <div class="col-sm-12 category-btn btn-group">
       <% @categories.each do |category| %>
-        <div class="category-btn col-sm-2 btn btn-success" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
+        <div class="btn btn-default" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
       <% end %>
-      <div class="category-btn col-sm-2 btn btn-default" id="show-all">All Categories</div>
+      <div class="btn btn-default" id="show-all">All Categories</div>
     </div>
     <div class="row">
       <br>
