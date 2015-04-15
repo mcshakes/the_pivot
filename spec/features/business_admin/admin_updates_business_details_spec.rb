@@ -9,7 +9,7 @@ RSpec.describe "admin updates business details", type: :feature do
     expect(page).to have_content("#{@vendor.description}")
   end
 
-  xit "won't allow admin of other stores to see the page" do
+  it "won't allow admin of other stores to see the page" do
     admin1 = create(:admin)
     vendor1 = create(:vendor)
     admin1.vendors << vendor1
@@ -17,7 +17,7 @@ RSpec.describe "admin updates business details", type: :feature do
                               password: "admin", role: "store_admin")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(other_admin)
     visit vendor_items_path(slug: vendor1.slug)
-    # save_and_open_page
+    save_and_open_page
     expect(page).to have_content("You are not authorized to access this page")
   end
 
