@@ -23,7 +23,6 @@
 <ul class="nav nav-tabs" id="myTab">
   <li class="active"><a href="#all-orders">All Orders <span class="badge"><%= @orders.count %></span></a></li>
   <li><a href="#ordered">Ordered <span class="badge"><%= @orders.ordered.count %></span></a></li>
-  <li><a href="#paid">Paid <span class="badge"><%= @orders.paid.count %></span></a></li>
   <li><a href="#cancelled">Cancelled <span class="badge"><%= @orders.cancelled.count %></span></a></li>
   <li><a href="#completed">Completed <span class="badge"><%= @orders.completed.count %></span></a></li>
 </ul>
@@ -70,7 +69,6 @@
         <td><%= format_time(order.created_at) %></td>
         <td><%= order.status %></td>
         <td><%= link_to "Cancel Order", cancel_order_path(order), class: "btn btn-xs btn-danger" %>
-            <%= link_to "Mark as Paid", paid_order_path(order), class: "btn btn-xs btn-info" %></td>
       </tr>
       <% end %>
     </table>
