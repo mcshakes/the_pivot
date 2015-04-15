@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  include CacheInvalidator
-
   validates :first_name, :last_name, :role, :email, presence: true
   before_save { self.email = email.downcase }
   VALID_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -29,7 +27,5 @@ class User < ActiveRecord::Base
 
   def has_this_favorite?(item)
     favorite_items.include?(item)
-  end     
+  end
 end
-
-

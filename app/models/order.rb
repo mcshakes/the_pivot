@@ -1,5 +1,4 @@
 class Order < ActiveRecord::Base
-
   validates :user_id, presence: true
   has_many :item_orders
   has_many :items, through: :item_orders
