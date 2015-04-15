@@ -6,12 +6,12 @@
     <% end %>
   </div>
 
-  <div id="main-vendor-header">    
+  <div id="main-vendor-header">
     <h2><%= @heading %></h2><br>
     <h4><%= @description %></h4>
   </div>
 
-    <% if @categories.count > 0 %>
+    <% if @categories && @categories.count > 0 %>
       <div class="text-center btn-group">
           <div class="col-sm-12" id="btn-categories">
             <div class="btn btn-default category-btn" id="show-all">All Categories</div>
