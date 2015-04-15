@@ -1,9 +1,7 @@
 
 <div class="main-vendor-items">
-
   <h2><%= @heading %></h2><br>
   <h4><%= @description %></h4>
-
   <% if current_user && current_vendor && current_user.store_admin?(current_vendor) %>
     <%= render "vendors/items/admin_edits" %>
   <% end %>
@@ -43,4 +41,3 @@
   <% end %>
 
 </div>
-
