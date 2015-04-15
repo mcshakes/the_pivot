@@ -12,7 +12,7 @@ RSpec.feature "authenticated user tries to create a vendor", type: :feature do
     click_link_or_button("Create My Store")
     # expect(current_path).to eq()
     # expect(page).to have_content("Sweet Lovin' BBQ")
-    expect(page).to have_content("Welcome to Sweet Lovin' BBQ's Photo Gallery")
+    expect(page).to have_content("Welcome to Sweet Lovin' BBQ")
   end
 
   it "cannot create a vendor without a name" do

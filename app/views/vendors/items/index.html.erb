@@ -13,34 +13,31 @@
       <% @categories.each do |category| %>
         <div class="category-btn col-sm-2 btn btn-success" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
       <% end %>
-        <div class="category-btn col-sm-2 btn btn-default" id="show-all">All Categories</div>
+      <div class="category-btn col-sm-2 btn btn-default" id="show-all">All Categories</div>
     </div>
     <div class="row">
-    <br>
+      <br>
     </div>
   <% end %>
 
   <% @items.each_slice(4) do |four_items| %>
     <div class="row" id="items-list">
       <% four_items.each do |item| %>
-          <div class="col-sm-3 vendor-items <%= item.categories.map(&:parameterized_name).join(" ") %>">
-            <p> <%= link_to image_tag(item.image.url), vendor_item_path(slug: item.vendor.slug, id:item.id),
-                  data: { target: "#modal" } %>  </p>
-            <p><strong>  <%= link_to item.name, vendor_item_path(slug: item.vendor.slug, id:item.id),
-                  data: { target: "#modal" } %> </strong></p>
-            <% if item.status == "sold" %>
-              <p> <%= item.status %> </p>
+        <div class="col-sm-3 vendor-items <%= item.categories.map(&:parameterized_name).join(" ") %>">
+          <p> <%= link_to image_tag(item.image), vendor_item_path(slug: item.vendor.slug, id:item.id), data: { target: "#modal" } %>  </p>
+          <p><strong> <%= link_to item.name, vendor_item_path(slug: item.vendor.slug, id:item.id), data: { target: "#modal" } %> </strong></p>
+          <% if item.status == "sold" %>
+            <p> <%= item.status %> </p>
+          <% else %>
+            <% if item.price < 20 %>
+              <p> <%= number_to_currency(item.price) %><span><em> --on sale now!</em></span> </p>
             <% else %>
-              <% if item.price < 20 %>
-                <p> <%= number_to_currency(item.price) %><span><em> --on sale now!</em></span> </p>
-              <% else %>
-                <p>  <%= number_to_currency(item.price) %></p>
-              <% end %>
+              <p>  <%= number_to_currency(item.price) %></p>
             <% end %>
-          </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
   <% end %>
-
 </div>
 
