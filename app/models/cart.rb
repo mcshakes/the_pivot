@@ -33,8 +33,6 @@ class Cart
     data.map { |k, v| [Item.find(k.to_i), v] }
   end
 
-
-
   def remove_all_of_item(item)
     data.delete(item.id.to_s)
   end

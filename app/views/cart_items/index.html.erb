@@ -2,7 +2,8 @@
 
     <h1>Your Cart</h1>
 
-  <% @cart.display_items.each do |item,quantity| %>
+    <% if @cart.total_price %>
+    <% @cart.display_items.each do |item,quantity| %>
       <div class="col-sm-4" id="checkout-item">
         <%= image_tag item.image, class: "menu-image image-background"%><br/>
 
@@ -26,8 +27,11 @@
         <%= link_to "Remove All", cart_item_path(id: item.id), method: :delete, class: "btn btn-default" %>
       </div>
     <% end %>
+    <div class="row">
 
-    <div class="col-xs-12" id="checkout-total">
+    </div>
+
+    <div class="col-xs-3" id="checkout-total">
       <p>Total Items: <%= @cart.count_total %></p>
       <p>Total Price: <%= number_to_currency(@cart.total_price) %></p>  </p>
       <% if signed_in? %>
@@ -38,5 +42,9 @@
         </button>
       <% end %>
     </div>
+    <% else %>
+      <h4>Your cart is empty. We have a bunch of awesome pictures you can add to it.
+        <%= link_to "Check them out here!", vendors_path %></h4>
+    <% end %>
 
   </div>

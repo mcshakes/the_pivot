@@ -16,7 +16,6 @@ RSpec.describe "user manages personal account", type: :feature do
 
   it "sees a button to add an address" do
     user_visits_account
-    expect(page).to have_link("Update Your Address")
     click_link_or_button("Update Your Address")
     expect(page).to have_content("Your Address Info")
   end
