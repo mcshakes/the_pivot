@@ -17,8 +17,7 @@ RSpec.describe "admin updates business details", type: :feature do
                               password: "admin", role: "store_admin")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(other_admin)
     visit vendor_items_path(slug: vendor1.slug)
-    save_and_open_page
-    expect(page).to have_content("You are not authorized to access this page")
+    expect(page).not_to have_content("Edit Business Info")
   end
 
   it "can update the business details" do

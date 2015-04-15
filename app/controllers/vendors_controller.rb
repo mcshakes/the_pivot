@@ -7,13 +7,6 @@ class VendorsController < ApplicationController
   def new
   end
 
-  def show
-    unless vendor == current_vendor
-      flash[:danger] = "You are not authorized to see that."
-      redirect_to root_path
-    end
-  end
-
   def create
     @vendor = Vendor.new(vendor_params)
     current_user.vendors << @vendor
