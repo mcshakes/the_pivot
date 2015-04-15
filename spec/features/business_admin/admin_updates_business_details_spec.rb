@@ -5,13 +5,13 @@ RSpec.describe "admin updates business details", type: :feature do
   it "sees business info when clicking on individual store" do
     create_admin_user_and_vendor
     visit vendor_items_path(slug: @vendor.slug)
-    expect(page).to have_content("Welcome to #{@vendor.name}'s Photo Gallery")
+    expect(page).to have_content("Welcome to #{@vendor.name}")
     expect(page).to have_content("#{@vendor.description}")
   end
 
   xit "won't allow admin of other stores to see the page" do
     admin1 = create(:admin)
-    vendor1 = create(:vendor)
+    vendor1 = create(:vendor) 
     admin1.vendors << vendor1
     other_admin = User.create(first_name: "Hey", last_name: "There", email: "admin2@example.com",
                               password: "admin", role: "store_admin")

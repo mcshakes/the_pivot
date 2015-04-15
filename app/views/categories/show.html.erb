@@ -4,7 +4,7 @@
   <% @items.each do |item| %>
     <div class="col-sm-4 items">
       <div class="image-background">
-        <%= image_tag item.image.url, class: "menu-image" %>
+        <%= image_tag item.photo, class: "menu-image" %>
       </div>
       <br>
       <%= link_to item.name, menu_item_path(item) %>

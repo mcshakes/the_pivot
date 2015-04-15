@@ -1,7 +1,7 @@
 class Vendors::ItemsController < ApplicationController
 
   def index
-    @heading = "Welcome to #{current_vendor.name}'s Photo Gallery"
+    @heading = "Welcome to #{current_vendor.name}"
     @description = "\nAbout Us: #{current_vendor.description}"
     @items = current_vendor.items.where(status: "active")
     @categories = @items.flat_map(&:categories).uniq
