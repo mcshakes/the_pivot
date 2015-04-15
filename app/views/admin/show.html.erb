@@ -23,7 +23,6 @@
 <ul class="nav nav-tabs" id="myTab">
   <li class="active"><a href="#all-orders">All Orders <span class="badge"><%= @orders.count %></span></a></li>
   <li><a href="#ordered">Ordered <span class="badge"><%= @orders.ordered.count %></span></a></li>
-  <li><a href="#paid">Paid <span class="badge"><%= @orders.paid.count %></span></a></li>
   <li><a href="#cancelled">Cancelled <span class="badge"><%= @orders.cancelled.count %></span></a></li>
   <li><a href="#completed">Completed <span class="badge"><%= @orders.completed.count %></span></a></li>
 </ul>
@@ -70,83 +69,11 @@
         <td><%= format_time(order.created_at) %></td>
         <td><%= order.status %></td>
         <td><%= link_to "Cancel Order", cancel_order_path(order), class: "btn btn-xs btn-danger" %>
-            <%= link_to "Mark as Paid", paid_order_path(order), class: "btn btn-xs btn-info" %></td>
       </tr>
       <% end %>
     </table>
   </div>
 
-  <div class="tab-pane" id="paid">
-    <table class="table">
-      <tr>
-        <th>Order ID</th>
-        <th>Customer</th>
-        <th>Customer Email</th>
-        <th>Date Ordered</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-      <% @orders.paid.each do |order| %>
-      <tr>
-        <td><%= link_to "Order #{order.id}", order_path(order) %></td>
-        <td><%= link_to "#{order.user.full_name}", account_path(order.user) %></td>
-        <td><%= link_to "#{order.user.email}", account_path(order.user) %></td>
-
-        <td><%= format_time(order.created_at) %></td>
-        <td><%= order.status %></td>
-        <td><%= link_to "Cancel Order", cancel_order_path(order), class: "btn btn-xs btn-danger" %>
-            <%= link_to "Mark as Completed", complete_order_path(order), class: "btn btn-xs btn-primary" %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-
-  <div class="tab-pane" id="cancelled">
-    <table class="table">
-      <tr>
-        <th>Order ID</th>
-        <th>Customer</th>
-        <th>Customer Email</th>
-        <th>Date Ordered</th>
-        <th>Date Cancelled</th>
-        <th>Status</th>
-      </tr>
-      <% @orders.cancelled.each do |order| %>
-      <tr>
-        <td><%= link_to "Order #{order.id}", order_path(order) %></td>
-        <td><%= link_to "#{order.user.full_name}", account_path(order.user) %></td>
-        <td><%= link_to "#{order.user.email}", account_path(order.user) %></td>
-
-        <td><%= format_time(order.created_at) %></td>
-        <td><%= format_time(order.updated_at) %></td>
-        <td><%= order.status %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-
-  <div class="tab-pane" id="completed">
-    <table class="table">
-      <tr>
-        <th>Order ID</th>
-        <th>Customer</th>
-        <th>Customer Email</th>
-        <th>Date Ordered</th>
-        <th>Date Completed</th>
-        <th>Status</th>
-      </tr>
-      <% @orders.completed.each do |order| %>
-      <tr>
-        <td><%= link_to "Order #{order.id}", order_path(order) %></td>
-        <td><%= link_to "#{order.user.full_name}", account_path(order.user) %></td>
-        <td><%= link_to "#{order.user.email}", account_path(order.user) %></td>
-        <td><%= format_time(order.created_at) %></td>
-        <td><%= format_time(order.updated_at) %></td>
-        <td><%= order.status %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
 </div>
 </div>
 <script>

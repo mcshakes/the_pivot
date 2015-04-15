@@ -7,9 +7,6 @@ FactoryGirl.define do
     trait :ordered do
       status "ordered"
     end
-
-    trait :paid do
-      status "paid"
-    end
+    
   end
 end

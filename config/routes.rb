@@ -24,11 +24,4 @@ Rails.application.routes.draw do
   post "/checkout", to: "orders#create"
 
 
-  # resources :orders do
-  #   member do # for an individual order
-  #     get "cancel"
-  #     get "paid"
-  #     get "complete"
-  #   end
-  # end
 end
