@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
   end
 
   def create_order
-    order = Order.create(user_id: current_user.id, status: "paid")
+    order = Order.create(user_id: current_user.id)
     cart_data.each do |item, qty|
       order.item_orders.create(item_id: item, quantity: qty)
     end
