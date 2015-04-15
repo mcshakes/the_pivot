@@ -10,11 +10,11 @@
   <h4><%= @description %></h4>
 
   <% if @categories.count > 0 %>
-    <div class="col-sm-12 category-btn btn-group">
+    <div class="col-sm-12 btn-group" id="btn-categories">
       <% @categories.each do |category| %>
-        <div class="btn btn-default" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
+        <div class="btn btn-default category-btn" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
       <% end %>
-      <div class="btn btn-default" id="show-all">All Categories</div>
+      <div class="btn btn-default category-btn" id="show-all">All Categories</div>
     </div>
     <div class="row">
       <br>
