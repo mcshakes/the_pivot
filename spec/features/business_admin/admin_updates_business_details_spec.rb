@@ -11,7 +11,7 @@ RSpec.describe "admin updates business details", type: :feature do
 
   xit "won't allow admin of other stores to see the page" do
     admin1 = create(:admin)
-    vendor1 = create(:vendor)
+    vendor1 = create(:vendor) 
     admin1.vendors << vendor1
     other_admin = User.create(first_name: "Hey", last_name: "There", email: "admin2@example.com",
                               password: "admin", role: "store_admin")

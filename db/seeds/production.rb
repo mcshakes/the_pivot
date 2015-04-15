@@ -1,4 +1,20 @@
 class Seed
+  ADJECTIVES = ["avant garde", "groundbreaking", "chiaroscuro", "vibrant", "political", "journalistic", "impressionistic", 
+                "awe inspiring", "profound", "colorful", "whimsical", "minimalistic", "striking", "boisterous", "simple", 
+                "ebullient"]
+  PHOTOS     = ["mountains", "children at play", "self portrait", "boats", "kittens", "still life", "industrial", 
+                "modernist building", "suburbia", "hill country", "bluebonnets", "sculpture", "automobiles", 
+                "satire","bacon"]
+
+  ADJECTIVES.map!(&:titleize)
+  PHOTOS.map!(&:titleize)
+  
+  PICTURES = %w(alaska arch-building aspen beach japan architecture-bridge-california-3367 
+                castle-clouds-palace-763 Dusk_landscape_high_resolution glacier greens-beach-196826_640
+                heron iceberg-404966_640 images ireland land3 Landscape_summer_lake Loxodonta_africana
+                maldives-361244_640 mount_cooroora mountain_flowers-1546069 mtn-sunset Porch_of_Maidens
+                Road_to_mount_cook_new_zealand travel)
+
   def call
     generate_store_admins
     generate_users
@@ -20,19 +36,9 @@ class Seed
     user8 = User.create(first_name: 'Rene', last_name: "Rodriguez", email: 'Rene@example.com', password: 'password', role: 'store_admin')
     user9 = User.create(first_name: 'Jeannie', last_name: "Rodriguez", email: 'jeannie@example.com', password: 'password', role: 'store_admin')
     user10 = User.create(first_name: 'Oscar', last_name: "The Grouch", email: 'oscar@example.com', password: 'password', role: 'store_admin')
-    p 'Admins Created'
-  end
 
-  # user11 = User.create(first_name: 'Turner', last_name: "Smalls", email: 'bigbird@example.com', password: 'password', role: 'store_admin')
-  # user12 = User.create(first_name: 'Christoper', last_name: "Robin", email: 'christopher@example.com', password: 'password', role: 'store_admin')
-  # user13 = User.create(first_name: 'Miriam', last_name: "Turing", email: 'miriam@example.com', password: 'password', role: 'store_admin')
-  # user14 = User.create(first_name: 'Mac', last_name: "Turing", email: 'mac@example.com', password: 'password', role: 'store_admin')
-  # user15 = User.create(first_name: 'Lori', last_name: "Turing", email: 'lori@example.com', password: 'password', role: 'store_admin')
-  # user16 = User.create(first_name: 'Mickey', last_name: "Johnson", email: 'mickey@example.com', password: 'password', role: 'store_admin')
-  # user17 = User.create(first_name: 'Donald', last_name: "Donaldson", email: 'donald@example.com', password: 'password', role: 'store_admin')
-  # user18 = User.create(first_name: 'Brooke', last_name: "Rivers", email: 'brooke@example.com', password: 'password', role: 'store_admin')
-  # user19= User.create(first_name: 'George', last_name: "Donaldson", email: 'george@example.com', password: 'password', role: 'store_admin')
-  # user20 = User.create(first_name: 'Alan', last_name: "Turing", email: 'alan@example.com', password: 'password', role: 'store_admin')
+  p 'Admins Created'
+  end
 
   def generate_vendors
     Vendor.create(name: "Photos by Rachel", description: "Beautiful scenic images from around the world", credit_card: 4242424242424242, slug: "photos-by-rachel", user_id: 1)
@@ -72,21 +78,49 @@ class Seed
     p 'Categories Created'
   end
 
-  def generate_items
-    adjectives = ["avant garde", "groundbreaking", "chiaroscuro", "vibrant", "political", "journalistic", "impressionistic", "awe inspiring", "profound", "colorful"]
-    photos     = ["mountains", "children at play", "self portrait", "boats", "kittens", "still life", "industrial wasteland", "modernist building", "suburbia"]
+  def generate_item_name
+    begin
+      item_name = "#{ADJECTIVES.sample} #{PHOTOS.sample}" 
+    end while Item.exists?(name: item_name)
 
-    adjectives.map!(&:titleize)
-    photos.map!(&:titleize)
-    
-    200.times do
-      item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
-                        price: Faker::Commerce.price.round, image: "alaska.jpg", vendor_id: (1..10).to_a.sample)
+    item_name
+  end
+
+  def generate_items
+    100.times do |i|
+      picture = PICTURES[i % 24]
+      item = Item.new(
+        name:      generate_item_name, description: "#{ADJECTIVES.sample}",
+        price:     Faker::Commerce.price.round + 1,
+        vendor_id: (1..10).to_a.sample
+        )
+      item.image = File.open("#{Rails.root}/app/assets/images/#{picture}.jpg")
+      item.save!
+
       categories = Category.order("RANDOM()").limit(rand(1..3))
         item.categories << categories
       puts "Items: #{item.name}"
     end
   end
+
+    #   20.times do
+  #     item = Item.create(name: "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
+  #                       price: Faker::Commerce.price.round, image: item.image.url "alaska.jpg", vendor_id: (1..10).to_a.sample)
+  #     categories = Category.order("RANDOM()").limit(rand(1..3))
+  #       item.categories << categories
+  #     puts "Items: #{item.name}"
+  #   end
+  # end
+
+    # 20.times do |i|
+    #   picture = pictures[i % 5]
+
+    #   item = Item.create(
+    #     name:      "#{adjectives.sample} #{photos.sample}", description: "#{adjectives.sample}",
+    #     price:     Faker::Commerce.price.round,
+    #     image:     File.new("#{Rails.root}/app/assets/images/#{picture}.jpg"),
+    #     vendor_id: (1..10).to_a.sample
+    #     )
 
   def create_sold_items
     40.times do
@@ -116,10 +150,3 @@ class Seed
   end
 
 Seed.call
-
-# def generate_items
-#   @items = Items.create([
-#     { name: "Alaska Glacier", description: "Breathtaking View", price: Faker::Commerce.price.round, 
-#                               image_file_name: File.new("#{Rails.root}/app/assets/images/alaska.jpg", vendor_id: (1..10).to_a.sample) },
-#   ])
-# end
