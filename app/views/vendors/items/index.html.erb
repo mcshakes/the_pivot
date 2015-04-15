@@ -6,20 +6,24 @@
     <% end %>
   </div>
 
-  <h2><%= @heading %></h2><br>
-  <h4><%= @description %></h4>
+  <div id="main-vendor-header">    
+    <h2><%= @heading %></h2><br>
+    <h4><%= @description %></h4>
+  </div>
 
-  <% if @categories.count > 0 %>
-    <div class="col-sm-12 btn-group" id="btn-categories">
-      <% @categories.each do |category| %>
-        <div class="btn btn-default category-btn" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
-      <% end %>
-      <div class="btn btn-default category-btn" id="show-all">All Categories</div>
-    </div>
-    <div class="row">
-      <br>
-    </div>
-  <% end %>
+    <% if @categories.count > 0 %>
+      <div class="text-center btn-group">
+          <div class="col-sm-12" id="btn-categories">
+            <div class="btn btn-default category-btn" id="show-all">All Categories</div>
+            <% @categories.each do |category| %>
+              <div class="btn btn-default category-btn" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
+            <% end %>
+          </div>
+      </div>
+      <div class="row">
+        <br>
+      </div>
+    <% end %>
 
   <% @items.each_slice(4) do |four_items| %>
     <div class="row" id="items-list">
