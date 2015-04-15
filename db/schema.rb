@@ -99,10 +99,10 @@ ActiveRecord::Schema.define(version: 20150414023619) do
     t.text     "last_name"
     t.text     "email"
     t.text     "password_digest"
-    t.string   "role",            default: "default"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.text     "display_name"
+    t.string   "role",            default: "default"
     t.boolean  "admin",           default: false
   end
 

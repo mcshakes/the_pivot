@@ -1,19 +1,11 @@
 class Vendors::ItemsController < ApplicationController
 
   def index
-    @heading = "Welcome to: #{current_vendor.name}"
-    @description = "\n#{current_vendor.description}"
-    @items = current_vendor.items
-    @categories = Category.all
-    # items = Vendor.first.items.includes(:categories).all
-    # categories = items.flat_map(&:categories).uniq
-
-    # iterate through items
-    # find all categories with item id
-    # make sure categories are unique
-    #   item_categories = @items.includes(:categories).all
-    # @categories = item_categories.flat_map(&:categories).uniq
-
+    @heading = "Welcome to #{current_vendor.name}"
+    @description = "\nAbout Us: #{current_vendor.description}"
+    @items = current_vendor.items.where(status: "active")
+    @categories = @items.flat_map(&:categories).uniq
+    @retired_items = current_vendor.items.where(status: "retired")
   end
 
   def show

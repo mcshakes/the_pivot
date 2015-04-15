@@ -2,7 +2,7 @@
 <div class="main-vendor-items">
 
   <h2><%= @heading %></h2><br>
-  <h4>About Us: <%= @description %></h4>
+  <h4><%= @description %></h4>
 
   <% if current_user && current_vendor && current_user.store_admin?(current_vendor) %>
     <%= render "vendors/items/admin_edits" %>
@@ -21,7 +21,7 @@
   <% end %>
 
   <% @items.each_slice(4) do |four_items| %>
-    <div class="row">
+    <div class="row" id="items-list">
       <% four_items.each do |item| %>
         <div class="col-sm-3 vendor-items <%= item.categories.map(&:parameterized_name).join(" ") %>">
           <p> <%= link_to image_tag(item.image), vendor_item_path(slug: item.vendor.slug, id:item.id), data: { target: "#modal" } %>  </p>
