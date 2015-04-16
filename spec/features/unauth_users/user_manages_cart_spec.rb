@@ -13,16 +13,6 @@ RSpec.describe "unauthenticated user managing cart", type: :feature, js: true do
     expect(page).to have_content("#{item.name} was added to your cart.")
   end
 
-  xit "cannot add a sold item to the cart" do
-    vendor = create(:vendor)
-    item = create(:item, :sold, vendor: vendor)
-    visit vendors_path
-
-    click_link_or_button(vendor.name)
-    click_link_or_button(item.name)
-    expect(page).not_to have_button("Buy")
-  end
-
   it "can add for sale items to cart from multiple stores" do
     vendor = create(:vendor, name: "Bob's Photo Shop")
     item = create(:item, :for_sale, name: "Beautiful Image", vendor: vendor)
