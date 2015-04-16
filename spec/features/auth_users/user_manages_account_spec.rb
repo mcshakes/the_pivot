@@ -53,4 +53,15 @@ RSpec.describe "user manages personal account", type: :feature do
     expect(current_path).to eq(account_path)
   end
 
+  it "cannot update the data" do
+    user_visits_account
+    click_link_or_button("Edit Personal Info")
+    within("#update-form") do
+      fill_in("user[first_name]", with: " " )
+      click_link_or_button("Update Account")
+    end
+    expect(page).to have_content("Profile Not Updated")
+    # expect(current_path).to eq(account_path)
+  end
+
 end
