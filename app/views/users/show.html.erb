@@ -1,37 +1,59 @@
-<div class="user-view container">
-  <h1>My Account</h1>
-  <h3>Welcome <%= current_user.first_name %>!</h3>
+<h1 class><%= current_user.first_name %>'s Account</h1>
 
-  <% if @orders.nil?  %>
-    <p>You currently have no orders. We have a bunch of great stuff you can buy.
-      <%= link_to "Check it out here!", vendors_path %></p>
-  <% else %>
-  <div class="col-sm-12">
+<% if @orders.nil? %>
+  <p> You currently have no orders. We have We have a bunch of great stuff you can buy.
+  <%= link_to "Check it out here!", vendors_path %></p>
+<% else %></p>
 
-    <% @orders.reverse.each do |order| %>
-      <div class="user-orders"
-      <p><strong><span class="order_id_title">Order ID: <%= order.id %></strong></span></br>
-      <%= format_time(order.created_at) %></p>
-      <% order.items.each do |item| %>
-        <p><%= quantity_of_item(item, order) %>
-        <%= link_to item.display_name, vendor_item_path(slug: item.vendor.slug, id: item.id) %>
-        from <%= link_to item.vendor.name, vendor_items_path(slug: item.vendor.slug) %>:
-        <%= number_to_currency(line_item_price(item, order)) %></p>
-      <% end %>
-      <p><strong>Total</strong>: <%= number_to_currency(order.total_price) %><br/>
-      <strong>Status:</strong> <em><%= order.status %></em> as of <%= format_time(order.updated_at) %>
-      </div>
-      <% if order_completed_or_cancelled?(order) %></p><br/><br/>
-      <% end %>
-    <% end %>
-  <% end %>
+<div class="user-orders" >
+
+  <% @orders.reverse.each do |order| %>
+  <hr>
+  <div class="pagination order-column">
+    <%= image_tag(order.first_item_image, size: "100")%><br>
+    <strong class="order_id_title">Order ID: <%= order.id %></strong>
+    <p> <%= format_time(order.created_at) %> </p>
+    <strong><p>Order status: </strong><em><%= order.status %></em> </p>
+    <strong><p>Total cost: </strong><%= number_to_currency(order.total_price) %> </p>
   </div>
 
-  <div class="col-sm-2">
-    <%= button_to "Edit Personal Info", edit_user_path(current_user), method: :get, class: "btn btn-success" %>
-  </div>
-  <div class="col-sm-2">
-    <%= button_to "Update Your Address", addresses_path, method: :get, class: "btn btn-default" %>
-  </div>
+  <div class="pagination">
+    <table>
+      <th class="large-column">Items Purchased</th>
+      <th class="large-column">Store</th>
+      <th class="small-column">Qty</th>
+      <th class="medium-column">Cost</th>
+      <th> </th>
 
+        <% order.items.each do |item| %>
+        <tr class="" border ="1">
+          <td class="large-column"> <%= link_to item.display_name, vendor_item_path(slug: item.vendor.slug, id:item.id), data: { target: "#modal" } %></td>
+          <td class="large-column"> <%= link_to item.vendor.name, vendor_items_path(slug: item.vendor.slug) %></td>
+          <td class="small-column"> <%= quantity_of_item(item, order) %></td>
+          <td class="medium-column"> <%= number_to_currency(line_item_price(item, order)) %></td>
+          
+  </div>
 </div>
+
+        <% end %>
+
+  </table> 
+</div>
+
+
+ <% end %>
+
+</tr>
+<% end %>
+
+
+      
+
+
+
+
+
+
+
+
+

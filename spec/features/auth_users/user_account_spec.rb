@@ -22,4 +22,5 @@ RSpec.feature "user visits account", type: :feature do
     visit account_path
     expect(page).to have_content("You must sign in to see your account.")
   end
+    
 end
