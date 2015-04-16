@@ -43,10 +43,4 @@ class Item < ActiveRecord::Base
     order(:id).reverse
   end
 
-
-
-  # def downcase_name
-  #   return if name.nil?
-  #   name.downcase!
-  # end
 end
