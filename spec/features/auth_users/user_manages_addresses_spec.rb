@@ -67,6 +67,27 @@ RSpec.describe "user manages personal account", type: :feature do
     expect(current_path).to eq(addresses_path)
   end
 
+  it "needs valid data to edit addresses" do
+    user_visits_account
+    address_created
+    click_link_or_button("Edit Existing Address")
+    expect(page).to have_content("Update Your Address")
+    fill_in("address[street]", with: "910 A new name" )
+    fill_in("address[city]", with: "New Berlin" )
+    click_link_or_button("Update Address")
+    expect(page).to have_content("Attributes missing")
+  end
+
+  it "deletes the address and redirects to address index" do
+    user_visits_account
+    address_created
+    expect(page).to have_content("Delete Existing Address")
+    click_link_or_button("Delete Existing Address")
+    expect(page).to have_content("Address Deleted")
+    expect(current_path).to eq(addresses_path)
+
+  end
+
 
 
 
