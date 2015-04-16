@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       redirect_to account_path
       flash[:notice] = "Successfully Updated"
     else
-      flash[:notice] = "Profile not Updated"
+      flash[:notice] = "Profile Not Updated"
       render :edit
     end
   end
