@@ -38,15 +38,6 @@ RSpec.describe "user manages personal account", type: :feature do
     expect(page).to have_content("123 Doc Drive")
   end
 
-  xit "deletes an address" do
-    user_visits_account
-    click_link_or_button("Update Your Address")
-    click_link_or_button("Add a New Address")
-    fill_in_address
-    click_link_or_button("Add Address")
-    expect(page).to have_content("123 Doc Drive")
-  end
-
   it "must have a street" do
     user_visits_account
     click_link_or_button("Update Your Address")
@@ -101,21 +92,5 @@ RSpec.describe "user manages personal account", type: :feature do
     click_link_or_button("Add Address")
 
     expect(page).to have_content("Attributes missing.")
-  end
-
-
-  xit "edits an existing address" do
-    user = create(:user)
-    address = create(:address)
-    user.addresses << address
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-    visit account_path
-    click_link_or_button("Update Your Address")
-    expect(page).to have_content("237 Judson")
-    click_link_or_button("Edit Existing Address")
-    fill_in_address
-    click_link_or_button("Update Address")
-    expect(page).not_to have_content("237 Judson")
-    expect(page).to have_content("123 Doc Drive")
   end
 end
