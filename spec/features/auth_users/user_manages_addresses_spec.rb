@@ -55,10 +55,16 @@ RSpec.describe "user manages personal account", type: :feature do
 
   it "successfully edits address" do
     user_visits_account
-    click_link_or_button("Update Your Address")
-    # address_created
-    # expect(page).to have_content("908 N Obscure Square")
-
+    address_created
+    click_link_or_button("Edit Existing Address")
+    expect(page).to have_content("Update Your Address")
+    fill_in("address[street]", with: "910 A new name" )
+    fill_in("address[city]", with: "New Berlin" )
+    fill_in("address[state]", with: "wiemerhammer" )
+    fill_in("address[country]", with: "West Germany" )
+    click_link_or_button("Update Address")
+    expect(page).to have_content("Address has been successfully updated")
+    expect(current_path).to eq(addresses_path)
   end
 
 
