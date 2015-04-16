@@ -48,6 +48,13 @@ RSpec.feature "Unauthenticated user", type: :feature do
     expect(page).to have_content("Password can't be blank")
   end
 
+  it "gets error messages if form is filled with invalid inputs" do
+    get_registration_form
+    incorrect_registration
+    click_link_or_button("Create Account")
+    expect(page).to have_content("Invalid input, please try again")
+  end
+
   it "is taken back to whatever page they were on upon correct registration" do
     get_registration_form
     correct_registration
