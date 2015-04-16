@@ -1,18 +1,21 @@
-<div class="container">
+<div class="container user-addresses">
+  <div class="pull-right"><%= link_to "Add a New Address", new_address_path, method: :get, class: "btn btn-success" %></div>
   <div class="col-sm-12">
     <h1>Your Address Info</h1>
   </div>
 
-  <h4><%= link_to "Add a New Address", new_address_path %></h4>
-  <% @addresses.each do |address| %>
-    <div class="col-sm-4">
-      <%= address.street %>
-      <%= address.city %> 
-      <%= address.state %>
-      <%= address.country %>
-    <p><%= link_to "Edit Existing Address", edit_address_path(address) %></p>
-    <p><%= link_to "Delete Existing Address", address_path(address), method: :delete %></p>
-
+    <div class="col-sm-12" id="address">
+      <% @addresses.each do |address| %>
+        <div class="col-sm-4">
+          <p><%= address.street %></p>
+          <p><%= address.city %>
+        <%= address.state %>
+          <%= address.country %></p>
+          <div class="btn-group btn-group-xs">
+            <%= link_to "Edit Existing Address", edit_address_path(address), method: :get, class: "btn btn-default" %>
+            <%= link_to "Delete Existing Address", address_path(address), method: :delete, class: "btn btn-danger" %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
 </div>
