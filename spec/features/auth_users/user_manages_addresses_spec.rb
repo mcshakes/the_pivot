@@ -85,15 +85,5 @@ RSpec.describe "user manages personal account", type: :feature do
     click_link_or_button("Delete Existing Address")
     expect(page).to have_content("Address Deleted")
     expect(current_path).to eq(addresses_path)
-
   end
-
-
-
-
-
-
-
-
-
 end
