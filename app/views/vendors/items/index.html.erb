@@ -1,4 +1,3 @@
-
 <div class="main-vendor-items">
   <div class="col-sm-12">
     <% if current_user && current_vendor && current_user.store_admin?(current_vendor) %>
@@ -29,7 +28,7 @@
     <div class="row" id="items-list">
       <% four_items.each do |item| %>
         <div class="col-sm-3 vendor-items <%= item.categories.map(&:parameterized_name).join(" ") %>">
-          <p> <%= link_to image_tag(item.image), vendor_item_path(slug: item.vendor.slug, id:item.id), data: { target: "#modal" } %>  </p>
+          <p> <%= link_to image_tag(item.image, width: "250"), vendor_item_path(slug: item.vendor.slug, id:item.id), data: { target: "#modal" } %>  </p>
           <p><strong> <%= link_to item.name, vendor_item_path(slug: item.vendor.slug, id:item.id), data: { target: "#modal" } %> </strong></p>
           <% if item.status == "sold" %>
             <p> <%= item.status %> </p>
@@ -45,3 +44,4 @@
     </div>
   <% end %>
 </div>
+

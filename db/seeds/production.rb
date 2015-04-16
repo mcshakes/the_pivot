@@ -50,7 +50,7 @@ class Seed
     Vendor.create(name: "Click It In Pictures", description: "Stunning photos from small town America", credit_card: 4242424242424248, slug: "click-it-in-pictures", user_id: 7)
     Vendor.create(name: "Shutterspeed Photographs", description: "Beautiful scenic images from around the world", credit_card: 4242424242424249, slug: "shutterspeed-photographs", user_id: 8)
     Vendor.create(name: "Photo Emporium", description: "Freelance photographer willing to shoot any where in the world", credit_card: 4242424242424240, slug: "photo-emporium", user_id: 9)
-    Vendor.create(name: "Our Amazing Images", description: "Spcialize making clients happy", credit_card: 4242424242424241, slug: "our-amazing-images", user_id: 10)
+    Vendor.create(name: "Our Amazing Images", description: "Specialize making clients happy", credit_card: 4242424242424241, slug: "our-amazing-images", user_id: 10)
     p 'Vendors created'
   end
 
@@ -87,7 +87,7 @@ class Seed
   end
 
   def generate_items
-    100.times do |i|
+    200.times do |i|
       picture = PICTURES[i % 24]
       item = Item.new(
         name:      generate_item_name, description: "#{ADJECTIVES.sample}",
@@ -104,7 +104,7 @@ class Seed
   end
 
   def create_sold_items
-    40.times do
+    50.times do
       item = Item.all.sample
       item.status = "sold"
       item.save!

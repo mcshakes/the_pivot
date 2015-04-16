@@ -1,6 +1,0 @@
-<h2> These are My Favorites </h2>
-
-<% @favorite_items.each do |item| %>
-   <p> <%= link_to image_tag(item.photo), vendor_item_path(slug: params[:slug], id:item.id) %></p>
- <p><strong>  <%= link_to item.name, vendor_item_path(slug: params[:slug], id:item.id)%> </strong></p>
-<% end %>
