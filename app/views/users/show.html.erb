@@ -1,20 +1,24 @@
+<div class="btn-group col-sm-12">
+  <%= link_to "Edit Personal Info", edit_user_path(current_user), method: :get, class: "btn btn-success pull-right" %>
+  <%= link_to "Update Your Address", addresses_path, method: :get, class: "btn btn-default pull-right" %><br><br>
+</div>
+
 <h1 class><%= current_user.first_name %>'s Account</h1>
 
 <% if @orders.nil? %>
   <p> You currently have no orders. We have We have a bunch of great stuff you can buy.
   <%= link_to "Check it out here!", vendors_path %></p>
-<% else %></p>
+<% else %>
 
-<div class="user-orders" >
-
-  <% @orders.reverse.each do |order| %>
-  <hr>
-  <div class="pagination order-column">
-    <%= image_tag(order.first_item_image, size: "100")%><br>
-    <strong class="order_id_title">Order ID: <%= order.id %></strong>
-    <p> <%= format_time(order.created_at) %> </p>
-    <strong><p>Order status: </strong><em><%= order.status %></em> </p>
-    <strong><p>Total cost: </strong><%= number_to_currency(order.total_price) %> </p>
+  <div class="user-orders" >
+    <% @orders.reverse.each do |order| %>
+    <hr>
+    <div class="pagination order-column">
+      <%= image_tag(order.first_item_image, size: "100")%><br>
+      <strong class="order_id_title">Order ID: <%= order.id %></strong>
+      <p> <%= format_time(order.created_at) %> </p>
+      <strong><p>Order status: </strong><em><%= order.status %></em> </p>
+      <strong><p>Total cost: </strong><%= number_to_currency(order.total_price) %> </p>
   </div>
 
   <div class="pagination">
@@ -26,24 +30,18 @@
       <th> </th>
 
         <% order.items.each do |item| %>
-        <tr class="" border ="1">
-          <td class="large-column"> <%= link_to item.display_name, vendor_item_path(slug: item.vendor.slug, id:item.id), data: { target: "#modal" } %></td>
-          <td class="large-column"> <%= link_to item.vendor.name, vendor_items_path(slug: item.vendor.slug) %></td>
-          <td class="small-column"> <%= quantity_of_item(item, order) %></td>
-          <td class="medium-column"> <%= number_to_currency(line_item_price(item, order)) %></td>
-          
+          <tr class="" border ="1">
+            <td class="large-column"> <%= link_to item.display_name, vendor_item_path(slug: item.vendor.slug, id:item.id), data: { target: "#modal" } %></td>
+            <td class="large-column"> <%= link_to item.vendor.name, vendor_items_path(slug: item.vendor.slug) %></td>
+            <td class="small-column"> <%= quantity_of_item(item, order) %></td>
+            <td class="medium-column"> <%= number_to_currency(line_item_price(item, order)) %></td>
   </div>
-</div>
-
         <% end %>
-
-  </table> 
+    </table> 
 </div>
 
-
- <% end %>
-
-</tr>
+   <% end %>
+        </tr>
 <% end %>
 
 

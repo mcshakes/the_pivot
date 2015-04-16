@@ -16,22 +16,6 @@ class OrdersController < ApplicationController
     authorize! :show, @order
   end
 
-  def cancel
-    @order = Order.find(params[:id])
-    @order.status = "cancelled"
-    @order.save
-    flash[:notice] = "Order cancelled."
-    redirect_to :back
-  end
-
-  def paid
-    @order = Order.find(params[:id])
-    @order.status = "paid"
-    @order.save
-    flash[:notice] = "Order marked as paid."
-    redirect_to :back
-  end
-
   def complete
     @order = Order.find(params[:id])
     @order.status = "completed"
@@ -47,7 +31,7 @@ class OrdersController < ApplicationController
   end
 
   def create_order
-    order = Order.create(user_id: current_user.id, status: "paid")
+    order = Order.create(user_id: current_user.id)
     cart_data.each do |item, qty|
       order.item_orders.create(item_id: item, quantity: qty)
     end

@@ -12,10 +12,10 @@ RSpec.feature "user visits account", type: :feature do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit account_path
-    expect(page).to have_content("1 Salted Caramel Peanut Butter Cup")
-    expect(page).to have_content("Ansel Adams")
+    expect(page).to have_content("Salted Caramel Peanut Butter Cup")
     click_link_or_button("Salted Caramel Peanut Butter Cup")
     expect(page).to have_content("Salted caramel ice cream with chopped peanut butter cups")
+    
   end
 
   it "cannot see account if not signed in" do

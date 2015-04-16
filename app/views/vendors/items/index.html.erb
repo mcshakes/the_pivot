@@ -1,22 +1,29 @@
 
 <div class="main-vendor-items">
-  <h2><%= @heading %></h2><br>
-  <h4><%= @description %></h4>
-  <% if current_user && current_vendor && current_user.store_admin?(current_vendor) %>
-    <%= render "vendors/items/admin_edits" %>
-  <% end %>
+  <div class="col-sm-12">
+    <% if current_user && current_vendor && current_user.store_admin?(current_vendor) %>
+      <%= render "vendors/items/admin_edits" %>
+    <% end %>
+  </div>
 
-  <% if @categories %>
-    <div class="col-sm-12">
-      <% @categories.each do |category| %>
-        <div class="category-btn col-sm-2 btn btn-success" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
-      <% end %>
-      <div class="category-btn col-sm-2 btn btn-default" id="show-all">All Categories</div>
-    </div>
-    <div class="row">
-      <br>
-    </div>
-  <% end %>
+  <div id="main-vendor-header">
+    <h2><%= @heading %></h2><br>
+    <h4><%= @description %></h4>
+  </div>
+
+    <% if @categories && @categories.count > 0 %>
+      <div class="text-center btn-group">
+          <div class="col-sm-12" id="btn-categories">
+            <div class="btn btn-default category-btn" id="show-all">All Categories</div>
+            <% @categories.each do |category| %>
+              <div class="btn btn-default category-btn" id="<%= category.name.parameterize %>"><%= category.display_name %></div>
+            <% end %>
+          </div>
+      </div>
+      <div class="row">
+        <br>
+      </div>
+    <% end %>
 
   <% @items.each_slice(4) do |four_items| %>
     <div class="row" id="items-list">

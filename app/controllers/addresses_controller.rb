@@ -31,12 +31,6 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    @address = Address.find(params[:id])
-    @address.destroy
-    flash[:notice] = "The Address has been removed from your account."
-  end
-
-  def destroy
     if Address.destroy(params[:id])
       flash[:notice] = "Address Deleted"
       redirect_to addresses_path

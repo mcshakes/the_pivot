@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.account_creation_confirmation(@user).deliver_now
-      flash[:info] = "We've just sent you a welcome email with a coupon for your next visit!"
+      flash[:info] = "Welcome to the Gallery!"
       sign_in
     else
       flash[:error] = "Invalid input, please try again"
