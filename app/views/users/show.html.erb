@@ -1,6 +1,9 @@
-<div class="btn-group col-sm-12">
-  <%= link_to "Edit Personal Info", edit_user_path(current_user), method: :get, class: "btn btn-success pull-right" %>
-  <%= link_to "Update Your Address", addresses_path, method: :get, class: "btn btn-default pull-right" %><br><br>
+
+<div class="col-sm-12">
+  <div class="btn-group pull-right">
+    <%= link_to "Update Your Address", addresses_path, method: :get, class: "btn btn-default" %>
+    <%= link_to "Edit Personal Info", edit_user_path(current_user), method: :get, class: "btn btn-success" %>
+  </div>
 </div>
 
 <h1 class><%= current_user.first_name %>'s Account</h1>
@@ -31,28 +34,16 @@
 
         <% order.items.each do |item| %>
           <tr class="" border ="1">
-            <td class="large-column"> <%= link_to item.display_name, vendor_item_path(slug: item.vendor.slug, id:item.id), 
+            <td class="large-column"> <%= link_to item.display_name, vendor_item_path(slug: item.vendor.slug, id:item.id),
                                       data: { target: "#modal" } %></td>
             <td class="large-column"> <%= link_to item.vendor.name, vendor_items_path(slug: item.vendor.slug) %></td>
             <td class="small-column"> <%= quantity_of_item(item, order) %></td>
             <td class="medium-column"> <%= number_to_currency(line_item_price(item, order)) %></td>
   </div>
         <% end %>
-    </table> 
+    </table>
 </div>
 
     <% end %>
           </tr>
 <% end %>
-
-
-      
-
-
-
-
-
-
-
-
-
