@@ -38,7 +38,6 @@ RSpec.describe "admin managing items", type: :feature do
     fill_in "item[price]", with: "600"
     page.check('category_ids_')
     click_link_or_button "Submit"
-    # save_and_open_page
 
     expect(page).to have_content("snuggly cats")
     expect(page).to have_content("Your photograph has been added!")
@@ -80,18 +79,6 @@ RSpec.describe "admin managing items", type: :feature do
     fill_in "item[price]", with: "600"
     click_link_or_button "Submit"
     expect(page).to have_content("Attributes missing.")
-  end
-
-  xit "can upload photo when creating new item" do
-    create_admin_user_and_vendor
-    visit new_vendor_item_path
-    fill_in "item[name]", with: "fudge"
-    fill_in "item[description]", with: "double chocolate"
-    fill_in "item[price]", with: "600"
-    # attach_file "item[image]", "app/assets/images/cookie-monster.jpg"
-    click_link_or_button "Submit"
-    expect(current_path).to eq("/menu/items/fudge")
-    # expect(page).to have_css("img[alt='Cookie monster']")
   end
 
   it "can retire an item" do
