@@ -46,8 +46,8 @@ RSpec.describe "unauthenticated user managing cart", type: :feature, js: true do
   end
 
   it "allows users to remove things from their cart" do
-    vendor = create(:vendor, name: "Sports Pics")
-    item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
+    vendor = create(:vendor)
+    item = create(:item, :for_sale, vendor: vendor)
 
     visit vendors_path
     click_link_or_button(vendor.name)
@@ -57,8 +57,8 @@ RSpec.describe "unauthenticated user managing cart", type: :feature, js: true do
     visit cart_path
     find("#down_button").click
 
-    expect(page).to have_content("The item has been removed from your cart")
-    expect(page).to_not have_content("Super Sold Photograph")
+    expect(page).to have_content("The item has been removed from your cart.")
+    expect(page).to_not have_content(item.name)
   end
 
   it "allows users to increase the quantity of an item in their cart" do
@@ -74,6 +74,22 @@ RSpec.describe "unauthenticated user managing cart", type: :feature, js: true do
     find("#up_button").click
     expect(page).to have_content("Quantity: 2")
     expect(page).to have_content("12.00")
+  end
+
+  it "can remove all of an item in one click" do
+    vendor = create(:vendor, name: "Sports Pics")
+    item = create(:item, :for_sale, name: "Super Sold Photograph", vendor: vendor)
+
+    visit vendors_path
+    click_link_or_button(vendor.name)
+
+    click_link_or_button(item.name)
+    click_link_or_button("Buy")
+    visit cart_path
+    find("#up_button").click
+    expect(page).to have_content("Quantity: 2")
+    click_link_or_button("Remove All")
+    expect(page).to have_content("The item has been entirely removed from your cart.")
   end
 
   it "can click checkout button and be routed to the login page" do
